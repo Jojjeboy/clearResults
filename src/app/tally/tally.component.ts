@@ -19,9 +19,7 @@ export class TallyComponent implements OnInit {
 
   percentage = 0.00;
 
-  constructor(private tallyService: TallyService) {
-    
-  }
+  constructor(private tallyService: TallyService) {}
 
   ngOnInit() {
     this.recalculatePercentage();
