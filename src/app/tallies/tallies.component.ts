@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
-import { UUIDService } from '../services/uuid/uuid.service';
 import { TallyService } from '../services/tally/tally.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class TalliesComponent  {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private uuidService: UUIDService,
     private tallyService: TallyService) {
 
     tallyService.init();
