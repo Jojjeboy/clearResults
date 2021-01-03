@@ -31,8 +31,6 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-
-
 if [[ $(git diff --stat) != '' ]]; then
   echo 'dirty'
   ng build --prod --output-path docs --base-href "$PUBLISH_URL" && 
