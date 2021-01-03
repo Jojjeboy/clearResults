@@ -1,0 +1,27 @@
+.card-header {
+    > div {
+        display: inline;
+    }
+
+    .header-meta-text {
+        font-size: 0.8em;
+    }
+
+    .warning-text {
+        color: #ff0000
+    }
+}
+
+.card-block {
+    .progress-bar {
+        width: 100%;
+    }
+}
+
+.card-footer {
+
+    .timeago {
+        text-align: center;
+        display: inline-block;
+    }
+}

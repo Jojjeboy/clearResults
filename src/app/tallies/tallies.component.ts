@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { TallyService } from '../services/tally/tally.service';
+//import { TimeagoIntl } from 'ngx-timeago';
+//import {strings as swedishStrings} from 'ngx-timeago/language-strings/sv';
 
 @Component({
   selector: 'app-tallies',
@@ -13,6 +15,8 @@ export class TalliesComponent  {
   tallies = Array<Tally>();
   public showAll: boolean;
 
+
+
   constructor(
     private localStorageService: LocalStorageService,
     private tallyService: TallyService) {
@@ -22,8 +26,10 @@ export class TalliesComponent  {
     this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
     this.tallies = tallyService.sortByLastTouched(this.tallies);
 
-
     this.showAll = this.localStorageService.getConfig().showAll;
+
+    //intl.strings = swedishStrings;
+    //intl.changes.next();
 
   }
 

@@ -1,0 +1,53 @@
+<div class="clr-row">
+    <div class="clr-col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="header-main-text">
+                    {{ tally.getName() }}
+                </div>
+                <div class="pull-right header-meta-text">
+
+
+                    <clr-dropdown [clrCloseMenuOnItemClick]="false">
+                        <button clrDropdownTrigger aria-label="Dropdown demo button">
+                            <clr-icon shape="cog"></clr-icon>
+                        </button>
+                        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                            <label class="dropdown-header" aria-hidden="true">Dropdown header</label>
+                            <div aria-label="Dropdown header Action 1" clrDropdownItem>Redigera</div>
+                            <div aria-label="Dropdown header Action 2"  clrDropdownItem>Töm historik</div>
+                            <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+                            <div clrDropdownItem class="warning-text">Radera</div>
+                        </clr-dropdown-menu>
+                    </clr-dropdown>
+
+                </div>
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    Block
+                </div>
+                <div class="card-text">
+                    <div aria-hidden="true">
+                        <div>Container 1 loading Progress </div>
+                        <progress class="progress-bar" max="100" value="65" data-displayval="65%"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="clr-row">
+                    <div class="clr-col-2"><span class="pull-left">&uarr;</span></div>
+                    <div class="clr-col-8 timeago"><small>
+                            <clr-icon shape="clock"></clr-icon> &nbsp; {{ tally.getLastTouched() | timeago }}
+                        </small>
+                    </div>
+                    <div class="clr-col-2"><span class="pull-right">&darr;</span></div>
+                </div>
+
+
+                <!--<button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link pull-right">Footer Action 2</button>-->
+            </div>
+        </div>
+    </div>
+</div>
