@@ -28,13 +28,13 @@
     <div class="header-actions">
         <clr-dropdown>
             <button class="nav-icon" clrDropdownTrigger aria-label="toggle settings menu">
-                <clr-icon shape="cog"></clr-icon>
+                <clr-icon shape="view-list"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a href="..." clrDropdownItem>About</a>
-                <a href="..." clrDropdownItem>Preferences</a>
-                <a href="..." clrDropdownItem>Log out</a>
+                <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
+                <a routerLink="/todo" clrDropdownItem>Att göra</a>
+                <a routerLink="/clear" clrDropdownItem>Rensa Local Storage</a>
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
