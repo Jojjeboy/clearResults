@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TalliesComponent } from './tallies/tallies.component';
 import { SharedModule } from './shared.module';
 import { FormsModule } from '@angular/forms';
+import { TallyComponent } from './tally/tally.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  declarations: [TalliesComponent],
+  declarations: [
+    TalliesComponent, 
+    TallyComponent
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
