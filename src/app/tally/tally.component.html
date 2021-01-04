@@ -13,7 +13,8 @@
                         <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                             <label class="dropdown-header" aria-hidden="true">Dropdown header</label>
                             <div aria-label="Dropdown header Action 1" clrDropdownItem>Redigera</div>
-                            <div aria-label="Dropdown header Action 2"  clrDropdownItem>Töm historik</div>
+                            <div aria-label="Dropdown header Action 2" clrDropdownItem>Töm historik</div>
+                            <div aria-label="Dropdown header Action 2" clrDropdownItem>Inaktivera</div>
                             <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
                             <div clrDropdownItem class="warning-text">Radera</div>
                         </clr-dropdown-menu>
@@ -27,23 +28,23 @@
                 <div class="card-text">
                     <div aria-hidden="true">
                         <div>Container 1 loading Progress </div>
-                        <progress class="progress-bar" max="100" value="65" data-displayval="65%"></progress>
+                        <progress class="progress-bar" max="100" [value]="percentage" data-displayval="65%"></progress>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="clr-row">
-                    <div class="clr-col-2"><span class="pull-left">&uarr;</span></div>
-                    <div class="clr-col-8 timeago"><small>
+                    <div class="clr-col-3">
+                        <button class="btn btn-success-outline pull-left increse" (click)="increase()">Öka</button>
+                    </div>
+                    <div class="clr-col-6 timeago"><small>
                             <clr-icon shape="clock"></clr-icon> &nbsp; {{ tally.getLastTouched() | timeago }}
                         </small>
                     </div>
-                    <div class="clr-col-2"><span class="pull-right">&darr;</span></div>
+                    <div class="clr-col-3">
+                        <button class="btn btn-danger-outline pull-right decrese" (click)="decrease()">Minska</button>
+                    </div>
                 </div>
-
-
-                <!--<button class="btn btn-sm btn-link">Footer Action 1</button>
-                <button class="btn btn-sm btn-link pull-right">Footer Action 2</button>-->
             </div>
         </div>
     </div>

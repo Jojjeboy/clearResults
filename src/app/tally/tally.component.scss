@@ -5,6 +5,10 @@
 
     .header-meta-text {
         font-size: 0.8em;
+
+        button {
+            padding-right: 0;
+        }
     }
 
     .warning-text {
@@ -23,5 +27,9 @@
     .timeago {
         text-align: center;
         display: inline-block;
+    }
+
+    button.decrese {
+        margin-right: 0;
     }
 }

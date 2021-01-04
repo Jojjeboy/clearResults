@@ -25,12 +25,12 @@ export class TallyComponent implements OnInit {
     this.recalculatePercentage();
   }
 
-  arrowUp() {
+  increase() {
     this.tallyIncrese.emit(this.tally);
     this.recalculatePercentage();
   }
 
-  arrowDown() {
+  decrease() {
     this.tallyDecrese.emit(this.tally);
     this.recalculatePercentage();
   }
