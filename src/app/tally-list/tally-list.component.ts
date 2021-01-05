@@ -2,47 +2,38 @@ import { Component } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { TallyService } from '../services/tally/tally.service';
-//import { TimeagoIntl } from 'ngx-timeago';
-//import {strings as swedishStrings} from 'ngx-timeago/language-strings/sv';
 
 @Component({
-  selector: 'app-tallies',
-  templateUrl: './tallies.component.html',
-  styleUrls: ['./tallies.component.scss']
+  selector: 'app-tally-list',
+  templateUrl: './tally-list.component.html',
+  styleUrls: ['./tally-list.component.scss']
 })
-export class TalliesComponent  {
+export class TallyListComponent {
 
   tallies = Array<Tally>();
   public showAll: boolean;
-
-
 
   constructor(
     private localStorageService: LocalStorageService,
     private tallyService: TallyService) {
 
-    tallyService.init();
-
-    this.tallies = tallyService.convertLSToTallies(localStorageService.getAll());
-    this.tallies = tallyService.sortByLastTouched(this.tallies);
-
+    this.tallies = this.tallyService.getTallies();
     this.showAll = this.localStorageService.getConfig().showAll;
-
-    //intl.strings = swedishStrings;
-    //intl.changes.next();
 
   }
 
   increse(tally: Tally) {
     this.tallyService.increse(tally);
-    this.tallies = this.tallyService.sortByLastTouched(this.tallies);
+    this.tallies = this.tallyService.sortByLastTouched();
   }
   
   decrese(tally: Tally) {
     this.tallyService.decrese(tally);
-    this.tallies = this.tallyService.sortByLastTouched(this.tallies);
+    this.tallies = this.tallyService.sortByLastTouched();
   }
 
+
+  // Update show all
   eventCheck(event: any){
     let config = this.localStorageService.getConfig();
     this.showAll = event.target.checked;
@@ -52,6 +43,15 @@ export class TalliesComponent  {
 
   getShowAll() {
     return this.showAll;
+  }
+
+
+  calculatePercentage(tally: Tally): number {
+    return this.tallyService.recalculatePercentage(tally.getGoal(), tally.getValue());
+  }
+
+  editTally(): void{
+    
   }
 
 }

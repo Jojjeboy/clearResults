@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TalliesComponent } from './tallies.component';
+import { AddEditTallyComponent } from './add-edit-tally.component';
 
-describe('TalliesComponent', () => {
-  let component: TalliesComponent;
-  let fixture: ComponentFixture<TalliesComponent>;
+describe('AddEditTallyComponent', () => {
+  let component: AddEditTallyComponent;
+  let fixture: ComponentFixture<AddEditTallyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TalliesComponent ]
+      declarations: [ AddEditTallyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TalliesComponent);
+    fixture = TestBed.createComponent(AddEditTallyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { TallyService } from '../services/tally/tally.service';
-import { TimeagoIntl } from 'ngx-timeago';
-import {strings as swedishStrings } from 'ngx-timeago/language-strings/sv';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,34 +11,68 @@ import {strings as swedishStrings } from 'ngx-timeago/language-strings/sv';
 })
 export class TallyComponent implements OnInit {
 
-  @Output() tallyIncrese = new EventEmitter<Tally>();
-  @Output() tallyDecrese = new EventEmitter<Tally>();
-  @Input() tally!: Tally;
-  @Input() showAll!: boolean;
-
+  
+  tally!: Tally;
   percentage = 0.00;
+  editMode = false;
+  private tallyCopy: any;
 
-  constructor(private tallyService: TallyService) {}
-
-  ngOnInit() {
-    this.recalculatePercentage();
+  constructor(private tallyService: TallyService, private route: ActivatedRoute) {
+    
   }
 
+  ngOnInit() {
+    
+    this.route.params.subscribe(params => {
+      this.tally = this.tallyService.getTallyById(params['id']);
+      
+
+      // In a real app: dispatch action to load the details here.
+   });
+    //this.tally = this.tallyService.getTallyById();
+    //this.recalculatePercentage();
+  }
+  
   increase() {
-    this.tallyIncrese.emit(this.tally);
+    //this.tallyIncrese.emit(this.tally);
     this.recalculatePercentage();
   }
 
   decrease() {
-    this.tallyDecrese.emit(this.tally);
+    //this.tallyDecrese.emit(this.tally);
     this.recalculatePercentage();
   }
 
   recalculatePercentage() {
-    this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
+    //this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
   }
 
   cleanHistory(tally: Tally): void {
     this.tallyService.cleanHistory(this.tally);
   }
+
+  editTally(): void{
+    this.editMode = true; 
+    this.tallyCopy = this.tallyService.cloneTally(this.tally);
+  }
+  
+  update() :void{
+    
+  }
+  
+  discard(): void{
+    this.editMode = false;
+    this.tally = this.tallyService.cloneTally(this.tallyCopy);
+    
+    // this.tally.setName(this.tallyCopy.getName());
+    // this.tally.setValue(this.tallyCopy.getValue());
+    // this.tally.setGoal(this.tallyCopy.getGoal());
+    // this.tally.setDecreseBy(this.tallyCopy.getDecreseBy());
+    // this.tally.setIncreseBy(this.tallyCopy.getIncreseBy());
+  }
+
+
+
+
+
 }

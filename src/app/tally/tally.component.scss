@@ -29,7 +29,21 @@
         display: inline-block;
     }
 
-    button.decrese {
+    button.decrese,
+    button.update {
         margin-right: 0;
+    }
+}
+
+
+
+.card-edit {
+    form {
+        .resetEveryDay div {
+            width: 100%;
+        }
+    }
+    .clr-row{
+        margin-bottom: 20px;
     }
 }

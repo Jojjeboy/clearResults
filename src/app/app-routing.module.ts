@@ -1,44 +1,53 @@
+/* Modules */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TalliesComponent } from './tallies/tallies.component';
 import { SharedModule } from './shared.module';
 import { FormsModule } from '@angular/forms';
+
+/* Components */
 import { TallyComponent } from './tally/tally.component';
+import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component';
+import { TallyListComponent } from './tally-list/tally-list.component';
 
 const routes: Routes = [
   {
-      path: '',
-      component: TalliesComponent,
-      data: { title: 'Start Page' }
-    },
-    /*{
-      path: 'add',
-      component: AddTallyComponent,
-      data: { title: 'Add Tally' }
-    },
-    {
-      path: 'edit/:id',
-      component: EditTallyComponent,
-      data: { title: 'Edit Tally' }
-    },
-    {
-      path: 'clear',
-      component: ClearCacheComponent,
-      data: { title: 'Clear Cache' }
-    },
-    {
-      path: 'example',
-      component: AddExampleComponent,
-      data: { title: 'Add example' }
-    },
-    {
-      path: 'todo',
-      component: TodoComponent,
-      data: { title: 'Todo' }
-    },
-    */
-    { path: '**', component: TalliesComponent }
-  ];
+    path: '',
+    component: TallyListComponent,
+    data: { title: 'Start Page' }
+  },
+  {
+    path: 'tally/:id',
+    component: TallyComponent,
+    data: { title: 'Tally details component' }
+  },
+  /*{
+    path: 'add',
+    component: AddTallyComponent,
+    data: { title: 'Add Tally' }
+  },
+  {
+    path: 'edit/:id',
+    component: EditTallyComponent,
+    data: { title: 'Edit Tally' }
+  },
+  {
+    path: 'clear',
+    component: ClearCacheComponent,
+    data: { title: 'Clear Cache' }
+  },
+  {
+    path: 'example',
+    component: AddExampleComponent,
+    data: { title: 'Add example' }
+  },
+  {
+    path: 'todo',
+    component: TodoComponent,
+    data: { title: 'Todo' }
+  },
+  */
+  { path: '**', component: TallyListComponent }
+];
 
 @NgModule({
   imports: [
@@ -47,8 +56,9 @@ const routes: Routes = [
     FormsModule
   ],
   declarations: [
-    TalliesComponent, 
-    TallyComponent
+    TallyListComponent,
+    TallyComponent, 
+    AddEditTallyComponent
   ],
   exports: [RouterModule]
 })

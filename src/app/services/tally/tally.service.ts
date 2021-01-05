@@ -9,20 +9,23 @@ import { applicationversion } from '../../../environments/applicationversion';
 })
 export class TallyService {
 
-  constructor(private localStorageService: LocalStorageService) { }
-
-  private showAll = false;
+  lsTallies = Array<Object>();
+  tallies: Array<Tally> = [];
+  
   percentage = 0.00;
+  private showAll = false;
 
-  init(): void {
-    const lsTallyCounters = <Array<Object>>this.localStorageService.getAll();
-    const tallyCounters = <Array<Tally>>this.convertLSToTallies(lsTallyCounters);
+  constructor(private localStorageService: LocalStorageService) {
+    this.lsTallies = <Array<Object>>this.localStorageService.getAll();
+    this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
 
-    this.resetOldTallyCounter(tallyCounters);
+    this.resetOldTallyCounter();
     this.updateAppVersion();
-    //this.removeDuplicatesInHistory(tallyCounters);
   }
 
+  getTallies(): Array<Tally>{
+    return this.sortByLastTouched();
+  }
 
   recalculatePercentage(goal: number, value: number): number {
     let percentage = 0.00;
@@ -36,8 +39,19 @@ export class TallyService {
     return percentage;
   }
 
-  resetOldTallyCounter(tallyCounters: Array<Tally>): void {
-    for (const tallyCounter of tallyCounters) {
+  getTallyById(id: String): Tally{
+    let tally: Tally = this.getEmptyTally();
+    this.tallies.forEach(eachTally => {
+      if(eachTally.getUuid() === id){
+        tally = eachTally;
+      }
+    });
+
+    return tally;
+  }
+
+  resetOldTallyCounter(): void {
+    for (const tallyCounter of this.tallies) {
       if (this.isOld(tallyCounter)) {
         this.addToHistory(tallyCounter);
         tallyCounter.setValue(0);
@@ -46,9 +60,9 @@ export class TallyService {
     }
   }
 
-  isOld(tallyCounter: Tally): Boolean {
+  isOld(tally: Tally): Boolean {
     const now = new Date();
-    return now.getDate() !== tallyCounter.getLastTouched().getDate();
+    return now.getDate() !== tally.getLastTouched().getDate();
   }
 
   addToHistory(tally: Tally): void {
@@ -106,9 +120,9 @@ export class TallyService {
     this.update(tally);
   }
 
-  convertLSToTallies(tallyCounters: Array<object>): Array<Tally> {
+  convertLSToTallies(lsTallies: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
-    for (const obj of tallyCounters) {
+    for (const obj of lsTallies) {
       const tallyCounter = new Tally(obj);
       tallyCounter.setLastTouched(new Date(tallyCounter.getLastTouched()));
       returnArr.push(tallyCounter);
@@ -165,8 +179,8 @@ export class TallyService {
     return this.showAll;
   }
 
-  removeDuplicatesInHistory(allTallys: Array<Tally>) {
-    allTallys.forEach(tally => {
+  removeDuplicatesInHistory() {
+    this.tallies.forEach(tally => {
       let arr = tally.getHistory();
       arr = arr.filter((history:any, index:any, self:any) =>
         index === self.findIndex((t:any) => (
@@ -179,9 +193,9 @@ export class TallyService {
   }
 
 
-  sortByLastTouched(tallies: Array<Tally>): Array<Tally> {
+  sortByLastTouched(): Array<Tally> {
 
-    let sortedArray: Tally[] = tallies.sort((obj1, obj2) => {
+    let sortedArray: Tally[] = this.tallies.sort((obj1, obj2) => {
       if (obj1.lastTouched < obj2.lastTouched) {
         return 1;
       }
@@ -217,4 +231,23 @@ export class TallyService {
     }
   }
 
+  private isObject(obj: any) {
+    var type = typeof obj;
+    return type === 'function' || type === 'object' && !!obj;
+  };
+
+  public cloneTally(src: any): Tally{
+    let target:any = {};
+    for (let prop in src) {
+      if (src.hasOwnProperty(prop)) {
+        // if the value is a nested object, recursively copy all it's properties
+        if (this.isObject(src[prop])) {
+          target[prop] = this.cloneTally(src[prop]);
+        } else {
+          target[prop] = src[prop];
+        }
+      }
+    }
+    return new Tally(target);
+  }
 }

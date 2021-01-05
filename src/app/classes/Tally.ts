@@ -137,4 +137,5 @@ export class Tally {
     public setActive(active: boolean): void {
         this.active = active;
     }
+
 }
