@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { TallyService } from '../services/tally/tally.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class TallyComponent implements OnInit {
   tally!: Tally;
   percentage = 0.00;
   editMode = false;
+  @Output() tallyDelete = new EventEmitter<Tally>();
 
   modal = {
     open: false,
@@ -24,9 +25,11 @@ export class TallyComponent implements OnInit {
     callBackFn: ''
   }
 
-  constructor(private tallyService: TallyService, private route: ActivatedRoute) {
-
-  }
+  constructor(
+    private tallyService: TallyService, 
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
 
@@ -40,17 +43,17 @@ export class TallyComponent implements OnInit {
   }
 
   increase() {
-    //this.tallyIncrese.emit(this.tally);
+    this.tallyService.increase(this.tally);
     this.recalculatePercentage();
   }
-
+  
   decrease() {
-    //this.tallyDecrese.emit(this.tally);
+    this.tallyService.decrease(this.tally);
     this.recalculatePercentage();
   }
 
   recalculatePercentage() {
-    //this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
+    this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
   }
 
   cleanHistory() {
@@ -93,7 +96,8 @@ export class TallyComponent implements OnInit {
   }
   
   deleteConfirmed(): void {
-    alert('Not implemented');
+    this.tallyService.delete(this.tally);
+    this.router.navigate(['/'], { queryParams: {type: 'success', message: 'Räknare borttagen'}})
     this.closeModal();
   }
 
@@ -113,7 +117,7 @@ export class TallyComponent implements OnInit {
   }
 
   edit(): void {
-    //alert('Not implemented');
+    alert('Not implemented');
   }
 
 

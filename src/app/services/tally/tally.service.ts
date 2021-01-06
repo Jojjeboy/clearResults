@@ -24,7 +24,7 @@ export class TallyService {
   }
 
   getTallies(): Array<Tally>{
-    return this.sortByLastTouched();
+    return this.tallies;
   }
 
   recalculatePercentage(goal: number, value: number): number {
@@ -93,7 +93,7 @@ export class TallyService {
     }
   }
 
-  increse(tally: Tally): void {
+  increase(tally: Tally): void {
     let tallyValue = tally.getValue();
     const tallyIncreseBy = tally.getIncreseBy();
     tallyValue += tallyIncreseBy;
@@ -101,18 +101,16 @@ export class TallyService {
     if (tallyValue > tally.getTopScore()) {
       tally.setTopScore(tally.getValue());
     }
-    tally.touch();
-    this.localStorageService.update(this.convertToLsTally(tally));
+    this.update(tally);
   }
 
-  decrese(tally: Tally): void {
+  decrease(tally: Tally): void {
     let tallyValue = tally.getValue();
     const tallyIncreseBy = tally.getDecreseBy();
     if (tallyValue > 0) {
       tallyValue -= tallyIncreseBy;
       tally.setValue(tallyValue);
-      tally.touch();
-      this.localStorageService.update(this.convertToLsTally(tally));
+      this.update(tally);
     }
   }
 
@@ -161,8 +159,12 @@ export class TallyService {
     this.localStorageService.update(this.convertToLsTally(tally));
   }
 
-  delete(tally: Tally): void {
-    this.localStorageService.removeItem(tally.getUuid());
+  delete(deleteTally: Tally): void {
+    const index = this.tallies.indexOf(deleteTally);
+    if(index > -1){
+      this.tallies.splice(index, 1);
+    }
+    this.localStorageService.removeItem(deleteTally.getUuid());
   }
 
   touch(tally: Tally): void {

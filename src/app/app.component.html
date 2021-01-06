@@ -1,20 +1,17 @@
 <div class="main-container">
 
   <!-- Alert -->
-  <div class="alert alert-app-level alert-info" *ngIf="false">
+  <div class="alert alert-app-level alert-{{ alertType }}" *ngIf="showAlert">
     <div class="alert-items">
       <div class="alert-item static">
         <div class="alert-icon-wrapper">
           <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
         </div>
         <div class="alert-text">
-          App Level Alert
+          {{ alertText }}
         </div>
       </div>
     </div>
-    <button type="button" class="close" aria-label="Close">
-      <clr-icon aria-hidden="true" shape="close"></clr-icon>
-    </button>
   </div>
 
 

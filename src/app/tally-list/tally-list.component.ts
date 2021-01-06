@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { TallyService } from '../services/tally/tally.service';
@@ -22,24 +22,14 @@ export class TallyListComponent {
 
   }
 
-  increse(tally: Tally) {
-    this.tallyService.increse(tally);
-    this.tallies = this.tallyService.sortByLastTouched();
+  increase(tally: Tally) {
+    this.tallyService.increase(tally);
   }
   
   decrese(tally: Tally) {
-    this.tallyService.decrese(tally);
-    this.tallies = this.tallyService.sortByLastTouched();
+    this.tallyService.decrease(tally);
   }
 
-
-  // Update show all
-  eventCheck(event: any){
-    let config = this.localStorageService.getConfig();
-    this.showAll = event.target.checked;
-    config.showAll = this.showAll;
-    this.localStorageService.saveConfig(config);
-  }
 
   getShowAll() {
     return this.showAll;
