@@ -1,0 +1,18 @@
+.clr-row.first {
+    margin-bottom: 20px;
+    .clr-col-6 {
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #e6e6e6;
+        border-right: none;
+        
+        &:last-child {
+            border-radius: 3px;
+            border: 1px solid #e6e6e6;
+        }
+    }
+
+    h4 {
+        margin-top: 0;
+    }
+}
