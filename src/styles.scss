@@ -6,3 +6,37 @@
 .pull-right{
     float: right;
 }
+
+hr {
+    border-top: 1px solid #e8e8e8;
+    margin: 20px 0;
+}
+
+span.status-badge {
+    padding: 8px 15px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin: 15px 0;
+    display: inline-block;
+
+    &.block {
+        display: block;
+        text-align: center;
+    }
+    
+    &.success {
+        border: 1px solid rgb(60, 133, 0);
+        color: rgb(60, 133, 0);
+    }
+
+    &.danger {
+        border: 1px solid #c21d00;
+        color: #c21d00;
+    }
+}
+
+.btn.block {
+    display: block;
+    text-align: center;
+    width: 100%;
+}

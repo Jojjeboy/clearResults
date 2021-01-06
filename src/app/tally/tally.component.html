@@ -1,4 +1,75 @@
-<pre>{{ tally | json }}</pre>
+<h1>{{ tally.getName() }}</h1>
+<div class="lastTouched">
+    <small>{{ tally.getLastTouched() | timeago }}</small>
+</div>
+
+<hr />
+
+<div class="clr-row">
+    <div class="clr-col-6">
+        <h4>Värde: {{ tally.getValue() }}</h4>
+    </div>
+    <div class="clr-col-6">
+        <h4>Nollställs: {{ tally.getResetEveryday() === true ? 'Ja' : 'Nej' }}</h4>
+    </div>
+</div>
+
+
+<div class="clr-row">
+    <div class="clr-col-6">
+        <h4>Ökas med: {{ tally.getIncreseBy() }}</h4>
+    </div>
+    <div class="clr-col-6">
+        <h4>Minskas med: {{ tally.getDecreseBy() }}</h4>
+    </div>
+</div>
+
+
+<div class="clr-row">
+    <div class="clr-col-6">
+        <h4>Mål: {{ tally.getGoal() }}</h4>
+    </div>
+    <div class="clr-col-6">
+        <h4>All Time High: {{ tally.getTopScore() }}</h4>
+    </div>
+</div>
+
+
+
+<div class="clr-row">
+    <div class="clr-col-12">
+        <h4>Historik</h4>
+        <clr-datagrid>
+            <clr-dg-column [clrDgField]="'date'">Datum</clr-dg-column>
+            <clr-dg-column [clrDgField]="'value'">Värde</clr-dg-column>
+            <clr-dg-column [clrDgField]="'color'">Mål uppnått</clr-dg-column>
+
+        
+            <clr-dg-row *clrDgItems="let history of tally.getHistory()">
+                <clr-dg-cell>{{ history.date | date: 'yyyy-MM-dd'}}</clr-dg-cell>
+                <clr-dg-cell>{{ history.value }}</clr-dg-cell>
+                <clr-dg-cell>{{ history.value >= tally.getGoal() ? 'Ja' : 'Nej'  }}</clr-dg-cell>
+            </clr-dg-row>
+        
+            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span></clr-dg-footer>
+        </clr-datagrid>
+    </div>
+</div>
+
+
+<div class="clr-row status">
+    <div class="clr-col-12">
+        <span class="success status-badge block" *ngIf="tally.getActive()">Aktiv</span>
+        <span class="danger status-badge block" *ngIf="!tally.getActive()">Inaktiv</span>
+    </div>
+</div>
+
+<div class="clr-row status">
+    <div class="clr-col-12">
+        <button class="btn btn-primary block" (click)="edit()">Redigera</button>
+    </div>
+</div>
+
 
 <!--
 <div class="clr-row">
@@ -145,4 +216,3 @@
 </div>
 
 -->
-tally detail page

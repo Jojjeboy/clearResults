@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { TallyComponent } from './tally/tally.component';
 import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component';
 import { TallyListComponent } from './tally-list/tally-list.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -58,7 +59,7 @@ const routes: Routes = [
   declarations: [
     TallyListComponent,
     TallyComponent, 
-    AddEditTallyComponent
+    AddEditTallyComponent, SettingsComponent
   ],
   exports: [RouterModule]
 })

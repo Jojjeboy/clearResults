@@ -66,6 +66,7 @@ export class TallyService {
   }
 
   addToHistory(tally: Tally): void {
+    return;
     const tallyHistory: Array<History> = tally.getHistory();
     if (tallyHistory.length < 1) {
 

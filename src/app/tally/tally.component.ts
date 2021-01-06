@@ -51,9 +51,8 @@ export class TallyComponent implements OnInit {
     this.tallyService.cleanHistory(this.tally);
   }
 
-  editTally(): void{
-    this.editMode = true; 
-    this.tallyCopy = this.tallyService.cloneTally(this.tally);
+  edit(): void{
+    alert('Not implemented');
   }
   
   update() :void{
