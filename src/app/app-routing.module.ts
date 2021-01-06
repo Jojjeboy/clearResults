@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Components */
 import { TallyComponent } from './tally/tally.component';
@@ -54,7 +55,8 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     TallyListComponent,

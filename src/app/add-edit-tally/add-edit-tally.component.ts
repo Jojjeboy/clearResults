@@ -12,4 +12,15 @@ export class AddEditTallyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  discard(): void{
+    
+    
+    // this.tally.setName(this.tallyCopy.getName());
+    // this.tally.setValue(this.tallyCopy.getValue());
+    // this.tally.setGoal(this.tallyCopy.getGoal());
+    // this.tally.setDecreseBy(this.tallyCopy.getDecreseBy());
+    // this.tally.setIncreseBy(this.tallyCopy.getIncreseBy());
+  }
+
+
 }

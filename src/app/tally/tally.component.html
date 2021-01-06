@@ -6,7 +6,8 @@
 <hr />
 
 <div class="clr-container">
-    <div class="clr-row first">
+
+    <div class="clr-row tally-meta">
         <div class="clr-col-6">
             <h4>Värde: {{ tally.getValue() }}</h4>
         </div>
@@ -16,7 +17,7 @@
     </div>
 
 
-    <div class="clr-row first">
+    <div class="clr-row tally-meta">
         <div class="clr-col-6">
             <h4>Öka: {{ tally.getIncreseBy() }}</h4>
         </div>
@@ -26,7 +27,7 @@
     </div>
 
 
-    <div class="clr-row first">
+    <div class="clr-row tally-meta">
         <div class="clr-col-6">
             <h4>Nollställs: {{ tally.getResetEveryday() === true ? 'Ja' : 'Nej' }}</h4>
         </div>
@@ -35,8 +36,27 @@
         </div>
     </div>
 
-</div>
 
+    <div class="clr-row tally-meta">
+        <div class="clr-col-6">
+            <button class="btn btn-danger-outline block decrese" (click)="decrease()">Minska</button>
+        </div>
+        <div class="clr-col-6">
+            <button class="btn btn-success-outline block increse" (click)="increase()">Öka</button>
+        </div>
+    </div>
+    
+    <clr-modal [(clrModalOpen)]="modal.open">
+        <h3 class="modal-title">{{ modal.header }}</h3>
+        <div class="modal-body">
+          <p>{{ modal.body }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
+          <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
+        </div>
+      </clr-modal>
+</div>
 
 
 <div class="clr-row">
@@ -54,7 +74,7 @@
                 <clr-dg-cell>{{ history.value >= tally.getGoal() ? 'Ja' : 'Nej' }}</clr-dg-cell>
             </clr-dg-row>
 
-            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span>
+            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span class="pull-right" (click)="cleanHistory()">Töm historik</span>
             </clr-dg-footer>
         </clr-datagrid>
     </div>
@@ -63,14 +83,20 @@
 
 <div class="clr-row status">
     <div class="clr-col-12">
-        <span class="success status-badge block" *ngIf="tally.getActive()">Aktiv</span>
-        <span class="danger status-badge block" *ngIf="!tally.getActive()">Inaktiv</span>
+        <span class="success status-badge block" *ngIf="tally.getActive()" (click)="toggleActive()">Aktiv</span>
+        <span class="danger status-badge block" *ngIf="!tally.getActive()" (click)="toggleActive()">Inaktiv</span>
     </div>
 </div>
 
 <div class="clr-row status">
     <div class="clr-col-12">
         <button class="btn btn-primary block" (click)="edit()">Redigera</button>
+    </div>
+</div>
+
+<div class="clr-row status">
+    <div class="clr-col-12">
+        <button class="btn btn-danger block" (click)="delete()">Radera</button>
     </div>
 </div>
 

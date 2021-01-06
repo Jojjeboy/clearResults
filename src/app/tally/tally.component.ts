@@ -11,28 +11,34 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TallyComponent implements OnInit {
 
-  
+
   tally!: Tally;
   percentage = 0.00;
   editMode = false;
-  private tallyCopy: any;
+
+  modal = {
+    open: false,
+    header: '',
+    body: '',
+    footer: '',
+    callBackFn: ''
+  }
 
   constructor(private tallyService: TallyService, private route: ActivatedRoute) {
-    
+
   }
 
   ngOnInit() {
-    
+
     this.route.params.subscribe(params => {
       this.tally = this.tallyService.getTallyById(params['id']);
-      
 
       // In a real app: dispatch action to load the details here.
-   });
+    });
     //this.tally = this.tallyService.getTallyById();
     //this.recalculatePercentage();
   }
-  
+
   increase() {
     //this.tallyIncrese.emit(this.tally);
     this.recalculatePercentage();
@@ -47,30 +53,83 @@ export class TallyComponent implements OnInit {
     //this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
   }
 
-  cleanHistory(tally: Tally): void {
+  cleanHistory() {
+    this.openModal({
+      open: true,
+      header: 'Radera historik',
+      body: 'Är du säker på att du vill radera historik',
+      callBackFn: 'cleanHistoryConfirmed'
+    });
+  }
+
+  cleanHistoryConfirmed(): void {
     this.tallyService.cleanHistory(this.tally);
+    this.closeModal();
   }
 
-  edit(): void{
+  toggleActive(): void {
+    const setActiveText = this.tally.getActive() === true ? 'inaktivera' : 'aktivera';
+    this.openModal({
+      open: true,
+      header: setActiveText+ ' räknare?',
+      body: 'Är du säker på att du vill '+ setActiveText +' denna räknare',
+      callBackFn: 'toggleActiveConfirmed'
+    });
+  }
+
+  toggleActiveConfirmed(): void{
+    this.tally.setActive(!this.tally.getActive());
+    this.tallyService.update(this.tally);
+    this.closeModal();
+  }
+  
+  delete(): void {
+    this.openModal({
+      open: true,
+      header: 'Radera',
+      body: 'Är du säker på att du vill radera denna räknare',
+      callBackFn: 'deleteConfirmed'
+    });
+  }
+  
+  deleteConfirmed(): void {
     alert('Not implemented');
+    this.closeModal();
   }
-  
-  update() :void{
-    
+
+  callBackConfirmed(methodToExecute: string): boolean {
+    switch (methodToExecute) {
+      case "cleanHistoryConfirmed": 
+        this.cleanHistoryConfirmed(); 
+        break;
+      case "deleteConfirmed": 
+        this.deleteConfirmed(); 
+        break;
+      case "toggleActiveConfirmed": 
+        this.toggleActiveConfirmed(); 
+        break;
+    }
+    return false;
   }
-  
-  discard(): void{
-    this.editMode = false;
-    this.tally = this.tallyService.cloneTally(this.tallyCopy);
-    
-    // this.tally.setName(this.tallyCopy.getName());
-    // this.tally.setValue(this.tallyCopy.getValue());
-    // this.tally.setGoal(this.tallyCopy.getGoal());
-    // this.tally.setDecreseBy(this.tallyCopy.getDecreseBy());
-    // this.tally.setIncreseBy(this.tallyCopy.getIncreseBy());
+
+  edit(): void {
+    //alert('Not implemented');
   }
 
 
+  openModal(modalData: any): void {
+    this.modal.open = modalData.open;
+    this.modal.header = modalData.header;
+    this.modal.body = modalData.body;
+    this.modal.callBackFn = modalData.callBackFn;
+  }
+
+  closeModal(): void{
+    this.modal.open = false;
+    this.modal.header = '';
+    this.modal.body = '';
+    this.modal.callBackFn = '';
+  }
 
 
 

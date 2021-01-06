@@ -1,4 +1,4 @@
-.clr-row.first {
+.clr-row.tally-meta {
     margin-bottom: 20px;
     .clr-col-6 {
         background: #fff;
@@ -15,4 +15,8 @@
     h4 {
         margin-top: 0;
     }
+}
+
+h3.modal-title::first-letter {
+    text-transform: capitalize;
 }
