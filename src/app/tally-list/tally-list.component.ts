@@ -11,14 +11,14 @@ import { TallyService } from '../services/tally/tally.service';
 export class TallyListComponent {
 
   tallies = Array<Tally>();
-  public showAll: boolean;
+  showAll!: boolean;
 
   constructor(
     private localStorageService: LocalStorageService,
     private tallyService: TallyService) {
 
     this.tallies = this.tallyService.getTallies();
-    this.showAll = this.localStorageService.getConfig().showAll;
+    //this.showAll = this.localStorageService.getConfig().showAll;
 
   }
 

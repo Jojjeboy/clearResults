@@ -31,7 +31,7 @@
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
                 <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
                 <a routerLink="/todo" clrDropdownItem>Att göra</a>
-                <a routerLink="/clear" clrDropdownItem>Rensa Local Storage</a>
+                <a (click)="clearCache()" clrDropdownItem>Rensa Local Storage</a>
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
@@ -46,3 +46,15 @@
     </div>
   </div>
 </div>
+
+
+<clr-modal [(clrModalOpen)]="modal.open">
+  <h3 class="modal-title">{{ modal.header }}</h3>
+  <div class="modal-body">
+    <p>{{ modal.body }}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
+    <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
+  </div>
+</clr-modal>

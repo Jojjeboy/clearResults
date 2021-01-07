@@ -14,8 +14,16 @@ export class AppComponent implements OnInit {
   alertText!: string;
   alertType: string = 'error';
 
+  modal = {
+    open: false,
+    header: '',
+    body: '',
+    footer: '',
+    callBackFn: ''
+  }
+
   constructor(private localStorageService: LocalStorageService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private router: Router) {
     this.localStorageService.init(this.title);
   }
 
@@ -36,4 +44,39 @@ export class AppComponent implements OnInit {
         }
       });
   }
+
+  openModal(modalData: any): void {
+    this.modal.open = modalData.open;
+    this.modal.header = modalData.header;
+    this.modal.body = modalData.body;
+    this.modal.callBackFn = modalData.callBackFn;
+  }
+
+  closeModal(): void{
+    this.modal.open = false;
+    this.modal.header = '';
+    this.modal.body = '';
+    this.modal.callBackFn = '';
+  }
+
+  callBackConfirmed(callBackFn: string): void{
+    if(callBackFn === 'clearCacheConfirmed') {
+      this.clearCacheConfirmed();
+    }
+  }
+
+
+  clearCache() {
+    this.openModal({
+      open: true,
+      header: 'Radera Local Storage',
+      body: 'Är du säker på att du vill radera all Local Storage',
+      callBackFn: 'clearCacheConfirmed'
+    });
+  }
+
+  clearCacheConfirmed() {
+    this.localStorageService.clear();
+    window.location.reload();
+  } 
 }
