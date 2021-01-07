@@ -32,8 +32,7 @@
                             <div class="clr-col-6">Avklarat: {{ calculatePercentage(tally) }}% </div>
                             <div class="clr-col-6"><span class="pull-right"> {{ tally.getValue() }} av {{ tally.getGoal() }} </span> </div>
                         </div>
-                        <!--<progress class="progress-bar" max="100" [value]="calculatePercentage(tally)" data-displayval="65%"></progress-->
-                        <div class="progress-static success">
+                        <div class="progress-static" [class.success]="tally.getValue() >= tally.getGoal()">
                             <div class="progress-meter" [attr.data-value]="calculatePercentage(tally)"></div>
                         </div>
                     </div>
