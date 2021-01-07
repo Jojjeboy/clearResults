@@ -98,7 +98,7 @@
 
 <div class="clr-row status">
     <div class="clr-col-12">
-        <button class="btn btn-primary block" (click)="edit()">Redigera</button>
+        <a routerLink="/edit/{{ tally.getUuid() }}" class="btn btn-primary block">Redigera</a>
     </div>
 </div>
 

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Tally } from '../classes/Tally';
+import { TallyService } from '../services/tally/tally.service';
 
 @Component({
   selector: 'app-add-edit-tally',
@@ -7,19 +11,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEditTallyComponent implements OnInit {
 
-  constructor() { }
+  editMode: boolean = false;
+  editId!: string;
+  tally!: Tally;
+  constructor(
+    private route: ActivatedRoute, 
+    private location: Location, 
+    private router: Router,
+    private tallyService: TallyService) {
+
+    }
 
   ngOnInit(): void {
+    console.log();
+    this.editMode = this.setupMode();
   }
 
-  discard(): void{
-    
-    
-    // this.tally.setName(this.tallyCopy.getName());
-    // this.tally.setValue(this.tallyCopy.getValue());
-    // this.tally.setGoal(this.tallyCopy.getGoal());
-    // this.tally.setDecreseBy(this.tallyCopy.getDecreseBy());
-    // this.tally.setIncreseBy(this.tallyCopy.getIncreseBy());
+  setupMode(): boolean {
+    if(this.location.path().split('/').length === 3){
+      this.editMode = true;
+      this.editId = this.location.path().split('/')[2];
+      this.tally = this.tallyService.getTallyById(this.editId);
+    }
+    else {
+      this.tally = this.tallyService.getEmptyTally();
+
+    }
+    return this.editMode;
   }
 
 

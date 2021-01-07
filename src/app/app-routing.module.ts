@@ -28,17 +28,17 @@ const routes: Routes = [
     component: AddExampleComponent,
     data: { title: 'Add example' }
   },
-  /*{
+  {
     path: 'add',
-    component: AddTallyComponent,
+    component: AddEditTallyComponent,
     data: { title: 'Add Tally' }
   },
   {
     path: 'edit/:id',
-    component: EditTallyComponent,
+    component: AddEditTallyComponent,
     data: { title: 'Edit Tally' }
   },
-  {
+  /*{
     path: 'clear',
     component: ClearCacheComponent,
     data: { title: 'Clear Cache' }
