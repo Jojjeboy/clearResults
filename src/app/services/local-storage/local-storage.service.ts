@@ -143,7 +143,16 @@ export class LocalStorageService {
   public getConfig(): any {
     const lSData: any = JSON.parse(this.localStorage.getItem(this.key));
     if (!lSData['config']) {
-      return false;
+      
+      return lSData['config'] = [{
+        showAll: false,
+        appVersion: [
+          { 
+            date: new Date(),
+            hash: applicationversion.revision
+          }
+        ]
+      }];
     }
     return lSData['config'];
   }

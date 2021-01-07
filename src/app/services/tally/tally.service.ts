@@ -219,7 +219,7 @@ export class TallyService {
       config["appVersion"] = [];
     }
     
-    for(let i = 0; i++; i < config.appVersion.length){
+    for(let i = 0; i < config.appVersion.length; i++){
       if (applicationversion.revision == config.appVersion[i].hash) {
         foundVersion = true;
       }

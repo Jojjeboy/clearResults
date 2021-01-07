@@ -10,6 +10,7 @@ import { TallyComponent } from './tally/tally.component';
 import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component';
 import { TallyListComponent } from './tally-list/tally-list.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AddExampleComponent } from './add-example/add-example.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'tally/:id',
     component: TallyComponent,
     data: { title: 'Tally details component' }
+  },
+  {
+    path: 'example',
+    component: AddExampleComponent,
+    data: { title: 'Add example' }
   },
   /*{
     path: 'add',
@@ -36,11 +42,6 @@ const routes: Routes = [
     path: 'clear',
     component: ClearCacheComponent,
     data: { title: 'Clear Cache' }
-  },
-  {
-    path: 'example',
-    component: AddExampleComponent,
-    data: { title: 'Add example' }
   },
   {
     path: 'todo',
@@ -61,7 +62,7 @@ const routes: Routes = [
   declarations: [
     TallyListComponent,
     TallyComponent, 
-    AddEditTallyComponent, SettingsComponent
+    AddEditTallyComponent, SettingsComponent, AddExampleComponent
   ],
   exports: [RouterModule]
 })
