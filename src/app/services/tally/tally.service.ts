@@ -24,7 +24,7 @@ export class TallyService {
   }
 
   getTallies(): Array<Tally>{
-    return this.tallies;
+    return this.sortByActive();
   }
 
   recalculatePercentage(goal: number, value: number): number {
@@ -197,13 +197,27 @@ export class TallyService {
 
 
   sortByLastTouched(): Array<Tally> {
-
     let sortedArray: Tally[] = this.tallies.sort((obj1, obj2) => {
       if (obj1.lastTouched < obj2.lastTouched) {
         return 1;
       }
 
       if (obj1.lastTouched > obj2.lastTouched) {
+        return -1;
+      }
+
+      return 0;
+    });
+    return sortedArray;
+  }
+
+  sortByActive(): Array<Tally> {
+    let sortedArray: Tally[] = this.tallies.sort((obj1, obj2) => {
+      if (obj1.active < obj2.active) {
+        return 1;
+      }
+
+      if (obj1.active > obj2.active) {
         return -1;
       }
 

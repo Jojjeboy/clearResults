@@ -29,12 +29,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   ## *** Att göra *** ##
 
-- Progress bar svart
-- Länkning på webbsidan
-- Lägg till tillbaka knapp på tally
-- Gör en komponent av modal
 - Visualisera inaktiva
 - Toggle för aktiva och icke aktiva räknare
+- Gör en komponent av modal
+- Lägg in progress bar på tallysidan
+- Lägg till tillbaka knapp på tally
 - Lägga till räknare
 - Redigera räknare
 - Historik

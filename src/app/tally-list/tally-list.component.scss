@@ -1,12 +1,17 @@
 @import './../../assets/styles/variables';
 
+.clr-row.inactive{
+    opacity: 0.5;
+    
+}
 .card-header {
     > div {
         display: inline;
     }
 
-    a, a:visited {
+    a, a:visited, a:hover, a:active {
         color: #00364d;
+        text-decoration: none;
     }
 
     .header-meta-text {

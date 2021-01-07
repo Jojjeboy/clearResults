@@ -1,26 +1,12 @@
-<div class="clr-row" *ngFor="let tally of tallies">
+<div class="clr-row" *ngFor="let tally of tallies" [class.inactive]="!tally.getActive()">
     <div class="clr-col-12">
         <div class="card">
             <div class="card-info">
                 <div class="card-header">
                     <div class="header-main-text">
-                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getName() }}</a>
+                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getName() }}</a> <span class="pull-right" *ngIf="!tally.getActive()"> Inaktiv</span>
                     </div>
                     <div class="pull-right header-meta-text">
-                        <clr-dropdown [clrCloseMenuOnItemClick]="false">
-                            <button clrDropdownTrigger aria-label="Dropdown demo button">
-                                <clr-icon shape="cog"></clr-icon>
-                            </button>
-                            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-                                <label class="dropdown-header" aria-hidden="true">Dropdown header</label>
-                                <div aria-label="Dropdown header Action 1" (click)="editTally()" clrDropdownItem>
-                                    Redigera</div>
-                                <div aria-label="Dropdown header Action 2" clrDropdownItem>Töm historik</div>
-                                <div aria-label="Dropdown header Action 2" clrDropdownItem>Inaktivera</div>
-                                <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-                                <div clrDropdownItem class="warning-text">Radera</div>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
                     </div>
                 </div>
                 <div class="card-block">
@@ -40,15 +26,14 @@
                 <div class="card-footer">
                     <div class="clr-row">
                         <div class="clr-col-4">
-                            <button class="btn btn-success-outline pull-left increase" (click)="increase(tally)">Öka</button>
+                            <button class="btn btn-success-outline pull-left increase" [disabled]="!tally.getActive()" (click)="increase(tally)">Öka</button>
                         </div>
                         <div class="clr-col-4 timeago"><small>
                                 <clr-icon shape="clock"></clr-icon> &nbsp; {{ tally.getLastTouched() | timeago }}
                             </small>
                         </div>
                         <div class="clr-col-4">
-                            <button class="btn btn-danger-outline pull-right decrese"
-                                (click)="decrese(tally)">Minska</button>
+                            <button class="btn btn-danger-outline pull-right decrese" [disabled]="!tally.getActive()" (click)="decrese(tally)">Minska</button>
                         </div>
                     </div>
                 </div>
