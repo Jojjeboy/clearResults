@@ -97,7 +97,7 @@ export class TallyComponent implements OnInit {
   
   deleteConfirmed(): void {
     this.tallyService.delete(this.tally);
-    this.router.navigate(['/'], { queryParams: {type: 'success', message: 'Räknare borttagen'}})
+    this.router.navigate(['/'], { queryParams: {type: 'success', message: 'Räknare borttagen'}});
   }
 
   callBackConfirmed(methodToExecute: string): boolean {

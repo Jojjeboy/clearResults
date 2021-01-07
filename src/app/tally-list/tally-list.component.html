@@ -1,10 +1,12 @@
-<div class="clr-row" *ngFor="let tally of tallies" [class.inactive]="!tally.getActive()">
+<div class="clr-row" *ngFor="let tally of tallies" [class.inactive]="!tally.getActive()"
+    [class.hideInactive]="!showAll && !tally.getActive()">
     <div class="clr-col-12">
         <div class="card">
             <div class="card-info">
                 <div class="card-header">
                     <div class="header-main-text">
-                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getName() }}</a> <span class="pull-right" *ngIf="!tally.getActive()"> Inaktiv</span>
+                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getName() }}</a> <span
+                            class="pull-right" *ngIf="!tally.getActive()"> Inaktiv</span>
                     </div>
                     <div class="pull-right header-meta-text">
                     </div>
@@ -16,7 +18,8 @@
                     <div class="card-text">
                         <div aria-hidden="true" class="clr-row progress-status-text">
                             <div class="clr-col-6">Avklarat: {{ calculatePercentage(tally) }}% </div>
-                            <div class="clr-col-6"><span class="pull-right"> {{ tally.getValue() }} av {{ tally.getGoal() }} </span> </div>
+                            <div class="clr-col-6"><span class="pull-right"> {{ tally.getValue() }} av {{
+                                    tally.getGoal() }} </span> </div>
                         </div>
                         <div class="progress-static" [class.success]="tally.getValue() >= tally.getGoal()">
                             <div class="progress-meter" [attr.data-value]="calculatePercentage(tally)"></div>
@@ -26,14 +29,16 @@
                 <div class="card-footer">
                     <div class="clr-row">
                         <div class="clr-col-4">
-                            <button class="btn btn-success-outline pull-left increase" [disabled]="!tally.getActive()" (click)="increase(tally)">Öka</button>
+                            <button class="btn btn-success-outline pull-left increase" [disabled]="!tally.getActive()"
+                                (click)="increase(tally)">Öka</button>
                         </div>
                         <div class="clr-col-4 timeago"><small>
                                 <clr-icon shape="clock"></clr-icon> &nbsp; {{ tally.getLastTouched() | timeago }}
                             </small>
                         </div>
                         <div class="clr-col-4">
-                            <button class="btn btn-danger-outline pull-right decrese" [disabled]="!tally.getActive()" (click)="decrese(tally)">Minska</button>
+                            <button class="btn btn-danger-outline pull-right decrese" [disabled]="!tally.getActive()"
+                                (click)="decrese(tally)">Minska</button>
                         </div>
                     </div>
                 </div>
@@ -136,10 +141,21 @@
 
 <div class="clr-row" *ngIf="!tallies.length">
     <div class="clr-col-12">
-        <h1>Clear Results</h1> 
-        <small>Det verkar inte som du har några räknare</small> 
+        <h1>Clear Results</h1>
+        <small>Det verkar inte som du har några räknare</small>
         <hr />
         <a routerLink="/add" class="btn btn-success-outline block">Lägg till en räknare</a>
         <a routerLink="/example" class="btn btn-success-outline block">Lägg till exempel</a>
+    </div>
+</div>
+
+
+<div class="clr-form-control">
+    <div class="clr-control-container">
+        <div class="clr-toggle-wrapper">
+            <input type="checkbox" id="toggle1" name="toggle-basic" [(ngModel)]="showAll" (change)="eventCheck($event)"
+                class="clr-toggle" />
+            <label for="toggle1">{{ showAll ? 'Dölj inaktiva' : 'Visa inaktiva' }}</label>
+        </div>
     </div>
 </div>

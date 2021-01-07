@@ -8,18 +8,21 @@ import { TallyService } from '../services/tally/tally.service';
   templateUrl: './tally-list.component.html',
   styleUrls: ['./tally-list.component.scss']
 })
-export class TallyListComponent {
+export class TallyListComponent implements OnInit{
 
   tallies = Array<Tally>();
-  showAll!: boolean;
+  showAll: boolean = true;
 
   constructor(
     private localStorageService: LocalStorageService,
     private tallyService: TallyService) {
 
     this.tallies = this.tallyService.getTallies();
-    //this.showAll = this.localStorageService.getConfig().showAll;
-
+    
+  }
+  
+  ngOnInit(): void {
+    this.showAll = this.localStorageService.getConfig().showAll;
   }
 
   increase(tally: Tally) {
@@ -42,6 +45,13 @@ export class TallyListComponent {
 
   editTally(): void{
     
+  }
+
+  eventCheck(event: any): void{
+    let config = this.localStorageService.getConfig();
+    this.showAll = event.target.checked;
+    config.showAll = this.showAll;
+    this.localStorageService.saveConfig(config);
   }
 
 }

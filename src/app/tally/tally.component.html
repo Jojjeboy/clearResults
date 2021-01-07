@@ -1,3 +1,9 @@
+<div class="clr-row">
+    <div class="clr-col-12">
+        <a routerLink="/"><clr-icon shape="undo"></clr-icon> &nbsp; <small>Tillbaka</small></a>
+    </div>
+</div>
+
 <h1>{{ tally.getName() }}</h1>
 <div>
     <small>{{ tally.getLastTouched() | timeago }}</small>
@@ -76,7 +82,7 @@
                     <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{ history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}</clr-dg-cell>
             </clr-dg-row>
 
-            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span class="pull-right" (click)="cleanHistory()">Töm historik</span>
+            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span *ngIf="tally.getHistory().length" class="pull-right" (click)="cleanHistory()">Töm historik</span>
             </clr-dg-footer>
         </clr-datagrid>
     </div>

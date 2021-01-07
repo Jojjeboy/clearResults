@@ -2,8 +2,12 @@
 
 .clr-row.inactive{
     opacity: 0.5;
-    
 }
+
+.clr-row.hideInactive{
+    display: none;
+}
+
 .card-header {
     > div {
         display: inline;

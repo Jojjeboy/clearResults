@@ -29,11 +29,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   ## *** Att göra *** ##
 
-- Visualisera inaktiva
-- Toggle för aktiva och icke aktiva räknare
+
 - Gör en komponent av modal
 - Lägg in progress bar på tallysidan
-- Lägg till tillbaka knapp på tally
 - Lägga till räknare
 - Redigera räknare
 - Historik
