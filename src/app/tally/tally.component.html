@@ -70,8 +70,10 @@
 
             <clr-dg-row *clrDgItems="let history of tally.getHistory()">
                 <clr-dg-cell>{{ history.date | date: 'yyyy-MM-dd'}}</clr-dg-cell>
-                <clr-dg-cell>{{ history.value }}</clr-dg-cell>
-                <clr-dg-cell>{{ history.value >= tally.getGoal() ? 'Ja' : 'Nej' }}</clr-dg-cell>
+                <clr-dg-cell>{{ history.value }} / {{ tally.getGoal() }}</clr-dg-cell>
+                <clr-dg-cell>
+                    <clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()"></clr-icon>
+                    <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{ history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}</clr-dg-cell>
             </clr-dg-row>
 
             <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span class="pull-right" (click)="cleanHistory()">Töm historik</span>

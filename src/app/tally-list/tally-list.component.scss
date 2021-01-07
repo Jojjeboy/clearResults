@@ -1,19 +1,28 @@
+$successColor: rgb(60, 133, 0);
+$dangerColor: #c21d00;
+
 .card-header {
     > div {
         display: inline;
     }
 
+    a, a:visited {
+        color: #00364d;
+    }
+
     .header-meta-text {
         font-size: 0.8em;
+        
+        
 
         button {
             padding-right: 0;
         }
     }
+}
 
-    .warning-text {
-        color: #ff0000
-    }
+.warning-text {
+    color: $dangerColor;
 }
 
 .card-block {

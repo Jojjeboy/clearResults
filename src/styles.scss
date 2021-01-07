@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/styles/variables';
+
 .pull-left{
     float: left;
 }
@@ -11,6 +13,8 @@ hr {
     border-top: 1px solid #e8e8e8;
     margin: 20px 0;
 }
+
+
 
 span.status-badge {
     padding: 8px 15px;
@@ -25,13 +29,13 @@ span.status-badge {
     }
     
     &.success {
-        border: 1px solid rgb(60, 133, 0);
-        color: rgb(60, 133, 0);
+        border: 1px solid $successColor;
+        color: $dangerColor;
     }
 
     &.danger {
-        border: 1px solid #c21d00;
-        color: #c21d00;
+        border: 1px solid $dangerColor;
+        color: $dangerColor;
     }
 }
 
