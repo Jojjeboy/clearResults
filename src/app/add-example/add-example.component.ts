@@ -64,7 +64,7 @@ export class AddExampleComponent implements OnInit {
       value: 0,
       lastTouched: new Date(),
       history: [],
-      goal: 3,
+      goal: 50,
       topScore: 0,
       active: true
     });
@@ -83,7 +83,7 @@ export class AddExampleComponent implements OnInit {
       value: 30,
       lastTouched: new Date(),
       history: [],
-      goal: 30,
+      goal: 300,
       topScore: 0,
       active: false
     });
