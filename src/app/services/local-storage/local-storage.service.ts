@@ -144,7 +144,7 @@ export class LocalStorageService {
     const lSData: any = JSON.parse(this.localStorage.getItem(this.key));
     if (!lSData['config']) {
       
-      return lSData['config'] = [{
+      return lSData['config'] = {
         showAll: false,
         appVersion: [
           { 
@@ -152,7 +152,7 @@ export class LocalStorageService {
             hash: applicationversion.revision
           }
         ]
-      }];
+      };
     }
     return lSData['config'];
   }
