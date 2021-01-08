@@ -38,6 +38,8 @@ export class TallyComponent implements OnInit {
 
       // In a real app: dispatch action to load the details here.
     });
+    this.recalculatePercentage();
+
     //this.tally = this.tallyService.getTallyById();
     //this.recalculatePercentage();
   }

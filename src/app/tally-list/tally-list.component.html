@@ -22,7 +22,7 @@
                                     tally.getGoal() }} </span> </div>
                         </div>
                         <div class="progress-static" [class.success]="tally.getValue() >= tally.getGoal()">
-                            <div class="progress-meter" [attr.data-value]="calculatePercentage(tally)"></div>
+                            <div class="progress-meter" [attr.data-value]="calculatePercentage(tally) < 100 ? calculatePercentage(tally) : 100"></div>
                         </div>
                     </div>
                 </div>
@@ -43,92 +43,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="card-edit" *ngIf="editMode">
-
-                <div class="card-block">
-                    <div class="clr-row">
-                        <div class="clr-col-12">
-                            <form clrForm>
-                                <span class="clr-sr-only">Tabbing through form inputs will trigger validation messages
-                                    to be read aloud.</span>
-                                <div class="clr-row">
-                                    <div class="clr-col-12">
-                                        <clr-input-container>
-                                            <label>Titel</label>
-                                            <input clrInput type="text" [(ngModel)]="tally.name" name="name" required />
-                                            <clr-control-error>Du måste ha en titel!</clr-control-error>
-                                        </clr-input-container>
-                                    </div>
-                                </div>
-                                <div class="clr-row">
-                                    <div class="clr-col-6">
-                                        <clr-input-container>
-                                            <label>Värde</label>
-                                            <input clrInput type="phone" [(ngModel)]="tally.value" name="value" />
-                                        </clr-input-container>
-                                    </div>
-                                    <div class="clr-col-6">
-                                        <clr-input-container>
-                                            <label>Mål</label>
-                                            <input clrInput type="phone" [(ngModel)]="tally.goal" name="goal" />
-                                        </clr-input-container>
-                                    </div>
-                                </div>
-                                <div class="clr-row">
-                                    <div class="clr-col-6">
-                                        <clr-input-container>
-                                            <label>Öka</label>
-                                            <input clrInput type="phone" [(ngModel)]="tally.increseBy"
-                                                name="increaseBy" />
-                                        </clr-input-container>
-                                    </div>
-                                    <div class="clr-col-6">
-                                        <clr-input-container>
-                                            <label>Minska</label>
-                                            <input clrInput type="phone" [(ngModel)]="tally.decreseBy"
-                                                name="increaseBy" />
-                                        </clr-input-container>
-                                    </div>
-                                </div>
-
-                                <div class="clr-row resetEveryDay">
-                                    <label>Nollställ varje dag</label>
-                                    <div class="clr-col-6">
-                                        <div class="btn-group">
-                                            <div class="radio btn">
-                                                <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1">
-                                                <label for="btn-demo-radio-1">Ja</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clr-col-6">
-                                        <div class="radio btn">
-                                            <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-4">
-                                            <label for="btn-demo-radio-4">Nej</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="clr-row">
-                        <div class="clr-col-4">
-                            <button class="btn btn-danger-outline pull-left decrese" (click)="discard()">Ångra</button>
-                        </div>
-                        <div class="clr-col-4 timeago"><small>
-                                <clr-icon shape="clock"></clr-icon> &nbsp; {{ tally.getLastTouched() | timeago }}
-                            </small>
-                        </div>
-                        <div class="clr-col-4">
-                            <button class="btn btn-success-outline pull-right update"
-                                (click)="update()">Uppdatera</button>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </div>
 </div>

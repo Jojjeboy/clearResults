@@ -1,6 +1,8 @@
 <div class="clr-row">
     <div class="clr-col-12">
-        <a routerLink="/"><clr-icon shape="undo"></clr-icon> &nbsp; <small>Tillbaka</small></a>
+        <a routerLink="/">
+            <clr-icon shape="undo"></clr-icon> &nbsp; <small>Tillbaka</small>
+        </a>
     </div>
 </div>
 
@@ -32,6 +34,15 @@
         </div>
     </div>
 
+    <div class="clr-row tally-meta tally-progress">
+        <div class="clr-col-12">
+            <h4>Avklarat: {{ percentage }}% </h4>
+            <div class="progress-static" [class.success]="tally.getValue() >= tally.getGoal()">
+                <div class="progress-meter" [attr.data-value]="percentage < 100 ? percentage : 100"></div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="clr-row tally-meta">
         <div class="clr-col-6">
@@ -51,17 +62,17 @@
             <button class="btn btn-success-outline block increse" (click)="increase()">Öka</button>
         </div>
     </div>
-    
+
     <clr-modal [(clrModalOpen)]="modal.open">
         <h3 class="modal-title">{{ modal.header }}</h3>
         <div class="modal-body">
-          <p>{{ modal.body }}</p>
+            <p>{{ modal.body }}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
-          <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
+            <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
+            <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
         </div>
-      </clr-modal>
+    </clr-modal>
 </div>
 
 
@@ -79,10 +90,13 @@
                 <clr-dg-cell>{{ history.value }} / {{ tally.getGoal() }}</clr-dg-cell>
                 <clr-dg-cell>
                     <clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()"></clr-icon>
-                    <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{ history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}</clr-dg-cell>
+                    <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{
+                    history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}
+                </clr-dg-cell>
             </clr-dg-row>
 
-            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span *ngIf="tally.getHistory().length" class="pull-right" (click)="cleanHistory()">Töm historik</span>
+            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span
+                    *ngIf="tally.getHistory().length" class="pull-right" (click)="cleanHistory()">Töm historik</span>
             </clr-dg-footer>
         </clr-datagrid>
     </div>
