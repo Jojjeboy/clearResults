@@ -1,3 +1,114 @@
-<p>{{ editMode ? 'Redigeringsläge' : 'Lägga till ny räknarläge'}}</p>
+<div class="clr-row" *ngIf="editMode">
+    <div class="clr-col-12" (click)="discard()">
+        <clr-icon shape="undo"></clr-icon> &nbsp; <small>Tillbaka</small>
+    </div>
+</div>
+<h1>Redigera</h1>
 
-<pre>{{ tally | json }}</pre>
+<div class="card">
+    <div class="card-header">
+        Redigera {{ tally.name }}
+    </div>
+    <div class="card-block">
+        <div class="card-text">
+            <!--<form clrForm>
+                        <span class="clr-sr-only">Tabbing through form inputs will trigger validation messages to be read aloud.</span>
+                        <clr-input-container>
+                          <label>First name</label>
+                          <input clrInput type="text" [(ngModel)]="tally.name" name="firstName" required />
+                          <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                        </clr-input-container>
+                        <clr-input-container>
+                          <label>Middle name (Optional)</label>
+                          <input clrInput type="text" [(ngModel)]="tally.name" name="midleName" />
+                        </clr-input-container>
+                        <clr-input-container>
+                            <input clrInput type="text" [(ngModel)]="tally.name" name="lastName" required />
+                            <clr-control-error>We need your last name for legal compliance</clr-control-error>
+                        </clr-input-container>
+                    </form>-->
+            <form clrForm class="clr-row">
+                <div class="clr-col-12">
+                    <clr-input-container>
+                        <label for="name">Titel</label>
+                        <input clrInput type="text" style="width: 100%;" [(ngModel)]="tally.name" name="name" id="name" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                      </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="increaseBy">Öka</label>
+                        <input clrInput type="phone" placeholder="10" style="width: 100%;" [(ngModel)]="tally.increseBy" name="increseBy" id="increseBy" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                      </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="decreseBy">Minska</label>
+                        <input clrInput type="phone" placeholder="10" style="width: 100%;" [(ngModel)]="tally.decreseBy" name="decreseBy" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                      </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="value">Värde</label>
+                        <input clrInput type="phone" placeholder="0" style="width: 100%;" [(ngModel)]="tally.value" name="value" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                      </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="goal">Mål</label>
+                        <input clrInput type="phone" placeholder="100" style="width: 100%;" [(ngModel)]="tally.goal" name="goal" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                      </clr-input-container>
+                </div>
+
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="topScore">Högsta värdet</label>
+                        <input clrInput type="phone" placeholder="100" style="width: 100%;" [(ngModel)]="tally.topScore" name="topScore" required />
+                        <clr-control-error>We need your first name for legal compliance</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                        
+                </div>
+                
+                <!--div class="clr-row resetEveryday">-->
+                    <div class="clr-col-6">
+                        
+                        <div class="btn-group">
+                            <div class="radio btn">
+                                <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1">
+                                <label for="btn-demo-radio-1">Ja</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-col-6">
+                        <div class="radio btn btn">
+                            <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-4">
+                            <label for="btn-demo-radio-4">Nej</label>
+                        </div>
+                    </div>
+                <!--/div>-->
+                
+
+                
+
+                <div class="clr-col-12">
+                    <span class="success status-badge block" *ngIf="tally.getActive()" (click)="toggleActive()">Aktiv</span>
+                    <span class="danger status-badge block" *ngIf="!tally.getActive()" (click)="toggleActive()">Inaktiv</span>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-sm btn-link">Footer Action 1</button>
+        <button class="btn btn-sm btn-link">Footer Action 2</button>
+    </div>
+
+
+</div>

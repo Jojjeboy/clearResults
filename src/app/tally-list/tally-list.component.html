@@ -150,12 +150,21 @@
 </div>
 
 
-<div class="clr-form-control">
-    <div class="clr-control-container">
-        <div class="clr-toggle-wrapper">
-            <input type="checkbox" id="toggle1" name="toggle-basic" [(ngModel)]="showAll" (change)="eventCheck($event)"
-                class="clr-toggle" />
-            <label for="toggle1">{{ showAll ? 'Dölj inaktiva' : 'Visa inaktiva' }}</label>
+<div class="clr-row add-row">
+    <div class="clr-col-12">
+        <a routerLink="/add" class="btn btn-success block">Skapa ny</a>
+    </div>
+</div>
+<div class="clr-row">
+    <div class="clr-col-12">
+        <div class="clr-form-control" *ngIf="tallies.length">
+            <div class="clr-control-container">
+                <div class="clr-toggle-wrapper">
+                    <input type="checkbox" id="toggle1" name="toggle-basic" [(ngModel)]="showAll"
+                    (change)="eventCheck($event)" class="clr-toggle" />
+                    <label for="toggle1">{{ showAll ? 'Dölj inaktiva' : 'Visa inaktiva' }}</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>

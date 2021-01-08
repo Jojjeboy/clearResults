@@ -30,6 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
+- Byt namn från name till title  
 - Lägga till räknare
 - Redigera räknare
 - Gör en komponent av modal

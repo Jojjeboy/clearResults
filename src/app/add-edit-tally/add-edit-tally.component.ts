@@ -15,20 +15,19 @@ export class AddEditTallyComponent implements OnInit {
   editId!: string;
   tally!: Tally;
   constructor(
-    private route: ActivatedRoute, 
-    private location: Location, 
+    private route: ActivatedRoute,
+    private location: Location,
     private router: Router,
     private tallyService: TallyService) {
 
-    }
-
-  ngOnInit(): void {
-    console.log();
-    this.editMode = this.setupMode();
   }
 
-  setupMode(): boolean {
-    if(this.location.path().split('/').length === 3){
+  ngOnInit(): void {
+    this.setupMode();
+  }
+
+  setupMode(): void {
+    if (this.location.path().split('/').length === 3) {
       this.editMode = true;
       this.editId = this.location.path().split('/')[2];
       this.tally = this.tallyService.getTallyById(this.editId);
@@ -37,8 +36,22 @@ export class AddEditTallyComponent implements OnInit {
       this.tally = this.tallyService.getEmptyTally();
 
     }
-    return this.editMode;
   }
+
+  discard() {
+    this.location.back();
+  }
+
+  update() {
+    
+  }
+
+  toggleActive() {
+    this.tally.setActive(!this.tally.getActive());
+  }
+
+
+
 
 
 }
