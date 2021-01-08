@@ -151,6 +151,7 @@ export class TallyService {
   }
 
   save(tally: Tally): void {
+    this.touch(tally);
     this.localStorageService.add(this.convertToLsTally(tally));
   }
 

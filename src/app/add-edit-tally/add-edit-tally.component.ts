@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Tally } from '../classes/Tally';
 import { TallyService } from '../services/tally/tally.service';
+import { UUIDService } from '../services/uuid/uuid.service';
 
 @Component({
   selector: 'app-add-edit-tally',
@@ -18,7 +19,8 @@ export class AddEditTallyComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private tallyService: TallyService) {
+    private tallyService: TallyService,
+    private uUIDService: UUIDService) {
 
   }
 
@@ -34,7 +36,7 @@ export class AddEditTallyComponent implements OnInit {
     }
     else {
       this.tally = this.tallyService.getEmptyTally();
-
+      this.tally.setUuid(this.uUIDService.UUID());
     }
   }
 
@@ -42,16 +44,23 @@ export class AddEditTallyComponent implements OnInit {
     this.location.back();
   }
 
-  update() {
-    
+  save() {
+    if(this.editMode) {
+      this.tallyService.update(this.tally);
+    }
+    else {
+      
+      this.tallyService.save(this.tally);
+    }
+    this.router.navigate(['/']);
+  }
+
+  resetEveryDay(bool: boolean){
+    this.tally.setResetEveryday(bool);
   }
 
   toggleActive() {
     this.tally.setActive(!this.tally.getActive());
   }
-
-
-
-
 
 }
