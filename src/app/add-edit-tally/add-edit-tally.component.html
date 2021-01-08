@@ -58,17 +58,18 @@
                         <clr-control-error>We need your first name for legal compliance</clr-control-error>
                     </clr-input-container>
                 </div>
-                <div class="clr-col-6">
+                <div class="clr-col-6"></div>
 
-                </div>
 
-                <div class="clr-col-6">
+                <div class="clr-col-6 resetEveryDay">
+                    <span>Nollställ varje dag</span>
                     <div class="radio btn">
                         <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1">
                         <label for="btn-demo-radio-1">Ja</label>
                     </div>
                 </div>
-                <div class="clr-col-6">
+                <div class="clr-col-6 resetEveryDay">
+                    <span>&nbsp;</span>
                     <div class="radio btn">
                         <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-4">
                         <label for="btn-demo-radio-4">Nej</label>
@@ -78,23 +79,23 @@
 
                 <div class="clr-col-12">
                     <span class="success status-badge block" *ngIf="tally.getActive()"
-                    (click)="toggleActive()">Aktiv</span>
+                        (click)="toggleActive()">Aktiv</span>
                     <span class="danger status-badge block" *ngIf="!tally.getActive()"
-                    (click)="toggleActive()">Inaktiv</span>
+                        (click)="toggleActive()">Inaktiv</span>
                 </div>
-                
-                
+
+
             </form>
         </div>
     </div>
     <div class="card-footer">
         <div class="clr-row">
-        <div class="clr-col-6">
-            <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
-        </div>
-        <div class="clr-col-6">
-            <button class="btn btn-success-outline block">{{ editMode ? 'Uppdatera' : 'Spara' }}</button>
-        </div>
+            <div class="clr-col-6">
+                <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
+            </div>
+            <div class="clr-col-6">
+                <button class="btn btn-success-outline block">{{ editMode ? 'Uppdatera' : 'Spara' }}</button>
+            </div>
         </div>
     </div>
 
