@@ -36,15 +36,26 @@ export class AddExampleComponent implements OnInit {
   }
 
   addPushups() {
+    const yesterday = ( d => 
+      new Date(d.setDate(d.getDate()-1)) 
+    )(new Date);
+
+    const twoDaysago = ( d => 
+      new Date(d.setDate(d.getDate()-3)) 
+    )(new Date);
+
     const pushups = new Tally({
       name: this.pushupName,
       increseBy: 25,
       decreseBy: 25,
       resetEveryDay: true,
       uuid: this.uuidService.UUID(),
-      value: 0,
-      lastTouched: new Date(),
-      history: [],
+      value: 12,
+      lastTouched: yesterday, 
+      history: [{
+        value: 125,
+        date: twoDaysago
+      }],
       goal: 100,
       topScore: 0,
       active: true

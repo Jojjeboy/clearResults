@@ -76,6 +76,24 @@
                     </div>
                 </div>
 
+                    <div class="clr-col-12 history">
+                        <h4>Historik</h4>
+                        <clr-datagrid>
+                            <clr-dg-column>Datum</clr-dg-column>
+                            <clr-dg-column>Värde</clr-dg-column>
+                
+                
+                            <clr-dg-row *clrDgItems="let history of tally.getHistory()">
+                                <clr-dg-cell>{{ history.date | date: 'yyyy-MM-dd'}}</clr-dg-cell>
+                                <clr-dg-cell>{{ history.value }} / {{ tally.getGoal() }}</clr-dg-cell>
+                            </clr-dg-row>
+                
+                            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span *ngIf="tally.getHistory().length" class="pull-right" (click)="cleanHistory()">Töm historik</span>
+                            </clr-dg-footer>
+                        </clr-datagrid>
+                    </div>
+                
+
 
                 <div class="clr-col-12">
                     <span class="success status-badge block" *ngIf="tally.getActive()"
@@ -97,3 +115,14 @@
         </div>
     </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="modal.open">
+    <h3 class="modal-title">{{ modal.header }}</h3>
+    <div class="modal-body">
+      <p>{{ modal.body }}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
+      <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
+    </div>
+  </clr-modal>

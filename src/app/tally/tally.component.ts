@@ -60,7 +60,7 @@ export class TallyComponent implements OnInit {
     this.openModal({
       open: true,
       header: 'Radera historik',
-      body: 'Är du säker på att du vill radera historik',
+      body: 'Är du säker på att du vill radera historik?\nDet verkar finnas ' + this.tally.getHistory().length + ' dagars historik',
       callBackFn: 'cleanHistoryConfirmed'
     });
   }
