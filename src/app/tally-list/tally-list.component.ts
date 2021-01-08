@@ -43,8 +43,14 @@ export class TallyListComponent implements OnInit{
     return this.tallyService.recalculatePercentage(tally.getGoal(), tally.getValue());
   }
 
-  editTally(): void{
-    
+  inactiveTallysExist(): boolean{
+    let exist = false;
+    this.tallies.forEach(tally => {
+      if(!tally.getActive()){
+        exist = true;
+      }
+    });
+    return exist;
   }
 
   eventCheck(event: any): void{

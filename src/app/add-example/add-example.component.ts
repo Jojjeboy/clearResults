@@ -13,16 +13,16 @@ export class AddExampleComponent implements OnInit {
   tallies = Array<Tally>();
 
   pushupAdded: boolean = false;
-  pushupName: string = 'Armhävningar';
+  pushupTitle: string = 'Armhävningar';
 
   plankAdded: boolean = false;
-  plankName: string = 'Plankan (30sek)';
+  plankTitle: string = 'Plankan (30sek)';
   
   squatsAdded: boolean = false;
-  squatsName: string = 'Squats';
+  squatsTitle: string = 'Squats';
 
   workoutdaysAdded: boolean = false;
-  workoutdaysName: string = 'Träningsdagar';
+  workoutdaysTitle: string = 'Träningsdagar';
 
   constructor(
     private uuidService: UUIDService,
@@ -45,7 +45,7 @@ export class AddExampleComponent implements OnInit {
     )(new Date);
 
     const pushups = new Tally({
-      name: this.pushupName,
+      title: this.pushupTitle,
       increseBy: 25,
       decreseBy: 25,
       resetEveryDay: true,
@@ -67,7 +67,7 @@ export class AddExampleComponent implements OnInit {
 
   addplank() {
     const plank = new Tally({
-      name: this.plankName,
+      title: this.plankTitle,
       increseBy: 10,
       decreseBy: 10,
       resetEveryDay: true,
@@ -86,7 +86,7 @@ export class AddExampleComponent implements OnInit {
 
   addSquats() {
     const squats = new Tally({
-      name: this.squatsName,
+      title: this.squatsTitle,
       increseBy: 10,
       decreseBy: 10,
       resetEveryDay: true,
@@ -105,7 +105,7 @@ export class AddExampleComponent implements OnInit {
 
   addWorkoutDays() {
     const squats = new Tally({
-      name: this.workoutdaysName,
+      title: this.workoutdaysTitle,
       increseBy: 1,
       decreseBy: 1,
       resetEveryDay: true,
@@ -125,22 +125,20 @@ export class AddExampleComponent implements OnInit {
   setStatus() {
     this.tallies = this.tallyService.getTallies();
     this.tallies.forEach(tally => {
-      switch (tally.name) {
-        case this.pushupName:
+      switch (tally.title) {
+        case this.pushupTitle:
           this.pushupAdded = true;
           break;
-        case this.plankName:
+        case this.plankTitle:
           this.plankAdded = true;
           break;
-        case this.squatsName:
+        case this.squatsTitle:
           this.squatsAdded = true;
           break;
-        case this.workoutdaysName:
+        case this.workoutdaysTitle:
             this.workoutdaysAdded = true;
             break;
       }
     });
-
-
   }
 }

@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<h1>{{ tally.getName() }}</h1>
+<h1>{{ tally.getTitle() }}</h1>
 <div>
     <small>{{ tally.getLastTouched() | timeago }}</small>
 </div>
@@ -79,26 +79,37 @@
 <div class="clr-row">
     <div class="clr-col-12">
         <h4>Historik</h4>
-        <clr-datagrid>
-            <clr-dg-column [clrDgField]="'date'">Datum</clr-dg-column>
-            <clr-dg-column [clrDgField]="'value'">Värde</clr-dg-column>
-            <clr-dg-column [clrDgField]="'color'">Mål uppnått</clr-dg-column>
-
-
-            <clr-dg-row *clrDgItems="let history of tally.getHistory()">
-                <clr-dg-cell>{{ history.date | date: 'yyyy-MM-dd'}}</clr-dg-cell>
-                <clr-dg-cell>{{ history.value }} / {{ tally.getGoal() }}</clr-dg-cell>
-                <clr-dg-cell>
-                    <clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()"></clr-icon>
-                    <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{
-                    history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}
-                </clr-dg-cell>
-            </clr-dg-row>
-
-            <clr-dg-footer><span class="pull-left">{{ tally.getHistory().length }} dagars historik</span><span
-                    *ngIf="tally.getHistory().length" class="pull-right" (click)="cleanHistory()">Töm historik</span>
-            </clr-dg-footer>
-        </clr-datagrid>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Värde</th>
+                    <th>Mål uppnått</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let history of tally.getHistory()">
+                    <td>{{ history.date | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{ history.value }} / {{ tally.getGoal() }}</td>
+                    <td><clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()"></clr-icon>
+                        <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{
+                        history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <table>
+                            <tr>
+                                <td width="300" (click)="editHistory()"><small>Redigera historik</small></td>
+                                <td width="300" (click)="cleanHistory()"><small>Töm historik</small></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+              </tfoot>
+        </table>
     </div>
 </div>
 

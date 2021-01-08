@@ -104,7 +104,7 @@ export class AddEditTallyComponent implements OnInit {
 
   valid() : boolean{
     let valid = true;
-    if(!this.tally.getName() || this.tally.getName().length < 3){
+    if(!this.tally.getTitle() || this.tally.getTitle().length < 3){
       valid = false;
     }
     if(!this.tally.getIncreseBy()){

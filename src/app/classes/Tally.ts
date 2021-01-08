@@ -1,7 +1,7 @@
 import { History } from './History';
 
 export class Tally {
-    name: string;
+    title: string;
     increseBy: number;
     decreseBy: number;
     resetEveryDay: boolean;
@@ -15,7 +15,7 @@ export class Tally {
 
     constructor(obj: any) {
 
-        this.name = obj.name;
+        this.title = obj.title;
         this.increseBy = obj.increseBy;
         this.decreseBy = obj.decreseBy;
         this.resetEveryDay = obj.resetEveryDay;
@@ -28,12 +28,12 @@ export class Tally {
         this.active = obj.active;
     }
 
-    public getName(): string {
-        return this.name;
+    public getTitle(): string {
+        return this.title;
     }
 
-    public setName(name: string): void {
-        this.name = name;
+    public setTitle(title: string): void {
+        this.title = title;
     }
 
     public getIncreseBy(): number {

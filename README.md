@@ -30,7 +30,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
-- Byt namn från name till title  
 - Gör en komponent av modal
+- Redigera historik 
 - Fixa så att exempel genereras till example.json i publish.sh
 - Statistiska mål
+- Fixa service workers så den är helt offline applikationen

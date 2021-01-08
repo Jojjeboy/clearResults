@@ -5,7 +5,7 @@
             <div class="card-info">
                 <div class="card-header">
                     <div class="header-main-text">
-                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getName() }}</a> <span
+                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getTitle() }}</a> <span
                             class="pull-right" *ngIf="!tally.getActive()"> Inaktiv</span>
                     </div>
                     <div class="pull-right header-meta-text">
@@ -69,7 +69,8 @@
         <a routerLink="/add" class="btn btn-success block">Skapa ny</a>
     </div>
 </div>
-<div class="clr-row">
+
+<div class="clr-row" *ngIf="inactiveTallysExist()">
     <div class="clr-col-12">
         <div class="clr-form-control" *ngIf="tallies.length">
             <div class="clr-control-container">

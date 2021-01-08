@@ -67,6 +67,10 @@ export class TallyComponent implements OnInit {
     });
   }
 
+  editHistory() {
+    alert('Not implemented');
+  }
+
   cleanHistoryConfirmed(): void {
     this.tallyService.cleanHistory(this.tally);
     this.closeModal();

@@ -129,7 +129,7 @@ export class TallyService {
 
   getEmptyTally() {
     return new Tally({
-      name: null,
+      title: null,
       increseBy: null,
       decreseBy: null,
       resetEveryDay: true,
