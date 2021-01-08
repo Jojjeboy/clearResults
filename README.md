@@ -30,10 +30,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
+- Historik
+- Fixa så att exempel genereras till example.json i publish.sh
+- Validera lägga till / redigera formuläret
 - Byt namn från name till title  
 - Lägga till räknare
 - Redigera räknare
 - Gör en komponent av modal
 - Lägg in progress bar på tallysidan
-- Historik
 - Statistiska mål

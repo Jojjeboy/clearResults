@@ -53,7 +53,7 @@
                 <div class="clr-col-6">
                     <clr-input-container>
                         <label for="topScore">Högsta värdet</label>
-                        <input clrInput type="number" placeholder="100" [(ngModel)]="tally.topScore"
+                        <input clrInput type="number" placeholder="0" [(ngModel)]="tally.topScore"
                             name="topScore" required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
@@ -92,7 +92,7 @@
                 <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
             </div>
             <div class="clr-col-6">
-                <button class="btn btn-success-outline block" (click)="save()">{{ editMode ? 'Uppdatera' : 'Spara' }}</button>
+                <button [disabled]="!valid()" class="btn btn-success-outline block" (click)="save()">{{ editMode ? 'Uppdatera' : 'Spara' }}</button>
             </div>
         </div>
     </div>

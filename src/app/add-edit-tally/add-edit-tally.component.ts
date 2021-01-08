@@ -63,4 +63,22 @@ export class AddEditTallyComponent implements OnInit {
     this.tally.setActive(!this.tally.getActive());
   }
 
+  valid() : boolean{
+    let valid = true;
+    if(!this.tally.getName() || this.tally.getName().length < 3){
+      valid = false;
+    }
+    if(!this.tally.getIncreseBy() || this.tally.getIncreseBy().toString.length < 1){
+      valid = false;
+    }
+    if(!this.tally.getDecreseBy()){
+      valid = false;
+    }
+    if(!this.tally.getGoal()){
+      valid = false;
+    }
+
+    return valid;
+  }
+
 }
