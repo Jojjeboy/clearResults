@@ -11,6 +11,7 @@ import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component
 import { TallyListComponent } from './tally-list/tally-list.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddExampleComponent } from './add-example/add-example.component';
+import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-history.component';
 
 const routes: Routes = [
   {
@@ -38,17 +39,12 @@ const routes: Routes = [
     component: AddEditTallyComponent,
     data: { title: 'Edit Tally' }
   },
-  /*{
-    path: 'clear',
-    component: ClearCacheComponent,
-    data: { title: 'Clear Cache' }
-  },
   {
-    path: 'todo',
-    component: TodoComponent,
-    data: { title: 'Todo' }
+    path: 'history/edit/:id',
+    component: EditTallyHistoryComponent,
+    data: { title: 'Edit tally history' }
   },
-  */
+  
   { path: '**', component: TallyListComponent }
 ];
 
@@ -62,7 +58,7 @@ const routes: Routes = [
   declarations: [
     TallyListComponent,
     TallyComponent, 
-    AddEditTallyComponent, SettingsComponent, AddExampleComponent
+    AddEditTallyComponent, SettingsComponent, AddExampleComponent, EditTallyHistoryComponent
   ],
   exports: [RouterModule]
 })

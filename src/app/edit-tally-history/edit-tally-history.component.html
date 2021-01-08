@@ -1,0 +1,62 @@
+<div class="clr-row">
+    <div class="clr-col-12">
+        <a routerLink="/tally/tally.getUuid()">
+            <clr-icon shape="undo"></clr-icon> &nbsp; <small>Tillbaka</small>
+        </a>
+    </div>
+</div>
+
+<h1>Redigera historik</h1>
+
+<div class="card">
+    <div class="card-header">
+        {{ tally.getTitle() }}
+    </div>
+    <div class="card-block">
+        <div class="card-title">
+            Block
+        </div>
+        <div class="card-text">
+            <form clrForm>
+                <div class="clr-row" *ngFor="let history of tally.getHistory(); let i = index">
+                    <div class="clr-col-7">
+                        <label>Basic Demo</label>
+                        <input type="date" name="date{{i}}" [ngModel]="history.date | date:'yyyy-MM-dd'" />
+                    </div>
+                    <div class="clr-col-5">
+
+                        <label>Värde</label>
+                        <input clrInput type="number" [(ngModel)]="history.value" name="value{{i}}" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="clr-row">
+            <div class="clr-col-12">
+                <small *ngIf="tally.getHistory().length < 1" class="btn btn-sm btn-link">Radera historik</small>
+                <button *ngIf="tally.getHistory().length > 0" class="btn btn-sm btn-link" (click)="cleanHistory()">Radera historik</button>
+            </div>
+        </div>
+        <div class="clr-row">
+            <div class="clr-col-6">
+                <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
+            </div>
+            <div class="clr-col-6">
+                <button [disabled]="!valid()" class="btn btn-success-outline block" (click)="save()">Uppdatera</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<clr-modal [(clrModalOpen)]="modal.open">
+    <h3 class="modal-title">{{ modal.header }}</h3>
+    <div class="modal-body">
+        <p>{{ modal.body }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
+        <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
+    </div>
+</clr-modal>

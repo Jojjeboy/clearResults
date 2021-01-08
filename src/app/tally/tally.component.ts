@@ -121,10 +121,6 @@ export class TallyComponent implements OnInit {
     return false;
   }
 
-  edit(): void {
-    alert('Not implemented');
-  }
-
 
   openModal(modalData: any): void {
     this.modal.open = modalData.open;
