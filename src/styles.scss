@@ -35,7 +35,7 @@ span.status-badge {
     
     &.success {
         border: 1px solid $successColor;
-        color: $dangerColor;
+        color: $successColor;
     }
 
     &.danger {
