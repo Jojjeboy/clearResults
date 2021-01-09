@@ -13,32 +13,29 @@
         {{ tally.getTitle() }}
     </div>
     <div class="card-block">
-        <div class="card-title">
-            Block
-        </div>
         <div class="card-text">
             <form clrForm>
                 <div class="clr-row" *ngFor="let history of tally.getHistory(); let i = index">
                     <div class="clr-col-7">
-                        <label>Basic Demo</label>
+                        <label>{{ history.date | timeago }}</label>
                         <input type="date" name="date{{i}}" max="{{ yesterday }}" [ngModel]="history.date | date:'yyyy-MM-dd'" />
                     </div>
                     <div class="clr-col-5">
-
                         <label>Värde</label>
-                        <input clrInput type="number" [(ngModel)]="history.value" name="value{{i}}" />
+                        <input type="number" [(ngModel)]="history.value" name="value{{i}}" />
+                    </div>
+                </div>
+
+                <div class="clr-row">
+                    <div class="clr-col-12 clear-history">
+                        <small *ngIf="tally.getHistory().length < 1" class="btn btn-sm btn-link">Radera historik</small>
+                        <button *ngIf="tally.getHistory().length > 0" class="btn btn-sm btn-link" (click)="cleanHistory()">Radera historik</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="card-footer">
-        <div class="clr-row">
-            <div class="clr-col-12">
-                <small *ngIf="tally.getHistory().length < 1" class="btn btn-sm btn-link">Radera historik</small>
-                <button *ngIf="tally.getHistory().length > 0" class="btn btn-sm btn-link" (click)="cleanHistory()">Radera historik</button>
-            </div>
-        </div>
         <div class="clr-row">
             <div class="clr-col-6">
                 <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
