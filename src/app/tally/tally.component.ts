@@ -14,7 +14,6 @@ export class TallyComponent implements OnInit {
 
   cleanHistoryModalData: Object = {};
   deleteModalData: Object = {};
-  toggleActivityModalData: Object = {};
   tally!: Tally;
   percentage = 0.00;
   editMode = false;
@@ -79,26 +78,9 @@ export class TallyComponent implements OnInit {
   }
 
   toggleActive(): void {
-    const setActiveText = this.tally.getActive() === true ? 'inaktivera' : 'aktivera';
-    this.toggleActivityModalData = {
-      open: true,
-      header: setActiveText + ' räknare?',
-      body: 'Är du säker på att du vill ' + setActiveText + ' denna räknare'
-    }
-  }
-
-  toggleActiveConfirmed(): void {
     this.tally.setActive(!this.tally.getActive());
     this.tallyService.update(this.tally);
-    this.toggleActivityModalData = { open: false };
   }
-
-
-
-
-
-
-
-
+  
 
 }
