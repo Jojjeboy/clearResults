@@ -62,17 +62,6 @@
             <button class="btn btn-success-outline block increse" (click)="increase()">Öka</button>
         </div>
     </div>
-
-    <clr-modal [(clrModalOpen)]="modal.open">
-        <h3 class="modal-title">{{ modal.header }}</h3>
-        <div class="modal-body">
-            <p>{{ modal.body }}</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
-            <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
-        </div>
-    </clr-modal>
 </div>
 
 
@@ -144,3 +133,7 @@
         <button class="btn btn-danger block" (click)="delete()">Radera</button>
     </div>
 </div>
+
+<app-modal [modalData]="cleanHistoryModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>
+<app-modal [modalData]="deleteModalData" (parentEvent)="deleteConfirmed()"></app-modal>
+<app-modal [modalData]="toggleActivityModalData" (parentEvent)="toggleActiveConfirmed()"></app-modal>

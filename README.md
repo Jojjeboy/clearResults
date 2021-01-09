@@ -32,6 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - Gör en komponent av modal - https://levelup.gitconnected.com/how-to-create-a-reusable-modal-component-in-angular-9-using-ng-bootstrap-50c0aa5f3a65
 
+- Byt ut dynamiskt mål med senaste ändrad
 - Organisera komponenter och moduler
 - Fixa så att exempel genereras till example.json i publish.sh
 - Statistiska mål

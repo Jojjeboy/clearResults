@@ -47,13 +47,4 @@
     </div>
 </div>
 
-<clr-modal [(clrModalOpen)]="modal.open">
-    <h3 class="modal-title">{{ modal.header }}</h3>
-    <div class="modal-body">
-        <p>{{ modal.body }}</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
-        <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
-    </div>
-</clr-modal>
+<app-modal [modalData]="cleanHistoryConfirmedModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>

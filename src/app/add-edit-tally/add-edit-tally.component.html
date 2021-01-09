@@ -12,40 +12,37 @@
                 <div class="clr-col-12">
                     <clr-input-container>
                         <label for="title">Titel</label>
-                        <input clrInput type="text" [(ngModel)]="tally.title" name="title" id="title"
-                            required />
+                        <input clrInput type="text" [(ngModel)]="tally.title" name="title" id="title" required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
                 </div>
                 <div class="clr-col-6">
                     <clr-input-container>
                         <label for="increaseBy">Öka</label>
-                        <input clrInput type="number" placeholder="10" [(ngModel)]="tally.increseBy"
-                            name="increseBy" id="increseBy" required />
+                        <input clrInput type="number" placeholder="10" [(ngModel)]="tally.increseBy" name="increseBy"
+                            id="increseBy" required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
                 </div>
                 <div class="clr-col-6">
                     <clr-input-container>
                         <label for="decreseBy">Minska</label>
-                        <input clrInput type="number" placeholder="10" [(ngModel)]="tally.decreseBy"
-                            name="decreseBy" required />
+                        <input clrInput type="number" placeholder="10" [(ngModel)]="tally.decreseBy" name="decreseBy"
+                            required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
                 </div>
                 <div class="clr-col-6">
                     <clr-input-container>
                         <label for="value">Värde</label>
-                        <input clrInput type="number" placeholder="0" [(ngModel)]="tally.value"
-                            name="value" required />
+                        <input clrInput type="number" placeholder="0" [(ngModel)]="tally.value" name="value" required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
                 </div>
                 <div class="clr-col-6">
                     <clr-input-container>
                         <label for="goal">Mål</label>
-                        <input clrInput type="number" placeholder="100" [(ngModel)]="tally.goal"
-                            name="goal" required />
+                        <input clrInput type="number" placeholder="100" [(ngModel)]="tally.goal" name="goal" required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
                 </div>
@@ -53,8 +50,8 @@
                 <div class="clr-col-6">
                     <clr-input-container>
                         <label for="topScore">Högsta värdet</label>
-                        <input clrInput type="number" placeholder="0" [(ngModel)]="tally.topScore"
-                            name="topScore" required />
+                        <input clrInput type="number" placeholder="0" [(ngModel)]="tally.topScore" name="topScore"
+                            required />
                         <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                     </clr-input-container>
                 </div>
@@ -64,40 +61,51 @@
                 <div class="clr-col-6 resetEveryDay">
                     <span>Nollställ varje dag</span>
                     <div class="radio btn">
-                        <input type="radio" [checked]="tally.getResetEveryday()" name="btn-group-demo-radios" (click)="resetEveryDay(true)" id="btn-demo-radio-1">
+                        <input type="radio" [checked]="tally.getResetEveryday()" name="btn-group-demo-radios"
+                            (click)="resetEveryDay(true)" id="btn-demo-radio-1">
                         <label for="btn-demo-radio-1">Ja</label>
                     </div>
                 </div>
                 <div class="clr-col-6 resetEveryDay">
                     <span>&nbsp;</span>
                     <div class="radio btn">
-                        <input type="radio" [checked]="!tally.getResetEveryday()" name="btn-group-demo-radios" (click)="resetEveryDay(false)" id="btn-demo-radio-4">
+                        <input type="radio" [checked]="!tally.getResetEveryday()" name="btn-group-demo-radios"
+                            (click)="resetEveryDay(false)" id="btn-demo-radio-4">
                         <label for="btn-demo-radio-4">Nej</label>
                     </div>
                 </div>
 
-                    <div class="clr-col-12 history">
-                        <h4>Historik</h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Datum</th>
-                                    <th>Värde</th>
-                                    <th>Mål uppnått</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let history of tally.getHistory()">
-                                    <td>{{ history.date | date: 'yyyy-MM-dd'}}</td>
-                                    <td>{{ history.value }} / {{ tally.getGoal() }}</td>
-                                    <td><clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()"></clr-icon>
-                                        <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{
-                                        history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                
+                <div class="clr-col-12 history">
+                    <h4>Historik</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Datum</th>
+                                <th>Värde</th>
+                                <th>Mål uppnått</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let history of tally.getHistory()">
+                                <td>{{ history.date | date: 'yyyy-MM-dd'}}</td>
+                                <td>{{ history.value }} / {{ tally.getGoal() }}</td>
+                                <td>
+                                    <clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()">
+                                    </clr-icon>
+                                    <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()">
+                                    </clr-icon> {{
+                                    history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="clr-col-12 clear-history">
+                    <small *ngIf="tally.getHistory().length < 1" class="btn btn-sm btn-link">Radera historik</small>
+                    <button *ngIf="tally.getHistory().length > 0" class="btn block btn-danger-outline"
+                        (click)="cleanHistory()">Radera historik</button>
+                </div>
 
 
                 <div class="clr-col-12">
@@ -115,19 +123,12 @@
                 <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
             </div>
             <div class="clr-col-6">
-                <button [disabled]="!valid()" class="btn btn-success-outline block" (click)="save()">{{ editMode ? 'Uppdatera' : 'Spara' }}</button>
+                <button [disabled]="!valid()" class="btn btn-success-outline block" (click)="save()">{{ editMode ?
+                    'Uppdatera' : 'Spara' }}</button>
             </div>
         </div>
     </div>
 </div>
 
-<clr-modal [(clrModalOpen)]="modal.open">
-    <h3 class="modal-title">{{ modal.header }}</h3>
-    <div class="modal-body">
-      <p>{{ modal.body }}</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
-      <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
-    </div>
-  </clr-modal>
+<app-modal [modalData]="cleanHistoryModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>
+<app-modal [modalData]="deleteModalData" (parentEvent)="deleteConfirmed()"></app-modal>

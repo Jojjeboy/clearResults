@@ -62,3 +62,11 @@ a:active {
 .success {
     color: $successColor;
 }
+
+.clr-col-12.clear-history{
+    padding-top: 15px;
+    text-align: center;
+    button {
+        color: $dangerColor;
+    }
+}

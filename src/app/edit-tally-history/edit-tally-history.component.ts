@@ -13,13 +13,7 @@ import { Router } from '@angular/router';
 export class EditTallyHistoryComponent implements OnInit {
   tally!: Tally;
 
-  modal = {
-    open: false,
-    header: '',
-    body: '',
-    footer: '',
-    callBackFn: ''
-  }
+  cleanHistoryConfirmedModalData: Object = {};
 
   yesterday!: string;
 
@@ -39,6 +33,8 @@ export class EditTallyHistoryComponent implements OnInit {
     this.yesterday = this.dateService.formatDate(( d => 
       new Date(d.setDate(d.getDate()-1)) 
     )(new Date));
+
+
   }
 
   valid() {
@@ -57,42 +53,18 @@ export class EditTallyHistoryComponent implements OnInit {
   }
 
   cleanHistory() {
-    this.openModal({
+    this.cleanHistoryConfirmedModalData = {
       open: true,
       header: 'Radera historik',
-      body: 'Är du säker på att du vill radera historik?\nDet verkar finnas ' + this.tally.getHistory().length + ' dagars historik',
-      callBackFn: 'cleanHistoryConfirmed'
-    });
+      body: 'Är du säker på att du vill radera historiken.\n Det verkar som det finns ' + this.tally.getHistory().length  + ' dagars historik',
+      footer: ''
+    }
   }
 
   cleanHistoryConfirmed(): void {
     this.tally.setHistory([]);
     this.tallyService.update(this.tally);
-    this.closeModal();
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
-  }
-
-  callBackConfirmed(methodToExecute: string): boolean {
-    switch (methodToExecute) {
-      case "cleanHistoryConfirmed": 
-        this.cleanHistoryConfirmed(); 
-        break;
-    }
-    return false;
-  }
-
-  openModal(modalData: any): void {
-    this.modal.open = modalData.open;
-    this.modal.header = modalData.header;
-    this.modal.body = modalData.body;
-    this.modal.callBackFn = modalData.callBackFn;
-  }
-
-  closeModal(): void{
-    this.modal.open = false;
-    this.modal.header = '';
-    this.modal.body = '';
-    this.modal.callBackFn = '';
   }
 
 }
