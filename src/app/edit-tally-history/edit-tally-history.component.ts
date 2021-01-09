@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TallyService } from '../services/tally/tally.service';
+import { DateHelperService } from '../services/Date/date-helper.service';
 import { Tally } from '../classes/Tally';
 import { Router } from '@angular/router';
 
@@ -20,8 +21,11 @@ export class EditTallyHistoryComponent implements OnInit {
     callBackFn: ''
   }
 
+  yesterday!: string;
+
   constructor(
     private tallyService: TallyService, 
+    private dateService: DateHelperService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -31,12 +35,16 @@ export class EditTallyHistoryComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.tally = this.tallyService.getTallyById(params['id']);
     });
+
+    this.yesterday = this.dateService.formatDate(( d => 
+      new Date(d.setDate(d.getDate()-1)) 
+    )(new Date));
   }
 
   valid() {
     let valid = true;
     this.tally.getHistory().forEach(history => {
-      if(isNaN(history.value) || history.value < 1){
+      if(isNaN(history.value) || history.value < 0){
         valid = false;
       }
     });

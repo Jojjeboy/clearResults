@@ -21,7 +21,7 @@
                 <div class="clr-row" *ngFor="let history of tally.getHistory(); let i = index">
                     <div class="clr-col-7">
                         <label>Basic Demo</label>
-                        <input type="date" name="date{{i}}" [ngModel]="history.date | date:'yyyy-MM-dd'" />
+                        <input type="date" name="date{{i}}" max="{{ yesterday }}" [ngModel]="history.date | date:'yyyy-MM-dd'" />
                     </div>
                     <div class="clr-col-5">
 
