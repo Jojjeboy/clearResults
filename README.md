@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
-
+- Skriv ut datum på senaste version
 - Byt ut dynamiskt mål med senaste ändrad
 - Organisera komponenter och moduler
 - Fixa så att exempel genereras till example.json i publish.sh

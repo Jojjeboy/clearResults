@@ -38,7 +38,7 @@ if [[ $(git diff --stat) != '' ]]; then
 #  git commit -m"$1" && 
   npm run postinstall && 
   git add . && 
-  git commit -m"$POSTINSTALL_AUTO_COMMIT_MESSAGE" && 
+  git commit -m"$1" && 
   git push
 else
   VN="$VN-mod"

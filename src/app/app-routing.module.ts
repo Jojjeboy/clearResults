@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TallyComponent } from './tally/tally.component';
 import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component';
 import { TallyListComponent } from './tally-list/tally-list.component';
-import { SettingsComponent } from './settings/settings.component';
 import { AddExampleComponent } from './add-example/add-example.component';
 import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-history.component';
 import { ModalComponent } from './modal/modal.component';
@@ -60,7 +59,6 @@ const routes: Routes = [
     TallyListComponent,
     TallyComponent,
     AddEditTallyComponent,
-    SettingsComponent,
     AddExampleComponent,
     EditTallyHistoryComponent,
     ModalComponent
