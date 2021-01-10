@@ -24,6 +24,7 @@ export class TallyService {
   }
 
   getTallies(): Array<Tally>{
+    this.reloadDataFromLS();
     return this.sortByActive();
   }
 
@@ -259,5 +260,10 @@ export class TallyService {
       }
     }
     return new Tally(target);
+  }
+
+  reloadDataFromLS(){
+    this.lsTallies = <Array<Object>>this.localStorageService.getAll();
+    this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
   }
 }
