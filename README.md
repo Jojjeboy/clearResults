@@ -31,8 +31,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
-- Fixa en favicon
-- Fixa service workers så den är helt offline applikationen
 - Byt ut dynamiskt mål med senaste ändrad
 - Organisera komponenter och moduler
 - Fixa så att exempel genereras till example.json i publish.sh

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 
 import { registerLocaleData } from "@angular/common";
 import localeSv from "@angular/common/locales/sv";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import localeSv from "@angular/common/locales/sv";
   ],
   imports: [
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }],
   bootstrap: [AppComponent]
