@@ -31,11 +31,9 @@ export class TallyListComponent implements OnInit {
     this.tallyService.decrease(tally);
   }
 
-
   getShowAll() {
     return this.showAll;
   }
-
 
   calculatePercentage(tally: Tally): number {
     return this.tallyService.recalculatePercentage(tally.getGoal(), tally.getValue());

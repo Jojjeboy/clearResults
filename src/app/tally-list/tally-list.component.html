@@ -20,7 +20,7 @@
                         </div>
                         <div class="clr-col-6">
                             <div class="card-title pull-right">
-                                 &nbsp; {{ tally.getLastTouched() | timeago }}
+                                &nbsp; {{ tally.getLastTouched() | timeago }}
                             </div>
                         </div>
                     </div>
@@ -40,12 +40,12 @@
                 <div class="card-footer">
                     <div class="clr-row">
                         <div class="clr-col-6">
-                            <button class="btn btn-danger-outline block pull-right decrese" [disabled]="!tally.getActive()"
-                                (click)="decrese(tally)">Minska</button>
+                            <button class="btn btn-danger-outline block pull-right decrese"
+                                [disabled]="!tally.getActive()" (click)="decrese(tally)">Minska</button>
                         </div>
                         <div class="clr-col-6">
-                            <button class="btn btn-success-outline block pull-left increase" [disabled]="!tally.getActive()"
-                                (click)="increase(tally)">Öka</button>                            
+                            <button class="btn btn-success-outline block pull-left increase"
+                                [disabled]="!tally.getActive()" (click)="increase(tally)">Öka</button>
                         </div>
                     </div>
                 </div>

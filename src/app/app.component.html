@@ -14,31 +14,28 @@
     </div>
   </div>
 
-
   <!-- Header -->
   <header class="header-6">
     <div class="branding">
-        <a routerLink="/" class="nav-link">
-            <span class="title">Clear Results</span>
-        </a>
+      <a routerLink="/" class="nav-link">
+        <span class="title">Clear Results</span>
+      </a>
     </div>
-    
+
     <div class="header-actions">
-        <clr-dropdown>
-            <button class="nav-icon" clrDropdownTrigger aria-label="toggle settings menu">
-                <clr-icon shape="view-list"></clr-icon>
-                <clr-icon shape="caret down"></clr-icon>
-            </button>
-            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a routerLink="/add" clrDropdownItem>Lägg till ny räknare</a>
-                <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
-                <a (click)="clearCache()" clrDropdownItem>Rensa Local Storage</a>
-            </clr-dropdown-menu>
-        </clr-dropdown>
+      <clr-dropdown>
+        <button class="nav-icon" clrDropdownTrigger aria-label="toggle settings menu">
+          <clr-icon shape="view-list"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a routerLink="/add" clrDropdownItem>Lägg till ny räknare</a>
+          <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
+          <a (click)="clearCache()" clrDropdownItem>Rensa Local Storage</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
     </div>
-</header>
-
-
+  </header>
 
   <!-- Main content -->
   <div class="content-container">
@@ -56,6 +53,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
-    <button type="button" class="btn btn-primary" (click)="callBackConfirmed(modal.callBackFn)">Ok</button>
+    <button type="button" class="btn btn-primary" (click)="clearCacheConfirmed()">Ok</button>
   </div>
 </clr-modal>

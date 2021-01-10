@@ -18,7 +18,7 @@ export class EditTallyHistoryComponent implements OnInit {
   yesterday!: string;
 
   constructor(
-    private tallyService: TallyService, 
+    private tallyService: TallyService,
     private dateService: DateHelperService,
     private route: ActivatedRoute,
     private router: Router
@@ -30,21 +30,20 @@ export class EditTallyHistoryComponent implements OnInit {
       this.tally = this.tallyService.getTallyById(params['id']);
     });
 
-    this.yesterday = this.dateService.formatDate(( d => 
-      new Date(d.setDate(d.getDate()-1)) 
+    this.yesterday = this.dateService.formatDate((d =>
+      new Date(d.setDate(d.getDate() - 1))
     )(new Date));
-
 
   }
 
   valid() {
     let valid = true;
     this.tally.getHistory().forEach(history => {
-      if(isNaN(history.value) || history.value < 0){
+      if (isNaN(history.value) || history.value < 0) {
         valid = false;
       }
     });
-    return valid; 
+    return valid;
   }
 
   save(): void {
@@ -56,7 +55,7 @@ export class EditTallyHistoryComponent implements OnInit {
     this.cleanHistoryConfirmedModalData = {
       open: true,
       header: 'Radera historik',
-      body: 'Är du säker på att du vill radera historiken.\n Det verkar som det finns ' + this.tally.getHistory().length  + ' dagars historik',
+      body: 'Är du säker på att du vill radera historiken.\n Det verkar som det finns ' + this.tally.getHistory().length + ' dagars historik',
       footer: ''
     }
   }
@@ -66,5 +65,4 @@ export class EditTallyHistoryComponent implements OnInit {
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
   }
-
 }

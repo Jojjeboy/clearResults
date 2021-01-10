@@ -1,20 +1,13 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  templateUrl: './modal.component.html'
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
   @Input() modalData: any = {};
   @Output() parentEvent = new EventEmitter();
-  constructor() { }
-  
-
-  ngOnInit(): void {
-    //console.log(this.modalData);
-  }
 
   childmethod() {
     this.parentEvent.emit();
@@ -31,5 +24,4 @@ export class ModalComponent implements OnInit {
   callBackConfirmed() {
     this.parentEvent.emit();
   }
-
 }

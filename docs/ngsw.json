@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1610266549049,
+  "timestamp": 1610268066369,
   "index": "https://jojjeboy.github.io/clearResults/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "https://jojjeboy.github.io/clearResults/favicon.ico",
         "https://jojjeboy.github.io/clearResults/index.html",
-        "https://jojjeboy.github.io/clearResults/main.f5d35fb73b3ac1df82ee.js",
+        "https://jojjeboy.github.io/clearResults/main.b911bfb0d4f55bf17edb.js",
         "https://jojjeboy.github.io/clearResults/manifest.webmanifest",
         "https://jojjeboy.github.io/clearResults/polyfills.8c151b8375e767ff858f.js",
         "https://jojjeboy.github.io/clearResults/runtime.0e49e2b53282f40c8925.js",
@@ -74,11 +74,11 @@
     "https://jojjeboy.github.io/clearResults/assets/images/favicon/favicon.ico": "be33340e0c02355a11f7e0aa3ee5a9c69b2ff3e4",
     "https://jojjeboy.github.io/clearResults/assets/images/favicon/mstile-150x150.png": "adeb8167be44e14633a56233e66eee24bfbbf2d3",
     "https://jojjeboy.github.io/clearResults/assets/images/favicon/safari-pinned-tab.svg": "eab6f4b1ec834299a01f699e9e61fda8f1e75a75",
-    "https://jojjeboy.github.io/clearResults/assets/images/favicon/site.webmanifest": "13e5aa58eb2182d8ace63266856c8cc29c47c083",
+    "https://jojjeboy.github.io/clearResults/assets/images/favicon/site.webmanifest": "48432bfec6e62d2e11697d289b6daec112c722a3",
     "https://jojjeboy.github.io/clearResults/assets/styles/_variables.scss": "c05db1929a768d85ae61c7e89e606dcb4f3ea3c7",
     "https://jojjeboy.github.io/clearResults/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://jojjeboy.github.io/clearResults/index.html": "31e599cfdca918b26b925378b4752e4e072ae806",
-    "https://jojjeboy.github.io/clearResults/main.f5d35fb73b3ac1df82ee.js": "fcecc02e799b5aef6f407d37d1b1738a7fb0974d",
+    "https://jojjeboy.github.io/clearResults/index.html": "19882ae7e6abcaf06883b5845a2476d1dd332721",
+    "https://jojjeboy.github.io/clearResults/main.b911bfb0d4f55bf17edb.js": "65c3ecc06c677ae1522765f3578ca65d5b7fdbdd",
     "https://jojjeboy.github.io/clearResults/manifest.webmanifest": "2a512da393e004008f4603dec8cffabf5f4a4a1c",
     "https://jojjeboy.github.io/clearResults/polyfills.8c151b8375e767ff858f.js": "763cd3b34dfa4600ebb9d9588ec7116988e98920",
     "https://jojjeboy.github.io/clearResults/runtime.0e49e2b53282f40c8925.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",

@@ -59,10 +59,10 @@ const routes: Routes = [
   declarations: [
     TallyListComponent,
     TallyComponent,
-    AddEditTallyComponent, 
-    SettingsComponent, 
-    AddExampleComponent, 
-    EditTallyHistoryComponent, 
+    AddEditTallyComponent,
+    SettingsComponent,
+    AddExampleComponent,
+    EditTallyHistoryComponent,
     ModalComponent
   ],
   exports: [RouterModule]

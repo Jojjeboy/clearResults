@@ -1,29 +1,27 @@
-@import './../../assets/styles/variables';
+@import "./../../assets/styles/variables";
 
 .card-block {
-
     form {
         .clr-row {
             margin-bottom: 10px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #cacaca; 
+            border-bottom: 1px solid #cacaca;
             &:last-child {
-                border-bottom: none; 
-
+                border-bottom: none;
             }
             label {
                 padding-left: 0;
             }
-            input[type="date"]{
+            input[type="date"] {
                 border: none;
             }
-            input[type="number"]{
+            input[type="number"] {
                 border: none;
                 width: inherit;
                 outline: none;
             }
 
-            .clear-history{
+            .clear-history {
                 padding-top: 20px;
                 text-align: center;
                 button {
@@ -31,5 +29,5 @@
                 }
             }
         }
-    } 
+    }
 }

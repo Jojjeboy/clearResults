@@ -34,8 +34,8 @@ fi
 if [[ $(git diff --stat) != '' ]]; then
   echo 'dirty'
   ng build --prod --output-path docs --base-href "$PUBLISH_URL" && 
-  git add . && 
-  git commit -m"$1" && 
+#  git add . && 
+#  git commit -m"$1" && 
   npm run postinstall && 
   git add . && 
   git commit -m"$POSTINSTALL_AUTO_COMMIT_MESSAGE" && 

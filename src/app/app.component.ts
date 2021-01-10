@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
       .queryParams
       .subscribe(params => {
 
-        if(params.type && params.message){
+        if (params.type && params.message) {
           this.showAlert = true;
           this.alertText = params.message;
           this.alertType = params.type;
@@ -52,19 +52,9 @@ export class AppComponent implements OnInit {
     this.modal.callBackFn = modalData.callBackFn;
   }
 
-  closeModal(): void{
+  closeModal(): void {
     this.modal.open = false;
-    this.modal.header = '';
-    this.modal.body = '';
-    this.modal.callBackFn = '';
   }
-
-  callBackConfirmed(callBackFn: string): void{
-    if(callBackFn === 'clearCacheConfirmed') {
-      this.clearCacheConfirmed();
-    }
-  }
-
 
   clearCache() {
     this.openModal({
@@ -77,6 +67,7 @@ export class AppComponent implements OnInit {
 
   clearCacheConfirmed() {
     this.localStorageService.clear();
-    window.location.reload();
-  } 
+    this.closeModal();
+    this.router.navigate(['/']);
+  }
 }

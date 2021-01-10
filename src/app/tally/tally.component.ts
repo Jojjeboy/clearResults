@@ -27,7 +27,6 @@ export class TallyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.route.params.subscribe(params => {
       this.tally = this.tallyService.getTallyById(params['id']);
     });
@@ -48,7 +47,6 @@ export class TallyComponent implements OnInit {
     this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
   }
 
-
   cleanHistory() {
     this.cleanHistoryModalData = {
       open: true,
@@ -57,7 +55,6 @@ export class TallyComponent implements OnInit {
       footer: ''
     }
   }
-
 
   cleanHistoryConfirmed(): void {
     this.tallyService.cleanHistory(this.tally);
@@ -81,6 +78,4 @@ export class TallyComponent implements OnInit {
     this.tally.setActive(!this.tally.getActive());
     this.tallyService.update(this.tally);
   }
-  
-
 }

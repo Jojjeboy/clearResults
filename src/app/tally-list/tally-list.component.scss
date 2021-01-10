@@ -1,10 +1,10 @@
-@import './../../assets/styles/variables';
+@import "./../../assets/styles/variables";
 
-.clr-row.inactive{
+.clr-row.inactive {
     opacity: 0.5;
 }
 
-.clr-row.hideInactive{
+.clr-row.hideInactive {
     display: none;
 }
 
@@ -13,12 +13,8 @@
         display: inline;
     }
 
-    
-
     .header-meta-text {
         font-size: 0.8em;
-        
-        
 
         button {
             padding-right: 0;
@@ -26,7 +22,7 @@
     }
 }
 
-.card-title{
+.card-title {
     font-size: 0.8em;
 }
 
@@ -44,7 +40,6 @@
 }
 
 .card-footer {
-
     .timeago {
         text-align: center;
         display: inline-block;

@@ -5,8 +5,7 @@ import { Tally } from '../classes/Tally';
 
 @Component({
   selector: 'app-add-example',
-  templateUrl: './add-example.component.html',
-  styleUrls: ['./add-example.component.scss']
+  templateUrl: './add-example.component.html'
 })
 export class AddExampleComponent implements OnInit {
 
@@ -32,7 +31,6 @@ export class AddExampleComponent implements OnInit {
   ngOnInit() {
     const examples = Array<Tally>();
     this.setStatus();
-
   }
 
   addPushups() {

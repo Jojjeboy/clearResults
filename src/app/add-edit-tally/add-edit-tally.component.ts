@@ -49,7 +49,7 @@ export class AddEditTallyComponent implements OnInit {
   }
 
   save() {
-    if(this.editMode) {
+    if (this.editMode) {
       this.tallyService.update(this.tally);
     }
     else {
@@ -59,9 +59,9 @@ export class AddEditTallyComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  resetEveryDay(bool: boolean){
+  resetEveryDay(bool: boolean) {
     this.tally.setResetEveryday(bool);
-    if(!bool && this.tally.getHistory().length > 0){
+    if (!bool && this.tally.getHistory().length > 0) {
       this.cleanHistory();
     }
   }
@@ -92,26 +92,26 @@ export class AddEditTallyComponent implements OnInit {
     this.tallyService.delete(this.tally);
     this.router.navigate(['/'], { queryParams: { type: 'success', message: 'Räknare borttagen' } });
   }
-  
+
   toggleActive() {
     this.tally.setActive(!this.tally.getActive());
   }
 
-  valid() : boolean{
+  valid(): boolean {
     let valid = true;
-    if(!this.tally.getTitle() || this.tally.getTitle().length < 3){
+    if (!this.tally.getTitle() || this.tally.getTitle().length < 3) {
       valid = false;
     }
-    if(!this.tally.getIncreseBy()){
+    if (!this.tally.getIncreseBy()) {
       valid = false;
     }
-    if(!this.tally.getDecreseBy()){
+    if (!this.tally.getDecreseBy()) {
       valid = false;
     }
-    if(!this.tally.getGoal()){
+    if (!this.tally.getGoal()) {
       valid = false;
     }
-    if(this.tally.getResetEveryday() === null){
+    if (this.tally.getResetEveryday() === null) {
       valid = false;
     }
     return valid;
