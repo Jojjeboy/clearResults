@@ -15,21 +15,39 @@
     <div class="card-block">
         <div class="card-text">
             <form clrForm>
-                <div class="clr-row" *ngFor="let history of tally.getHistory(); let i = index">
+                <div class="clr-row history-entry" *ngFor="let history of tallyHistory; let i = index">
                     <div class="clr-col-7">
                         <label>{{ history.date | timeago }}</label>
-                        <input type="date" name="date{{i}}" max="{{ yesterday }}" [ngModel]="history.date | date:'yyyy-MM-dd'" />
+                        <input type="date" name="date{{i}}" max="{{ yesterday }}"
+                            [ngModel]="history.date | date:'yyyy-MM-dd'" />
                     </div>
                     <div class="clr-col-5">
                         <label>Värde</label>
                         <input type="number" [(ngModel)]="history.value" name="value{{i}}" />
+                    </div>
+                    <div class="delete-history" (click)="deleteHistory(history)">
+                        <clr-icon class="close" shape="window-close"></clr-icon>
+                    </div>
+                </div>
+                <div class="clr-row">
+                    <div class="clr-col-7">
+                        <label>Lägg till ny historik</label>
+                        <input type="date" #inpt name="date{{tally.getHistory().length + 1}}"
+                            (change)="newDateChosen($event)" max="{{ yesterday }}"
+                            [ngModel]="newHistory.date | date:'yyyy-MM-dd'" />
+                    </div>
+                    <div class="clr-col-5">
+                        <label>Värde</label>
+                        <input type="number" [(ngModel)]="newHistory.value"
+                            name="value{{tally.getHistory().length + 1}}" />
                     </div>
                 </div>
 
                 <div class="clr-row">
                     <div class="clr-col-12 clear-history">
                         <small *ngIf="tally.getHistory().length < 1" class="btn btn-sm btn-link">Radera historik</small>
-                        <button *ngIf="tally.getHistory().length > 0" class="btn btn-sm btn-link" (click)="cleanHistory()">Radera historik</button>
+                        <button *ngIf="tally.getHistory().length > 0" class="btn btn-sm btn-link"
+                            (click)="cleanHistory()">Radera historik</button>
                     </div>
                 </div>
             </form>
@@ -48,3 +66,7 @@
 </div>
 
 <app-modal [modalData]="cleanHistoryConfirmedModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>
+
+<app-modal [modalData]="newDateChosenModalData" (parentEvent)="wrongDateConfirmed()"></app-modal>
+
+<app-modal [modalData]="deleteHistoryModalData" (parentEvent)="deleteHistoryConfirmed()"></app-modal>
