@@ -15,7 +15,7 @@
     <div class="card-block">
         <div class="card-text">
             <form clrForm>
-                <div class="clr-row history-entry" *ngFor="let history of tallyHistory; let i = index">
+                <div class="clr-row" *ngFor="let history of tallyHistory; let i = index">
                     <div class="clr-col-7">
                         <label>{{ history.date | timeago }}</label>
                         <input type="date" name="date{{i}}" max="{{ yesterday }}"
@@ -25,21 +25,23 @@
                         <label>Värde</label>
                         <input type="number" [(ngModel)]="history.value" name="value{{i}}" />
                     </div>
-                    <div class="delete-history" (click)="deleteHistory(history)">
+                    <div class="action-history" (click)="deleteHistory(history)">
                         <clr-icon class="close" shape="window-close"></clr-icon>
                     </div>
                 </div>
                 <div class="clr-row">
                     <div class="clr-col-7">
                         <label>Lägg till ny historik</label>
-                        <input type="date" #inpt name="date{{tally.getHistory().length + 1}}"
-                            (change)="newDateChosen($event)" max="{{ yesterday }}"
-                            [ngModel]="newHistory.date | date:'yyyy-MM-dd'" />
+                        <input type="date" #newDateInput name="date{{tally.getHistory().length + 1}}"
+                            (change)="newDateChosen($event)" max="{{ yesterday }}" [value]="newHistory.date | date:'yyyy-MM-dd'" />
                     </div>
                     <div class="clr-col-5">
                         <label>Värde</label>
-                        <input type="number" [(ngModel)]="newHistory.value"
+                        <input type="number" #newValueInput [(ngModel)]="newHistory.value"
                             name="value{{tally.getHistory().length + 1}}" />
+                    </div>
+                    <div class="action-history" (click)="addHistory()">
+                        <clr-icon class="add" shape="plus-circle"></clr-icon>
                     </div>
                 </div>
 

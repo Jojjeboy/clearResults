@@ -6,6 +6,7 @@
             margin-bottom: 10px;
             padding-bottom: 10px;
             border-bottom: 1px solid #cacaca;
+            position: relative;
             &:last-child {
                 border-bottom: none;
             }
@@ -28,17 +29,17 @@
                     color: $dangerColor;
                 }
             }
-            &.history-entry {
-                position: relative;
-
-                .delete-history {
-                    position: absolute;
-                    right: 20px;
-                    top: 20px;
-                    .close {
-                        color: #ff0000;
-                    }
+            .action-history {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                .close {
+                    color: $dangerColor;
                 }
+                .add {
+                    color: $successColor;
+                }
+
             }
         }
     }

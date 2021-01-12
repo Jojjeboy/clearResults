@@ -26,7 +26,8 @@ export class EditTallyHistoryComponent implements OnInit {
     value: null
   };
 
-  @ViewChild('inpt') input!: ElementRef;
+  @ViewChild('newDateInput') newDateInput!: ElementRef;
+  @ViewChild('newValueInput') newValueInput!: ElementRef;
 
 
   constructor(
@@ -55,7 +56,7 @@ export class EditTallyHistoryComponent implements OnInit {
   // Oavsett om man redigerar gamla 
   // Är datumet nytt och unikt och man valt ett värde visa en länk för att lägga till ytterliggare 
   aNewHistoryDateIsChosen() {
-   
+
   }
 
   // Kollar om en datum sträng redan finns med i tally historyn
@@ -78,14 +79,14 @@ export class EditTallyHistoryComponent implements OnInit {
 
     //console.log(this.input.nativeElement.value);
     //console.log(event.target.value);
-    
+
+    let chosenDateValid = true;
 
     let chosenDate = new Date(event.target.value);
-    let chosenDateValid = true;
     let errorText: string = '';
 
 
-    this.tally.getHistory().forEach(history => {
+    this.tallyHistory.forEach(history => {
       // Valt datum finns redan i historiken
       let historyDateString = new Date(history.date).toDateString();
       if (historyDateString === chosenDate.toDateString()) {
@@ -95,9 +96,8 @@ export class EditTallyHistoryComponent implements OnInit {
     });
 
     // check if date alleady exist
-
     if (!chosenDateValid) {
-      this.input.nativeElement.value = '';
+
       this.newDateChosenModalData = {
         open: true,
         header: 'Datum valt',
@@ -105,9 +105,13 @@ export class EditTallyHistoryComponent implements OnInit {
         footer: ''
       }
     }
+    else {
+      
+    }
+
   }
 
-
+  
 
   deleteHistory(history: History): void {
     this.deleteHistoryModalData = {
@@ -120,15 +124,28 @@ export class EditTallyHistoryComponent implements OnInit {
 
   deleteHistoryConfirmed(): void {
     const index = this.tallyHistory.indexOf(this.tallyHistoryEntry);
-    if(index > -1){
+    if (index > -1) {
       this.tallyHistory.splice(index, 1);
     }
     this.deleteHistoryModalData = { open: false };
-
+    this.newDateInput.nativeElement.value = '';
   }
 
   wrongDateConfirmed() {
     this.newDateChosenModalData = { open: false };
+    this.newDateInput.nativeElement.value = '';
+  }
+
+  addHistory() {
+    if(false){
+      const newHistory: History = new History(
+        {
+          date: new Date(this.newDateInput.nativeElement.value), 
+          value: this.newValueInput.nativeElement.value
+        });
+        
+        this.tallyHistory.push(newHistory);
+      }
   }
 
   valid() {
