@@ -56,9 +56,7 @@ export class EditTallyHistoryComponent implements OnInit {
   // Alla datum som har valts kör denna funktionen
   // Oavsett om man redigerar gamla 
   // Är datumet nytt och unikt och man valt ett värde visa en länk för att lägga till ytterliggare 
-  aNewHistoryDateIsChosen() {
 
-  }
 
   // Kollar om en datum sträng redan finns med i tally historyn
   dateAlreadyExistInHistory(inDateString: string): boolean {
@@ -75,11 +73,7 @@ export class EditTallyHistoryComponent implements OnInit {
   }
 
 
-
   newDateChosen(event: any) {
-
-    //console.log(this.input.nativeElement.value);
-    //console.log(event.target.value);
 
     let chosenDateValid = true;
 
@@ -105,9 +99,6 @@ export class EditTallyHistoryComponent implements OnInit {
         body: errorText,
         footer: ''
       }
-    }
-    else {
-
     }
 
   }
