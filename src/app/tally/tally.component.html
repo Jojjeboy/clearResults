@@ -91,20 +91,12 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td width="300">
-                        <small *ngIf="tally.getHistory().length < 1">
-                            Redigera historik
-                        </small>
+                    <td colspan="3">
                         <small *ngIf="tally.getHistory().length > 0">
-                            <a routerLink="/history/edit/{{tally.getUuid() }}">Redigera historik</a>
+                            <a routerLink="/history/edit/{{tally.getUuid() }}">Hantera historik</a>
                         </small>
                     </td>
-                    <td width="300"><small class="link-color">Lägg till historik</small></td>
-                    <td width="300">
-                        <small class="link-color" *ngIf="tally.getHistory().length > 0" (click)="cleanHistory()">Töm
-                            historik</small>
-                        <small class="link-color" *ngIf="tally.getHistory().length < 1">Töm historik</small>
-                    </td>
+                    
                 </tr>
             </tfoot>
         </table>
