@@ -116,9 +116,17 @@ export class TallyService {
   convertLSToTallies(lsTallies: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
     for (const obj of lsTallies) {
-      const tallyCounter = new Tally(obj);
-      tallyCounter.setLastTouched(new Date(tallyCounter.getLastTouched()));
-      returnArr.push(tallyCounter);
+      let tally = new Tally(obj);
+
+      let historyArr: History[] = [];
+      for (const hist of tally.getHistory()) {
+        const history = new History(hist);
+        historyArr.push(history);
+      }
+      tally.setHistory(historyArr);
+
+      tally.setLastTouched(new Date(tally.getLastTouched()));
+      returnArr.push(tally);
     }
     return returnArr;
   }

@@ -49,6 +49,7 @@ export class EditTallyHistoryComponent implements OnInit {
     )(new Date));
 
     this.tallyHistory = this.tally.getHistory();
+    this.sortHistoryByDate();
 
   }
 
@@ -106,12 +107,12 @@ export class EditTallyHistoryComponent implements OnInit {
       }
     }
     else {
-      
+
     }
 
   }
 
-  
+
 
   deleteHistory(history: History): void {
     this.deleteHistoryModalData = {
@@ -129,6 +130,7 @@ export class EditTallyHistoryComponent implements OnInit {
     }
     this.deleteHistoryModalData = { open: false };
     this.newDateInput.nativeElement.value = '';
+    this.save();
   }
 
   wrongDateConfirmed() {
@@ -137,15 +139,30 @@ export class EditTallyHistoryComponent implements OnInit {
   }
 
   addHistory() {
-    if(false){
-      const newHistory: History = new History(
-        {
-          date: new Date(this.newDateInput.nativeElement.value), 
-          value: this.newValueInput.nativeElement.value
-        });
-        
-        this.tallyHistory.push(newHistory);
+
+    const newHistory: History = new History(
+      {
+        date: new Date(this.newDateInput.nativeElement.value).toISOString(),
+        value: parseInt(this.newValueInput.nativeElement.value)
+      });
+
+    this.tallyHistory.push(newHistory);
+
+    this.newDateInput.nativeElement.value = '';
+    this.newValueInput.nativeElement.value = '';
+
+    this.sortHistoryByDate();
+  }
+
+
+  addNewHistoryValid() {
+    if (this.newDateInput && this.newValueInput) {
+
+      if (this.newDateInput.nativeElement.value !== '' && this.newValueInput.nativeElement.value !== '') {
+        return true;
       }
+    }
+    return false;
   }
 
   valid() {
@@ -160,6 +177,7 @@ export class EditTallyHistoryComponent implements OnInit {
   }
 
   save(): void {
+    this.sortHistoryByDate();
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
   }
@@ -177,5 +195,15 @@ export class EditTallyHistoryComponent implements OnInit {
     this.tally.setHistory([]);
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
+  }
+
+  sortHistoryByDate() {
+    this.tallyHistory.sort((a: any, b: any) => {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+
+    });
+
+    this.tally.setHistory(this.tallyHistory);
+    this.tallyHistory = this.tally.getHistory();
   }
 }

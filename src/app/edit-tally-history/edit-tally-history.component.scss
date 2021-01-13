@@ -37,7 +37,10 @@
                     color: $dangerColor;
                 }
                 .add {
-                    color: $successColor;
+                    color: #ccc;
+                    &.valid{
+                        color: $successColor;
+                    }
                 }
 
             }
