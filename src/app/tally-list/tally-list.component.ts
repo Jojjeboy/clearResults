@@ -12,9 +12,8 @@ import { TallyService } from '../services/tally/tally.service';
 export class TallyListComponent implements OnInit, OnDestroy {
 
   tallies = Array<Tally>();
-  observerTallies = Array<Tally>();
   showAll: boolean = true;
-  tallyObservable!: Subscription; 
+  tallyListObservable!: Subscription;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -22,17 +21,12 @@ export class TallyListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
+
     this.showAll = this.localStorageService.getConfig().showAll;
-    this.tallyObservable = this.tallyService.getObservableTallies().subscribe(tallies => {
+    this.tallyListObservable = this.tallyService.getObservableTallies().subscribe(tallies => {
       this.tallies = tallies;
     });
   }
-
-  ngOnDestroy() {
-    this.tallyObservable.unsubscribe();
-    console.log('hej');
-}
 
   increase(tally: Tally) {
     this.tallyService.increase(tally);
@@ -65,6 +59,10 @@ export class TallyListComponent implements OnInit, OnDestroy {
     this.showAll = event.target.checked;
     config.showAll = this.showAll;
     this.localStorageService.saveConfig(config);
+  }
+
+  ngOnDestroy() {
+    this.tallyListObservable.unsubscribe();
   }
 
 }

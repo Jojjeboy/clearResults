@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Tally } from '../classes/Tally';
 import { TallyService } from '../services/tally/tally.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './tally.component.html',
   styleUrls: ['./tally.component.scss']
 })
-export class TallyComponent implements OnInit {
+export class TallyComponent implements OnInit, OnDestroy {
 
 
   cleanHistoryModalData: Object = {};
@@ -17,6 +18,8 @@ export class TallyComponent implements OnInit {
   tally!: Tally;
   percentage = 0.00;
   editMode = false;
+  tallyObservable!: Subscription; 
+
   @Output() tallyDelete = new EventEmitter<Tally>();
 
 
@@ -28,8 +31,11 @@ export class TallyComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.tally = this.tallyService.getTallyById(params['id']);
+      this.tallyObservable = this.tallyService.getTallyObservableById(params['id']).subscribe(tally => {
+        this.tally = tally;
+      });
     });
+
     this.recalculatePercentage();
   }
 
@@ -77,5 +83,9 @@ export class TallyComponent implements OnInit {
   toggleActive(): void {
     this.tally.setActive(!this.tally.getActive());
     this.tallyService.update(this.tally);
+  }
+
+  ngOnDestroy() {
+    this.tallyObservable.unsubscribe();
   }
 }

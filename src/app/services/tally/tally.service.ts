@@ -30,15 +30,11 @@ export class TallyService {
   }
 
   getObservableTallies(): Observable<Tally[]>{
-    let someTally = new Observable<Tally[]>(observer => {
+    return new Observable<Tally[]>(observer => {
       this.reloadDataFromLS();
       this.sortByActive();
       observer.next(this.tallies);
     });
-
-    return someTally;
-    
-    
   }
 
   recalculatePercentage(goal: number, value: number): number {
@@ -62,6 +58,22 @@ export class TallyService {
     });
 
     return tally;
+  }
+
+  getTallyObservableById(id: String): Observable<Tally>{
+    
+    return new Observable<Tally>(observer => {
+      let tally: Tally = this.getEmptyTally();
+      this.tallies.forEach(eachTally => {
+        if(eachTally.getUuid() === id){
+          tally = eachTally;
+        }
+      });
+
+      observer.next(tally);
+  
+    });
+    
   }
 
   resetOldTallyCounter(): void {
