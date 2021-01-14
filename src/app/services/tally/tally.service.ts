@@ -3,6 +3,7 @@ import { Tally } from '../../classes/Tally';
 import { History } from '../../classes/History';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 import { applicationversion } from '../../../environments/applicationversion';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,18 @@ export class TallyService {
   getTallies(): Array<Tally>{
     this.reloadDataFromLS();
     return this.sortByActive();
+  }
+
+  getObservableTallies(): Observable<Tally[]>{
+    let someTally = new Observable<Tally[]>(observer => {
+      this.reloadDataFromLS();
+      this.sortByActive();
+      observer.next(this.tallies);
+    });
+
+    return someTally;
+    
+    
   }
 
   recalculatePercentage(goal: number, value: number): number {

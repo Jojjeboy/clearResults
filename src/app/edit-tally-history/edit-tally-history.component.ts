@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TallyService } from '../services/tally/tally.service';
 import { DateHelperService } from '../services/Date/date-helper.service';
@@ -34,8 +34,7 @@ export class EditTallyHistoryComponent implements OnInit {
     private tallyService: TallyService,
     private dateService: DateHelperService,
     private route: ActivatedRoute,
-    private router: Router,
-    private renderer: Renderer2
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -100,7 +99,6 @@ export class EditTallyHistoryComponent implements OnInit {
         footer: ''
       }
     }
-
   }
 
 

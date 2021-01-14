@@ -10,7 +10,6 @@ POSTINSTALL_AUTO_COMMIT_MESSAGE="Postinstall autocommit message"
 
 echo "Dynamic reponame: "$DYNAMICREPONAME;
 echo "Publish url: "$PUBLISH_URL;
-echo "Post install commit message: "$POSTINSTALL_AUTO_COMMIT_MESSAGE;
 
 echo "********** Running script **************"
 
@@ -32,7 +31,6 @@ if [ $# -eq 0 ]; then
 fi
 
 if [[ $(git diff --stat) != '' ]]; then
-  echo 'dirty'
   ng build --prod --output-path docs --base-href "$PUBLISH_URL" && 
 #  git add . && 
 #  git commit -m"$1" && 

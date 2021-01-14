@@ -30,8 +30,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
-- Lägg till historik (mer än en)
+- Redigera historik
+- Lägg till i historik
 - Ta bort i historiken
+- Implementera observables
 - Gör hela historik-grejen till komponent inklusive att lägga till 
 - Skriv ut datum på senaste version
 - Byt ut dynamiskt mål med senaste ändrad
