@@ -75,7 +75,9 @@
                     </div>
                 </div>
 
-                <app-history-summary [tally]="tally"></app-history-summary>
+                    <div class="clr-col-12">
+                        <app-history-summary [tally]="tally"></app-history-summary>
+                    </div>
 
                 <div class="clr-col-12">
                     <span class="success status-badge block" *ngIf="tally.getActive()"
