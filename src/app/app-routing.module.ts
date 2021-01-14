@@ -12,6 +12,7 @@ import { TallyListComponent } from './tally-list/tally-list.component';
 import { AddExampleComponent } from './add-example/add-example.component';
 import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-history.component';
 import { ModalComponent } from './modal/modal.component';
+import { HistorySummaryComponent } from './history-summary/history-summary.component';
 
 const routes: Routes = [
   {
@@ -61,7 +62,8 @@ const routes: Routes = [
     AddEditTallyComponent,
     AddExampleComponent,
     EditTallyHistoryComponent,
-    ModalComponent
+    ModalComponent,
+    HistorySummaryComponent
   ],
   exports: [RouterModule]
 })

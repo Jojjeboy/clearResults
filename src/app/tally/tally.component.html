@@ -65,44 +65,7 @@
 </div>
 
 
-<div class="clr-row">
-    <div class="clr-col-12">
-        <h4>Historik</h4>
-
-        <small *ngIf="tally.getHistory().length < 1">Det finns ingen historik för denna räknare</small>
-        <table class="table" *ngIf="tally.getHistory().length > 0">
-            <thead>
-                <tr>
-                    <th>Datum</th>
-                    <th>Värde</th>
-                    <th>Mål uppnått</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let history of tally.getHistory()">
-                    <td>{{ history.date | date: 'yyyy-MM-dd'}}</td>
-                    <td>{{ history.value }} / {{ tally.getGoal() }}</td>
-                    <td>
-                        <clr-icon class="warning" shape="times" *ngIf="history.value < tally.getGoal()"></clr-icon>
-                        <clr-icon class="success" shape="check" *ngIf="history.value >= tally.getGoal()"></clr-icon> {{
-                        history.value >= tally.getGoal() ? ' Ja' : 'Nej' }}
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">
-                        <small *ngIf="tally.getHistory().length > 0">
-                            <a routerLink="/history/edit/{{tally.getUuid() }}">Hantera historik</a>
-                        </small>
-                    </td>
-                    
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div>
-
+    <app-history-summary [tally]="tally"></app-history-summary>
 
 <div class="clr-row status">
     <div class="clr-col-12">
