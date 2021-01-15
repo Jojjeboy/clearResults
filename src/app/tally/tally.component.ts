@@ -31,7 +31,7 @@ export class TallyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.tallyObservable = this.tallyService.getTallyObservableById(params['id']).subscribe(tally => {
+      this.tallyObservable = this.tallyService.getTallyById(params['id']).subscribe(tally => {
         this.tally = tally;
       });
     });

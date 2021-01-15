@@ -1,11 +1,15 @@
 @import "./../../assets/styles/variables";
 
-.clr-row.inactive {
-    opacity: 0.5;
-}
-
-.clr-row.hideInactive {
-    display: none;
+.clr-row {
+    &.clear-spinner {
+        text-align: center;
+    }
+    .inactive{
+        opacity: 0.5;
+    }
+    .hideInactive {
+        display: none;
+    }
 }
 
 .card-header {

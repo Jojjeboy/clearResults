@@ -14,6 +14,7 @@ export class TallyListComponent implements OnInit, OnDestroy {
   tallies = Array<Tally>();
   showAll: boolean = true;
   tallyListObservable!: Subscription;
+  tallyFetched: boolean = false;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -23,7 +24,8 @@ export class TallyListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.showAll = this.localStorageService.getConfig().showAll;
-    this.tallyListObservable = this.tallyService.getObservableTallies().subscribe(tallies => {
+    this.tallyListObservable = this.tallyService.getTallies().subscribe(tallies => {
+      this.tallyFetched = true;
       this.tallies = tallies;
     });
   }
@@ -45,7 +47,7 @@ export class TallyListComponent implements OnInit, OnDestroy {
   }
 
   inactiveTallysExist(): boolean {
-    let exist = false;
+    let exist = false;;
     this.tallies.forEach(tally => {
       if (!tally.getActive()) {
         exist = true;

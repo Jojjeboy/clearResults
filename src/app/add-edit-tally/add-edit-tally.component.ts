@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Tally } from '../classes/Tally';
 import { TallyService } from '../services/tally/tally.service';
 import { UUIDService } from '../services/uuid/uuid.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-edit-tally',
   templateUrl: './add-edit-tally.component.html',
   styleUrls: ['./add-edit-tally.component.scss']
 })
-export class AddEditTallyComponent implements OnInit {
+export class AddEditTallyComponent implements OnInit, OnDestroy {
 
   cleanHistoryModalData: Object = {};
   deleteModalData: Object = {};
@@ -19,6 +20,7 @@ export class AddEditTallyComponent implements OnInit {
   editMode: boolean = false;
   editId!: string;
   tally!: Tally;
+  tallyObservable!: Subscription;
 
   constructor(
     private location: Location,
@@ -36,7 +38,9 @@ export class AddEditTallyComponent implements OnInit {
     if (this.location.path().split('/').length === 3) {
       this.editMode = true;
       this.editId = this.location.path().split('/')[2];
-      this.tally = this.tallyService.getTallyById(this.editId);
+      this.tallyObservable = this.tallyService.getTallyById('this.editId').subscribe(tally => {
+        this.tally = tally;
+      });
     }
     else {
       this.tally = this.tallyService.getEmptyTally();
@@ -115,5 +119,9 @@ export class AddEditTallyComponent implements OnInit {
       valid = false;
     }
     return valid;
+  }
+
+  ngOnDestroy(): void {
+    this.tallyObservable.unsubscribe();
   }
 }

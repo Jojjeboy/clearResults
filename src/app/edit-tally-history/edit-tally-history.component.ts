@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TallyService } from '../services/tally/tally.service';
 import { DateHelperService } from '../services/Date/date-helper.service';
 import { Tally } from '../classes/Tally';
 import { History } from '../classes/History';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-tally-history',
   templateUrl: './edit-tally-history.component.html',
   styleUrls: ['./edit-tally-history.component.scss']
 })
-export class EditTallyHistoryComponent implements OnInit {
+export class EditTallyHistoryComponent implements OnInit, OnDestroy {
   tally!: Tally;
   tallyHistory!: Array<History>;
   tallyHistoryEntry!: History;
@@ -19,6 +20,8 @@ export class EditTallyHistoryComponent implements OnInit {
   cleanHistoryConfirmedModalData: Object = {};
   newDateChosenModalData: Object = {};
   deleteHistoryModalData: Object = {};
+
+  tallyObservable!: Subscription;
 
   yesterday!: string;
   newHistory = {
@@ -40,7 +43,9 @@ export class EditTallyHistoryComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-      this.tally = this.tallyService.getTallyById(params['id']);
+      this.tallyObservable = this.tallyService.getTallyById(params['id']).subscribe(tally => {
+        this.tally = tally;
+      });
     });
 
     this.yesterday = this.dateService.formatDate((d =>
@@ -194,5 +199,9 @@ export class EditTallyHistoryComponent implements OnInit {
 
     this.tally.setHistory(this.tallyHistory);
     this.tallyHistory = this.tally.getHistory();
+  }
+
+  ngOnDestroy(): void {
+    this.tallyObservable.unsubscribe();
   }
 }

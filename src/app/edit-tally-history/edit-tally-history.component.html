@@ -19,16 +19,17 @@
                     <div class="clr-col-7">
                         <label>{{ history.date | timeago }}</label>
                         <input type="date" name="date-{{i}}" max="{{ yesterday }}"
-                            id="date_{{i}}" [ngModel]="history.date | date:'yyyy-MM-dd'" />
+                            id="date_{{i}}" [(ngModel)]="history.date" />
                     </div>
                     <div class="clr-col-5">
                         <label>Värde</label>
-                        <input type="number" min="1" [value]="history.value" name="value{{i}}" />
+                        <input type="number" min="1" [(ngModel)]="history.value" name="value{{i}}" />
                     </div>
                     <div class="action-history" (click)="deleteHistory(history)">
                         <clr-icon class="close" shape="window-close"></clr-icon>
                     </div>
                 </div>
+                
                 <div class="clr-row">
                     <div class="clr-col-7">
                         <label>Lägg till ny historik</label>

@@ -1,3 +1,10 @@
+<div class="clr-row clear-spinner" *ngIf="!tallyFetched">
+    <div class="clr-col-12">
+        <span class="spinner">
+            Loading...
+        </span>
+    </div>
+</div>
 <div class="clr-row" *ngFor="let tally of tallies" [class.inactive]="!tally.getActive()"
     [class.hideInactive]="!showAll && !tally.getActive()">
     <div class="clr-col-12">
@@ -60,7 +67,7 @@
     </div>
 </div>
 
-<div class="clr-row" *ngIf="!tallies.length">
+<div class="clr-row" *ngIf="tallies.length === 0 && tallyFetched">
     <div class="clr-col-12">
         <h1>Clear Results</h1>
         <small>Det verkar inte som du har några räknare</small>

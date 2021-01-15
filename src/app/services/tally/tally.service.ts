@@ -24,12 +24,14 @@ export class TallyService {
     this.updateAppVersion();
   }
 
+  /*
   getTallies(): Array<Tally>{
     this.reloadDataFromLS();
     return this.sortByActive();
   }
+  */
 
-  getObservableTallies(): Observable<Tally[]>{
+ getTallies(): Observable<Tally[]>{
     return new Observable<Tally[]>(observer => {
       this.reloadDataFromLS();
       this.sortByActive();
@@ -49,19 +51,8 @@ export class TallyService {
     return percentage;
   }
 
-  getTallyById(id: String): Tally{
-    let tally: Tally = this.getEmptyTally();
-    this.tallies.forEach(eachTally => {
-      if(eachTally.getUuid() === id){
-        tally = eachTally;
-      }
-    });
 
-    return tally;
-  }
-
-  getTallyObservableById(id: String): Observable<Tally>{
-    
+  getTallyById(id: String): Observable<Tally>{ 
     return new Observable<Tally>(observer => {
       let tally: Tally = this.getEmptyTally();
       this.tallies.forEach(eachTally => {
@@ -146,6 +137,8 @@ export class TallyService {
       let historyArr: History[] = [];
       for (const hist of tally.getHistory()) {
         const history = new History(hist);
+        
+
         historyArr.push(history);
       }
       tally.setHistory(historyArr);

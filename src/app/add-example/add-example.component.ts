@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UUIDService } from '../services/uuid/uuid.service';
 import { TallyService } from '../services/tally/tally.service';
 import { Tally } from '../classes/Tally';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-example',
   templateUrl: './add-example.component.html'
 })
-export class AddExampleComponent implements OnInit {
+export class AddExampleComponent implements OnInit, OnDestroy {
 
   tallies = Array<Tally>();
 
@@ -16,12 +17,14 @@ export class AddExampleComponent implements OnInit {
 
   plankAdded: boolean = false;
   plankTitle: string = 'Plankan (30sek)';
-  
+
   squatsAdded: boolean = false;
   squatsTitle: string = 'Squats';
 
   workoutdaysAdded: boolean = false;
   workoutdaysTitle: string = 'Träningsdagar';
+
+  tallyListObservable!: Subscription;
 
   constructor(
     private uuidService: UUIDService,
@@ -34,12 +37,12 @@ export class AddExampleComponent implements OnInit {
   }
 
   addPushups() {
-    const yesterday = ( d => 
-      new Date(d.setDate(d.getDate()-1)) 
+    const yesterday = (d =>
+      new Date(d.setDate(d.getDate() - 1))
     )(new Date);
 
-    const twoDaysago = ( d => 
-      new Date(d.setDate(d.getDate()-3)) 
+    const twoDaysago = (d =>
+      new Date(d.setDate(d.getDate() - 3))
     )(new Date);
 
     const pushups = new Tally({
@@ -49,7 +52,7 @@ export class AddExampleComponent implements OnInit {
       resetEveryDay: true,
       uuid: this.uuidService.UUID(),
       value: 12,
-      lastTouched: yesterday, 
+      lastTouched: yesterday,
       history: [{
         value: 125,
         date: twoDaysago
@@ -121,22 +124,27 @@ export class AddExampleComponent implements OnInit {
   }
 
   setStatus() {
-    this.tallies = this.tallyService.getTallies();
-    this.tallies.forEach(tally => {
-      switch (tally.title) {
-        case this.pushupTitle:
-          this.pushupAdded = true;
-          break;
-        case this.plankTitle:
-          this.plankAdded = true;
-          break;
-        case this.squatsTitle:
-          this.squatsAdded = true;
-          break;
-        case this.workoutdaysTitle:
+    this.tallyListObservable = this.tallyService.getTallies().subscribe(tallies => {
+      tallies.forEach(tally => {
+        switch (tally.title) {
+          case this.pushupTitle:
+            this.pushupAdded = true;
+            break;
+          case this.plankTitle:
+            this.plankAdded = true;
+            break;
+          case this.squatsTitle:
+            this.squatsAdded = true;
+            break;
+          case this.workoutdaysTitle:
             this.workoutdaysAdded = true;
             break;
-      }
+        }
+      });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.tallyListObservable.unsubscribe();
   }
 }
