@@ -18,8 +18,8 @@
                 <div class="clr-row" *ngFor="let history of tallyHistory; let i = index">
                     <div class="clr-col-7">
                         <label>{{ history.date | timeago }}</label>
-                        <input type="date" name="date-{{i}}" max="{{ yesterday }}"
-                            id="date_{{i}}" [(ngModel)]="history.date" />
+                        <input type="datetime-local" name="date-{{i}}" max="{{ yesterday }}"
+                            id="date_{{i}}" [value]="history.date | date: 'yyyy-MM-ddThh:mm'" />
                     </div>
                     <div class="clr-col-5">
                         <label>Värde</label>

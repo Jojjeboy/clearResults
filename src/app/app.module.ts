@@ -9,6 +9,7 @@ import { registerLocaleData } from "@angular/common";
 import localeSv from "@angular/common/locales/sv";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { environment } from '../environments/environment';
   imports: [
     AppRoutingModule,
     SharedModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }],
   bootstrap: [AppComponent]

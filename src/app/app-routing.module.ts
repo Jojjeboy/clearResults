@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 /* Components */
 import { TallyComponent } from './tally/tally.component';
@@ -13,6 +16,7 @@ import { AddExampleComponent } from './add-example/add-example.component';
 import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-history.component';
 import { ModalComponent } from './modal/modal.component';
 import { HistorySummaryComponent } from './history-summary/history-summary.component';
+import { EditTallyHistory2Component } from './edit-tally-history2/edit-tally-history2.component';
 
 const routes: Routes = [
   {
@@ -46,6 +50,12 @@ const routes: Routes = [
     data: { title: 'Edit tally history' }
   },
 
+  {
+    path: 'history2/edit/:id',
+    component: EditTallyHistory2Component,
+    data: { title: 'Edit tally history' }
+  },
+
   { path: '**', component: TallyListComponent }
 ];
 
@@ -54,7 +64,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     TallyListComponent,
@@ -63,7 +74,8 @@ const routes: Routes = [
     AddExampleComponent,
     EditTallyHistoryComponent,
     ModalComponent,
-    HistorySummaryComponent
+    HistorySummaryComponent,
+    EditTallyHistory2Component
   ],
   exports: [RouterModule]
 })

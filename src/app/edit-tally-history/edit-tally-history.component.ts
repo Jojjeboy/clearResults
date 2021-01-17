@@ -6,6 +6,7 @@ import { Tally } from '../classes/Tally';
 import { History } from '../classes/History';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-tally-history',
@@ -28,6 +29,8 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
     date: null,
     value: null
   };
+
+  
 
   @ViewChild('newDateInput') newDateInput!: ElementRef;
   @ViewChild('newValueInput') newValueInput!: ElementRef;
@@ -56,6 +59,11 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
     this.sortHistoryByDate();
 
   }
+
+  exampleForm = new FormGroup({
+    sample: new FormControl('', Validators.required),
+});
+
 
   // Alla datum som har valts kör denna funktionen
   // Oavsett om man redigerar gamla 
@@ -124,7 +132,6 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
     }
     this.deleteHistoryModalData = { open: false };
     this.newDateInput.nativeElement.value = '';
-    this.save();
   }
 
   wrongDateConfirmed() {

@@ -33,7 +33,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Redigera historik
 - Lägg till i historik
 - Ta bort i historiken
-- Implementera observables
 - Gör hela historik-grejen till komponent inklusive att lägga till 
 - Skriv ut datum på senaste version
 - Byt ut dynamiskt mål med senaste ändrad
@@ -42,3 +41,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - Statistiska mål
 - Gör en komponent av modal - https://levelup.gitconnected.com/how-to-create-a-reusable-modal-component-in-angular-9-using-ng-bootstrap-50c0aa5f3a65
 
+
+## Gjort
+- Implementera observables

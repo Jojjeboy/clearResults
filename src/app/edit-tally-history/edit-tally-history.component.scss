@@ -13,7 +13,8 @@
             label {
                 padding-left: 0;
             }
-            input[type="date"] {
+            input[type="date"],
+            input[type="datetime-local"] {
                 border: none;
             }
             input[type="number"] {
