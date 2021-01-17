@@ -59,7 +59,7 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
           fgArr.push(
             this.fb.group({
               qty: '',
-              price: hist.getValue()
+              value: hist.getValue()
             })
           );
         });
@@ -90,7 +90,7 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
       qty: '',
 
-      price: '',
+      value: 0,
 
     })
 
