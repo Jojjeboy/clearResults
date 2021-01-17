@@ -22,7 +22,6 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
   cleanHistoryConfirmedModalData: Object = {};
   newDateChosenModalData: Object = {};
-  deleteHistoryModalData: Object = {};
 
   tallyObservable!: Subscription;
 
@@ -110,9 +109,27 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
    
 
   removeHistory(i:number) {
+    if(this.historyForm.value.histories.length === 1){
 
-    this.histories().removeAt(i);
+      this.cleanHistoryConfirmedModalData = {
+        open: true,
+        header: 'Radera historik',
+        body: 'Är du säker på att du vill radera den sista dagens historik?'
+      }
+    }
+    else {
+      this.histories().removeAt(i);
+    }
+    
 
+  }
+
+  cleanHistoryConfirmed(): void {
+    
+    this.tally.setHistory([]);
+    //this.histories().removeAt(0);
+    this.tallyService.update(this.tally);
+    this.router.navigate(['/tally/' + this.tally.getUuid()]);
   }
 
    

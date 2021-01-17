@@ -14,7 +14,8 @@
                     <div class="card-header">
                         {{ tally.getTitle() }}
                         <span>
-                            <button (click)="addHistory()" class="btn btn-sm btn-outline-success add-new-history pull-right">Lägg till</button>
+                            <button (click)="addHistory()"
+                                class="btn btn-sm btn-outline-success add-new-history pull-right">Lägg till</button>
                         </span>
                     </div>
                     <div class="card-block">
@@ -30,14 +31,24 @@
                                     <span class="col-header p3">Värde</span><br />
                                     <input type="number" formControlName="value" class="form-control">
                                 </div>
-                                <div class="clr-col-1"><span>x</span></div>
+                                <div class="clr-col-1">
+                                    <div class="action-history" (click)="removeHistory(i)">
+                                        <clr-icon class="close" shape="window-close"></clr-icon>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-sm btn-link">Footer Action 1</button>
-                        <button class="btn btn-sm btn-link">Footer Action 2</button>
+                        <div class="clr-row">
+                            <div class="clr-col-6">
+                                <a routerLink="/tally/{{ tally.getUuid() }}"
+                                    class="btn btn-danger-outline block">Ångra</a>
+                            </div>
+                            <div class="clr-col-6">
+                                <button class="btn btn-success-outline block" type="submit">Spara</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -115,4 +126,5 @@
 
     
 </div>-->
-<pre>{{this.historyForm.value | json}}</pre>
+
+<app-modal [modalData]="cleanHistoryConfirmedModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>

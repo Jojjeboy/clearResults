@@ -1,7 +1,16 @@
+@import "./../../assets/styles/variables";
 .clr-row{
     margin-bottom: 20px;
     .clr-col-1{
-        line-height: 52px;
+        position: relative;
+        .action-history {
+            position: absolute;
+            right: 0px;
+            top: 20px;
+            .close {
+                color: $dangerColor;
+            }
+        }
     }
 }
 input{
