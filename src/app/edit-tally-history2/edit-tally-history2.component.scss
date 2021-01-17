@@ -1,0 +1,22 @@
+.flex-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-col {
+    flex: 3;
+    background-color: lightcyan;
+    margin: 0 0 20px 0;
+}
+
+.flex-col:first-child {
+    flex: 6;
+
+}
+
+.flex-col:last-child {
+    flex: 1;
+    text-align: right;
+
+}

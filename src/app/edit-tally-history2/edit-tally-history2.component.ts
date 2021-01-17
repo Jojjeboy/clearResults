@@ -26,12 +26,35 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
   tallyObservable!: Subscription;
 
-
+  
+  
   historyForm!: FormGroup;
-
+  
   yesterday: String = this.dateService.getDayOffset(1,0).toISOString().substring(0, 16);
-
-
+  
+  fakeArray = [
+    {
+      date: this.yesterday,
+      value: 6
+    },
+    {
+      date: this.yesterday,
+      value: 3
+    },
+    {
+      date: this.yesterday,
+      value: 15
+    },
+    {
+      date: this.yesterday,
+      value: 18
+    },
+    {
+      date: this.yesterday,
+      value: 7
+    },
+  ];
+  
 
   firstDate: Date = new Date();
 

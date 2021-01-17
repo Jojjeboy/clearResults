@@ -6,70 +6,106 @@
     </div>
 </div>
 
+<div class="clr-row">
+    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+        <div class="card">
+            <div class="card-header">
+                {{ tally.getTitle() }}
+            </div>
+            <div class="card-block">
+
+                <div class="card-text">
+                    <div class="container">
+                        <div class="flex-row" *ngFor="let item of fakeArray">
+                            <div class="flex-col">
+                                <span class="col-header p3">Datum</span><br />
+                                {{ item.date }}
+                            </div>
+                            <div class="flex-col">
+                                <span class="col-header p3">Värde</span><br />
+                                {{ item.value }}
+                            </div>
+                            <div class="flex-col"><span>x</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <div class="container">
 
-  
+
 
     <h1>Angular FormArray Example - HDTuto.com</h1>
-  
-    
-  
-    <form [formGroup]="historyForm" (ngSubmit)="onSubmit()">
-  
-      
-  
-      
-  
-      <table class="table table-bordered" formArrayName="histories">
-  
-        <tr>
-  
-          <th colspan="2">Add Multiple Quantity:</th>
-  
-          <th width="150px"><button type="button" (click)="addHistory()" class="btn btn-primary">Add More</button></th>
-  
-        </tr>
-  
-        <tr *ngFor="let quantity of histories().controls; let i=index" [formGroupName]="i">
-  
-          <td>
-  
-              Datum :
-  
-              <input type="datetime-local" max="{{ yesterday }}" formControlName="date" class="form-control">
-  
-          </td>
-  
-          <td>
-  
-              Värde:
-  
-              <input type="number" formControlName="value" class="form-control">
-  
-          </td>
-  
-          <td>
-  
-              <button (click)="removeHistory(i)" class="btn btn-danger">Remove</button>
-  
-          </td>
 
-        </tr>
-  
-      </table>
-  
-     
-  
-      <button type="submit" class="btn btn-success">Submit</button>
-  
-      
-  
+
+
+    <form [formGroup]="historyForm" (ngSubmit)="onSubmit()">
+
+
+
+
+
+        <table class="table table-bordered" formArrayName="histories">
+
+            <tr>
+
+                <th colspan="2">Add Multiple Quantity:</th>
+
+                <th width="150px"><button type="button" (click)="addHistory()" class="btn btn-primary">Add More</button>
+                </th>
+
+            </tr>
+
+            <tr *ngFor="let quantity of histories().controls; let i=index" [formGroupName]="i">
+
+                <td>
+
+                    Datum :
+
+                    <input type="datetime-local" max="{{ yesterday }}" formControlName="date" class="form-control">
+
+                </td>
+
+                <td>
+
+                    Värde:
+
+                    <input type="number" formControlName="value" class="form-control">
+
+                </td>
+
+                <td>
+
+                    <button (click)="removeHistory(i)" class="btn btn-danger">Remove</button>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+
+
+        <button type="submit" class="btn btn-success">Submit</button>
+
+
+
     </form>
-  
-      
-  
-    <br/>
-  
+
+
+
+    <br />
+
     <pre>{{this.historyForm.value | json}}</pre>
-  
-  </div>
+
+</div>
