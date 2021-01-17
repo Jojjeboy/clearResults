@@ -137,7 +137,7 @@ export class TallyService {
       let historyArr: History[] = [];
       for (const hist of tally.getHistory()) {
         let history = new History(hist);
-        //history.setDate(new Date(hist.date));
+        history.setDate(new Date(hist.date));
 
         historyArr.push(history);
       }

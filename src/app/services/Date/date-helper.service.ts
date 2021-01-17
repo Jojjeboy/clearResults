@@ -24,12 +24,17 @@ export class DateHelperService {
 
 
   getDayOffset(numberOfDaysOffset: number, direction: number): Date {
-    const today = new Date();
-    let offsetDate = new Date();
-
-    
-
+    let offsetDate: Date = new Date();
+    if (direction === 0) {
+      offsetDate = (d =>
+        new Date(d.setDate(d.getDate() - numberOfDaysOffset))
+      )(new Date);
+    }
+    else {
+      offsetDate = (d =>
+        new Date(d.setDate(d.getDate() + numberOfDaysOffset))
+      )(new Date);
+    }
     return offsetDate;
   }
-
 }
