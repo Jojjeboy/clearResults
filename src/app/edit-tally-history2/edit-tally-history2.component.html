@@ -10,24 +10,27 @@
     <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
         <div class="card">
             <div class="card-header">
-                {{ tally.getTitle() }}
+                {{ tally.getTitle() }} <span><button
+                        class="btn btn-sm btn-outline-success add-new-history pull-right">Lägg till</button></span>
             </div>
             <div class="card-block">
-
                 <div class="card-text">
-                    <div class="container">
-                        <div class="flex-row" *ngFor="let item of fakeArray">
-                            <div class="flex-col">
-                                <span class="col-header p3">Datum</span><br />
-                                {{ item.date }}
+                    <form class="container" [formGroup]="historyForm" (ngSubmit)="onSubmit()">
+                        <div formArrayName="histories">
+                            <div class="clr-row" *ngFor="let quantity of histories().controls; let i=index" [formGroupName]="i">
+                                <div class="clr-col-7">
+                                    <span class="col-header p3">Datum</span><br />
+                                    <input type="date" max="{{ yesterday }}" formControlName="date" class="form-control">
+                                </div>
+                                <div class="clr-col-3">
+                                    <span class="col-header p3">Värde</span><br />
+                                    <input type="number" formControlName="value" class="form-control">
+                                </div>
+                                <div class="clr-col-1"><span>x</span></div>
                             </div>
-                            <div class="flex-col">
-                                <span class="col-header p3">Värde</span><br />
-                                {{ item.value }}
-                            </div>
-                            <div class="flex-col"><span>x</span></div>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="card-footer">
@@ -41,7 +44,7 @@
 
 
 
-<div class="container">
+<!--<div class="container">
 
 
 
@@ -106,6 +109,6 @@
 
     <br />
 
-    <pre>{{this.historyForm.value | json}}</pre>
-
-</div>
+    
+</div>-->
+<pre>{{this.historyForm.value | json}}</pre>

@@ -30,31 +30,9 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
   
   historyForm!: FormGroup;
   
-  yesterday: String = this.dateService.getDayOffset(1,0).toISOString().substring(0, 16);
+  yesterday: String = this.dateService.getDayOffset(1,0).toISOString().substring(0, 10);
   
-  fakeArray = [
-    {
-      date: this.yesterday,
-      value: 6
-    },
-    {
-      date: this.yesterday,
-      value: 3
-    },
-    {
-      date: this.yesterday,
-      value: 15
-    },
-    {
-      date: this.yesterday,
-      value: 18
-    },
-    {
-      date: this.yesterday,
-      value: 7
-    },
-  ];
-  
+
 
   firstDate: Date = new Date();
 
@@ -83,7 +61,7 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
         this.tallyHistory.forEach(hist => {
           fgArr.push(
             this.fb.group({
-              date: new FormControl(hist.getDate().toISOString().substring(0, 16)),
+              date: new FormControl(hist.getDate().toISOString().substring(0, 10)),
               value: hist.getValue()
             })
           );
