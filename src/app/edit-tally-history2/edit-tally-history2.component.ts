@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -25,12 +25,12 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
   tallyObservable!: Subscription;
 
-  
-  
+
+
   historyForm!: FormGroup;
-  
-  yesterday: String = this.dateService.getDayOffset(1,0).toISOString().substring(0, 10);
-  
+
+  yesterday: String = this.dateService.getDayOffset(1, 0).toISOString().substring(0, 10);
+
 
 
   firstDate: Date = new Date();
@@ -43,7 +43,8 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     private dateService: DateHelperService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
 
 
@@ -58,47 +59,65 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
         let fgArr: any = [];
 
         this.tallyHistory.forEach(hist => {
+          let aFormControl = new FormControl(hist.getDate().toISOString().substring(0, 10));
+
+          //aFormControl.valueChanges.subscribe(result => {
+          //  console.log(result);
+          //});
+
+
+
           fgArr.push(
             this.fb.group({
-              date: new FormControl(hist.getDate().toISOString().substring(0, 10)),
+              date: aFormControl,
+              originalDate: hist.getDate().toISOString().substring(0, 10),
               value: hist.getValue()
             })
           );
         });
 
-        
+
         this.historyForm = this.fb.group({
-    
+
           histories: this.fb.array(fgArr)
-    
+
         });
 
-
+        
       });
     });
   }
 
-  histories() : FormArray {
+  dateChange(newDate:string, i: number){
+    const orgDateString = this.histories().value[i].originalDate;
+    
+    console.log(newDate);
+    
+
+
+    console.log(this.histories().value[i].originalDate);
+    //this.histories().controls[i].controls.date.setValue("2021-01-01", { emitEvent: false });
+    // this.historyForm.get("histories").controls[i].value.date = "2021-01-02";
+  }
+
+  histories(): FormArray {
 
     return this.historyForm.get("histories") as FormArray
 
   }
 
-   
+
 
   newHistory(): FormGroup {
 
     return this.fb.group({
-
       date: new FormControl(this.yesterday),
-
+      originalDate: this.yesterday,
       value: 0,
-
     })
-
   }
 
-   
+
 
   addHistory() {
 
@@ -106,10 +125,10 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
   }
 
-   
 
-  removeHistory(i:number) {
-    if(this.historyForm.value.histories.length === 1){
+
+  removeHistory(i: number) {
+    if (this.historyForm.value.histories.length === 1) {
 
       this.cleanHistoryConfirmedModalData = {
         open: true,
@@ -120,19 +139,19 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     else {
       this.histories().removeAt(i);
     }
-    
+
 
   }
 
   cleanHistoryConfirmed(): void {
-    
+
     this.tally.setHistory([]);
     //this.histories().removeAt(0);
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
   }
 
-   
+
 
   onSubmit() {
 

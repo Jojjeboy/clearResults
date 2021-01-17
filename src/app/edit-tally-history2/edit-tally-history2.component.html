@@ -20,12 +20,12 @@
                     </div>
                     <div class="card-block">
                         <div class="card-text">
-                            <div class="clr-row" *ngFor="let quantity of histories().controls; let i=index"
+                            <div class="clr-row" *ngFor="let history of histories().controls; let i=index"
                                 [formGroupName]="i">
                                 <div class="clr-col-7">
                                     <span class="col-header p3">Datum</span><br />
                                     <input type="date" max="{{ yesterday }}" formControlName="date"
-                                        class="form-control" />
+                                    (ngModelChange)="dateChange($event, i)" class="form-control" />
                                 </div>
                                 <div class="clr-col-3">
                                     <span class="col-header p3">Värde</span><br />
