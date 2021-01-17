@@ -91,7 +91,7 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
     return this.fb.group({
 
-      date: this.yesterday,
+      date: new FormControl(this.yesterday),
 
       value: 0,
 

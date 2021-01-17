@@ -9,18 +9,22 @@
 <div class="clr-row">
     <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
         <div class="card">
-            <div class="card-header">
-                {{ tally.getTitle() }} <span><button
-                        class="btn btn-sm btn-outline-success add-new-history pull-right">Lägg till</button></span>
-            </div>
-            <div class="card-block">
-                <div class="card-text">
-                    <form class="container" [formGroup]="historyForm" (ngSubmit)="onSubmit()">
-                        <div formArrayName="histories">
-                            <div class="clr-row" *ngFor="let quantity of histories().controls; let i=index" [formGroupName]="i">
+            <form class="container" [formGroup]="historyForm" (ngSubmit)="onSubmit()">
+                <div formArrayName="histories">
+                    <div class="card-header">
+                        {{ tally.getTitle() }}
+                        <span>
+                            <button (click)="addHistory()" class="btn btn-sm btn-outline-success add-new-history pull-right">Lägg till</button>
+                        </span>
+                    </div>
+                    <div class="card-block">
+                        <div class="card-text">
+                            <div class="clr-row" *ngFor="let quantity of histories().controls; let i=index"
+                                [formGroupName]="i">
                                 <div class="clr-col-7">
                                     <span class="col-header p3">Datum</span><br />
-                                    <input type="date" max="{{ yesterday }}" formControlName="date" class="form-control">
+                                    <input type="date" max="{{ yesterday }}" formControlName="date"
+                                        class="form-control" />
                                 </div>
                                 <div class="clr-col-3">
                                     <span class="col-header p3">Värde</span><br />
@@ -30,13 +34,13 @@
                             </div>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
-                    </form>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-link">Footer Action 1</button>
+                        <button class="btn btn-sm btn-link">Footer Action 2</button>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-sm btn-link">Footer Action 1</button>
-                <button class="btn btn-sm btn-link">Footer Action 2</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
