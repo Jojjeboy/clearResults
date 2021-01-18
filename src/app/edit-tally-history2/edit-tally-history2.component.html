@@ -25,7 +25,7 @@
                                 <div class="clr-col-7">
                                     <span class="col-header p3">Datum</span><br />
                                     <input type="date" max="{{ yesterday }}" formControlName="date"
-                                    (ngModelChange)="dateChange($event, i)" class="form-control" />
+                                    (ngModelChange)="dateChange($event, i)" class="form-control" required />
                                 </div>
                                 <div class="clr-col-3">
                                     <span class="col-header p3">Värde</span><br />
@@ -46,7 +46,7 @@
                                     class="btn btn-danger-outline block">Ångra</a>
                             </div>
                             <div class="clr-col-6">
-                                <button class="btn btn-success-outline block" type="submit">Spara</button>
+                                <button [disabled]="!historyForm.valid" class="btn btn-success-outline block" type="submit">Spara</button>
                             </div>
                         </div>
                     </div>

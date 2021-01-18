@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { History } from '../classes/History';
 import { Tally } from '../classes/Tally';
@@ -54,16 +54,13 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.tallyObservable = this.tallyService.getTallyById(params['id']).subscribe(tally => {
         this.tally = tally;
-        this.tallyHistory = tally.getHistory();
+
+        this.tallyHistory = this.tallyService.sortHistoryByDate(this.tally);
 
         let fgArr: any = [];
 
         this.tallyHistory.forEach(hist => {
-          let aFormControl = new FormControl(hist.getDate().toISOString().substring(0, 10));
-
-          //aFormControl.valueChanges.subscribe(result => {
-          //  console.log(result);
-          //});
+          let aFormControl = new FormControl(hist.getDate().toISOString().substring(0, 10), [Validators.required, Validators.minLength(3)]);
 
 
 
@@ -136,14 +133,14 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
   newHistory(): FormGroup {
     return this.fb.group({
-      date: new FormControl(''),
+      date: new FormControl('', [Validators.required, Validators.minLength(3)]),
       originalDate: '',
       value: 0,
     })
   }
 
   addHistory() {
-    this.histories().push(this.newHistory());
+    this.histories().insert(0,this.newHistory());
   }
 
   removeHistory(i: number) {
@@ -172,12 +169,7 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     this.dateAlreadyExistModalData = { open: false };
   }
 
-
-
-  onSubmit() {
-
-    console.log(this.historyForm.value);
-
+  onSubmit() {  
     let historyArr: History[] = [];
     
     this.historyForm.value.histories.forEach((element:object) => {
@@ -190,7 +182,6 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
 
   }
-
 
 
   ngOnDestroy(): void {

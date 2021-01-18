@@ -129,6 +129,17 @@ export class TallyService {
     this.update(tally);
   }
 
+  sortHistoryByDate(tally: Tally) {
+    let tallyHistory: History[] = tally.getHistory().sort((a: any, b: any) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+
+    tally.setHistory(tallyHistory);
+    this.update(tally);
+    return tallyHistory;
+    
+  }
+
   convertLSToTallies(lsTallies: Array<object>): Array<Tally> {
     const returnArr = new Array<Tally>();
     for (const obj of lsTallies) {
