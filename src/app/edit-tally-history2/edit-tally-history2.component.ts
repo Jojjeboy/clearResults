@@ -21,7 +21,7 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
   tallyHistory!: Array<History>;
 
   cleanHistoryConfirmedModalData: Object = {};
-  newDateChosenModalData: Object = {};
+  dateAlreadyExistModalData: Object = {};
 
   tallyObservable!: Subscription;
 
@@ -83,33 +83,68 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
         });
 
-        
+
       });
     });
   }
 
-  dateChange(newDate:string, i: number){
+  dateChange(newDate: string, i: number) {
     const orgDateString = this.histories().value[i].originalDate;
-    
-    console.log(newDate);
-    
+    let chosenDateValid: boolean = true;
+    let c: number = 0;
+
+    let fc = this.histories().at(i).get('date');
+    for (var val of this.histories().controls) {
+
+      if (c !== i) {
+        if (newDate === val.value.date) {
+          chosenDateValid = false;
+          try {
+            if (fc != null) {
+              fc.setValue(orgDateString);
+            }
+
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+      }
+      c++;
+    }
+
+    // check if date alleady exist
+    if (!chosenDateValid) {
+
+      this.dateAlreadyExistModalData = {
+        open: true,
+        header: 'Datum valt',
+        body: 'Valt datum: ' + newDate + ' finns redan i historiken, välj ett nytt datum!',
+        footer: ''
+      }
 
 
-    console.log(this.histories().value[i].originalDate);
+    }
+
+
+
+
+    //console.log(newDate);
+
+
+
+    //console.log(this.histories().value[i].originalDate);
     //this.histories().controls[i].controls.date.setValue("2021-01-01", { emitEvent: false });
     // this.historyForm.get("histories").controls[i].value.date = "2021-01-02";
   }
 
   histories(): FormArray {
-
     return this.historyForm.get("histories") as FormArray
-
   }
 
 
 
   newHistory(): FormGroup {
-
     return this.fb.group({
       date: new FormControl(this.yesterday),
       originalDate: this.yesterday,
@@ -117,15 +152,9 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     })
   }
 
-
-
   addHistory() {
-
     this.histories().push(this.newHistory());
-
   }
-
-
 
   removeHistory(i: number) {
     if (this.historyForm.value.histories.length === 1) {
@@ -139,8 +168,6 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     else {
       this.histories().removeAt(i);
     }
-
-
   }
 
   cleanHistoryConfirmed(): void {
@@ -149,6 +176,10 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     //this.histories().removeAt(0);
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
+  }
+
+  dateAlreadyExistConfirmed() {
+    this.dateAlreadyExistModalData = { open: false };
   }
 
 

@@ -3,12 +3,21 @@ import { UUIDService } from '../services/uuid/uuid.service';
 import { TallyService } from '../services/tally/tally.service';
 import { Tally } from '../classes/Tally';
 import { Subscription } from 'rxjs';
+import { DateHelperService } from '../services/Date/date-helper.service';
 
 @Component({
   selector: 'app-add-example',
   templateUrl: './add-example.component.html'
 })
 export class AddExampleComponent implements OnInit, OnDestroy {
+
+  constructor(
+    private dateHelperService: DateHelperService,
+    private uuidService: UUIDService,
+    private tallyService: TallyService
+    ){
+
+  }
 
   tallies = Array<Tally>();
 
@@ -25,11 +34,7 @@ export class AddExampleComponent implements OnInit, OnDestroy {
   workoutdaysTitle: string = 'Träningsdagar';
 
   tallyListObservable!: Subscription;
-
-  constructor(
-    private uuidService: UUIDService,
-    private tallyService: TallyService) {
-  }
+  yesterday = this.dateHelperService.getDayOffset(1,0);
 
   ngOnInit() {
     const examples = Array<Tally>();
@@ -37,13 +42,7 @@ export class AddExampleComponent implements OnInit, OnDestroy {
   }
 
   addPushups() {
-    const yesterday = (d =>
-      new Date(d.setDate(d.getDate() - 1))
-    )(new Date);
-
-    const twoDaysago = (d =>
-      new Date(d.setDate(d.getDate() - 3))
-    )(new Date);
+   
 
     const pushups = new Tally({
       title: this.pushupTitle,
@@ -52,10 +51,14 @@ export class AddExampleComponent implements OnInit, OnDestroy {
       resetEveryDay: true,
       uuid: this.uuidService.UUID(),
       value: 12,
-      lastTouched: yesterday,
+      lastTouched: this.yesterday,
       history: [{
+        value: 15,
+        date: this.dateHelperService.getDayOffset(2,0)
+      },
+      {
         value: 125,
-        date: twoDaysago
+        date: this.dateHelperService.getDayOffset(3,0)
       }],
       goal: 100,
       topScore: 0,
@@ -69,13 +72,16 @@ export class AddExampleComponent implements OnInit, OnDestroy {
   addplank() {
     const plank = new Tally({
       title: this.plankTitle,
-      increseBy: 10,
-      decreseBy: 10,
+      increseBy: 1,
+      decreseBy: 1,
       resetEveryDay: true,
       uuid: this.uuidService.UUID(),
       value: 0,
       lastTouched: new Date(),
-      history: [],
+      history: [{
+        value: 2,
+        date: this.dateHelperService.getDayOffset(2,0)
+      }],
       goal: 50,
       topScore: 0,
       active: true
