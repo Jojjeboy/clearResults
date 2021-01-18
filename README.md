@@ -30,17 +30,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
+- History css lite off när man tagit bort alla
+- Gör 'ny tally' formuläret reactive
+- Skapa History service 
 - Se till att historik inte läggs in om det datumet redan finns.
-- Validera datum i historik
-- Sortera datum i historik
 - Gör hela historik-grejen till komponent inklusive att lägga till 
 - Skriv ut datum på senaste version
 - Byt ut dynamiskt mål med senaste ändrad
 - Organisera komponenter och moduler
-- Fixa så att exempel genereras till example.json i publish.sh
+- Fixa så att exempel genereras hämtas från example.json
 - Statistiska mål
 - Gör en komponent av modal - https://levelup.gitconnected.com/how-to-create-a-reusable-modal-component-in-angular-9-using-ng-bootstrap-50c0aa5f3a65
-
-
-## Gjort
-- Implementera observables

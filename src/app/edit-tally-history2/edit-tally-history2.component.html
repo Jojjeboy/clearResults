@@ -25,7 +25,7 @@
                                 <div class="clr-col-7">
                                     <span class="col-header p3">Datum</span><br />
                                     <input type="date" max="{{ yesterday }}" formControlName="date"
-                                    (ngModelChange)="dateChange($event, i)" class="form-control" required />
+                                        (ngModelChange)="dateChange($event, i)" class="form-control" required />
                                 </div>
                                 <div class="clr-col-3">
                                     <span class="col-header p3">Värde</span><br />
@@ -46,7 +46,8 @@
                                     class="btn btn-danger-outline block">Ångra</a>
                             </div>
                             <div class="clr-col-6">
-                                <button [disabled]="!historyForm.valid" class="btn btn-success-outline block" type="submit">Spara</button>
+                                <button [disabled]="!historyForm.valid" class="btn btn-success-outline block"
+                                    type="submit">Spara</button>
                             </div>
                         </div>
                     </div>
@@ -56,77 +57,4 @@
     </div>
 </div>
 
-
-
-
-<!--<div class="container">
-
-
-
-    <h1>Angular FormArray Example - HDTuto.com</h1>
-
-
-
-    <form [formGroup]="historyForm" (ngSubmit)="onSubmit()">
-
-
-
-
-
-        <table class="table table-bordered" formArrayName="histories">
-
-            <tr>
-
-                <th colspan="2">Add Multiple Quantity:</th>
-
-                <th width="150px"><button type="button" (click)="addHistory()" class="btn btn-primary">Add More</button>
-                </th>
-
-            </tr>
-
-            <tr *ngFor="let quantity of histories().controls; let i=index" [formGroupName]="i">
-
-                <td>
-
-                    Datum :
-
-                    <input type="datetime-local" max="{{ yesterday }}" formControlName="date" class="form-control">
-
-                </td>
-
-                <td>
-
-                    Värde:
-
-                    <input type="number" formControlName="value" class="form-control">
-
-                </td>
-
-                <td>
-
-                    <button (click)="removeHistory(i)" class="btn btn-danger">Remove</button>
-
-                </td>
-
-            </tr>
-
-        </table>
-
-
-
-        <button type="submit" class="btn btn-success">Submit</button>
-
-
-
-    </form>
-
-
-
-    <br />
-
-    
-</div>-->
-
 <app-modal [modalData]="dateAlreadyExistModalData" (parentEvent)="dateAlreadyExistConfirmed()"></app-modal>
-
-<app-modal [modalData]="cleanHistoryConfirmedModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>

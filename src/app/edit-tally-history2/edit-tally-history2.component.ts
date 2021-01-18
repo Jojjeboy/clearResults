@@ -18,12 +18,10 @@ import { TallyService } from '../services/tally/tally.service';
 })
 export class EditTallyHistory2Component implements OnInit, OnDestroy {
   tally!: Tally;
+  tallyObservable!: Subscription;
   tallyHistory!: Array<History>;
 
-  cleanHistoryConfirmedModalData: Object = {};
   dateAlreadyExistModalData: Object = {};
-
-  tallyObservable!: Subscription;
 
 
 
@@ -32,8 +30,6 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
   yesterday: String = this.dateService.getDayOffset(1, 0).toISOString().substring(0, 10);
 
 
-
-  firstDate: Date = new Date();
 
 
 
@@ -140,21 +136,11 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
   }
 
   addHistory() {
-    this.histories().insert(0,this.newHistory());
+    this.histories().insert(0, this.newHistory());
   }
 
   removeHistory(i: number) {
-    if (this.historyForm.value.histories.length === 1) {
-
-      this.cleanHistoryConfirmedModalData = {
-        open: true,
-        header: 'Radera historik',
-        body: 'Är du säker på att du vill radera den sista dagens historik?'
-      }
-    }
-    else {
-      this.histories().removeAt(i);
-    }
+    this.histories().removeAt(i);
   }
 
   cleanHistoryConfirmed(): void {
@@ -169,10 +155,10 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
     this.dateAlreadyExistModalData = { open: false };
   }
 
-  onSubmit() {  
+  onSubmit() {
     let historyArr: History[] = [];
-    
-    this.historyForm.value.histories.forEach((element:object) => {
+
+    this.historyForm.value.histories.forEach((element: object) => {
       let history: History = new History(element);
       historyArr.push(history);
     });

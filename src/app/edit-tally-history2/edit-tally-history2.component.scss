@@ -1,7 +1,7 @@
 @import "./../../assets/styles/variables";
-.clr-row{
+.clr-row {
     margin-bottom: 20px;
-    .clr-col-1{
+    .clr-col-1 {
         position: relative;
         .action-history {
             position: absolute;
@@ -13,19 +13,25 @@
         }
     }
 }
-.required::after {     content: " *";     color: red; }  
-.form-control.ng-invalid {     border-bottom:.05rem solid red; }  
+.required::after {
+    content: " *";
+    color: $dangerColor;
+}
+.form-control.ng-invalid {
+    border-bottom: 0.05rem solid $dangerColor;
+    color: $dangerColor;;
+}
 
-input{
+input {
     width: 100%;
     border: none;
-    border-bottom: .05rem solid #0072a3;
-    &:focus{
+    border-bottom: 0.05rem solid #0072a3;
+    &:focus {
         outline: none;
     }
 }
-input[type="date"]{
-    font-weight: 100; 
+input[type="date"] {
+    font-weight: 100;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -40,7 +46,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
 }
 
-.btn.add-new-history{
+.btn.add-new-history {
     margin-right: 0;
     margin-top: 0;
 }
