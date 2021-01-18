@@ -30,6 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   ## *** Att göra *** ##
 
 
+- Se till att historik inte läggs in om det datumet redan finns.
 - Redigera historik
 - Lägg till i historik
 - Ta bort i historiken

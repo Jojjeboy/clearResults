@@ -126,16 +126,6 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
 
     }
 
-
-
-
-    //console.log(newDate);
-
-
-
-    //console.log(this.histories().value[i].originalDate);
-    //this.histories().controls[i].controls.date.setValue("2021-01-01", { emitEvent: false });
-    // this.historyForm.get("histories").controls[i].value.date = "2021-01-02";
   }
 
   histories(): FormArray {
@@ -187,6 +177,17 @@ export class EditTallyHistory2Component implements OnInit, OnDestroy {
   onSubmit() {
 
     console.log(this.historyForm.value);
+
+    let historyArr: History[] = [];
+    
+    this.historyForm.value.histories.forEach((element:object) => {
+      let history: History = new History(element);
+      historyArr.push(history);
+    });
+
+    this.tally.setHistory(historyArr);
+    this.tallyService.save(this.tally);
+    this.router.navigate(['/tally/' + this.tally.getUuid()]);
 
   }
 

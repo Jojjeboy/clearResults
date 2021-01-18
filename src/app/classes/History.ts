@@ -5,7 +5,7 @@ export class History {
     constructor(obj: any) {
 
         this.value = obj.value;
-        this.date = obj.date;
+        this.date = new Date(obj.date);
     }
 
     public getValue(): number {
@@ -21,7 +21,7 @@ export class History {
     }
 
     public setDate(date: Date): void {
-        this.date = date;
+        this.date = new Date(date);
     }
 
 }
