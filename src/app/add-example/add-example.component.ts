@@ -14,7 +14,7 @@ export class AddExampleComponent implements OnInit, OnDestroy {
   constructor(
     private dateHelperService: DateHelperService,
     private uuidService: UUIDService,
-    private tallyService: TallyService 
+    private tallyService: TallyService
     ){
 
   }
