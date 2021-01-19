@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError}  from 'rxjs';
-import { catchError, retry }  from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 export interface Gitlog {
   commithash: string;
@@ -24,8 +24,6 @@ export class HttpService {
         retry(3), // retry a failed request up to 3 times
         catchError(this.handleError) // then handle the error
       );
-
-      
   }
 
   private handleError(error: HttpErrorResponse) {

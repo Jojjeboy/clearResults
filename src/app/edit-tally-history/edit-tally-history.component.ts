@@ -111,8 +111,6 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
     return this.historyForm.get("histories") as FormArray
   }
 
-
-
   newHistory(): FormGroup {
     return this.fb.group({
       date: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -151,9 +149,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
     this.tally.setHistory(historyArr);
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
-
   }
-
 
   ngOnDestroy(): void {
     this.tallyObservable.unsubscribe();

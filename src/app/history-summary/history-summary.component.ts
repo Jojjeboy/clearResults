@@ -1,15 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Tally } from '../classes/Tally';
 
 @Component({
   selector: 'app-history-summary',
   templateUrl: './history-summary.component.html'
 })
-export class HistorySummaryComponent implements OnInit {
+export class HistorySummaryComponent {
 
   @Input() tally!: Tally;
-  
-
-  ngOnInit(): void {
-  }
 }

@@ -12,7 +12,7 @@ export class TallyService {
 
   lsTallies = Array<Object>();
   tallies: Array<Tally> = [];
-  
+
   percentage = 0.00;
   private showAll = false;
 
@@ -31,7 +31,7 @@ export class TallyService {
   }
   */
 
- getTallies(): Observable<Tally[]>{
+  getTallies(): Observable<Tally[]> {
     return new Observable<Tally[]>(observer => {
       this.reloadDataFromLS();
       this.sortByActive();
@@ -52,19 +52,17 @@ export class TallyService {
   }
 
 
-  getTallyById(id: String): Observable<Tally>{ 
+  getTallyById(id: String): Observable<Tally> {
     return new Observable<Tally>(observer => {
       let tally: Tally = this.getEmptyTally();
       this.tallies.forEach(eachTally => {
-        if(eachTally.getUuid() === id){
+        if (eachTally.getUuid() === id) {
           tally = eachTally;
         }
       });
-
       observer.next(tally);
-  
     });
-    
+
   }
 
   resetOldTallyCounter(): void {
@@ -137,7 +135,7 @@ export class TallyService {
     tally.setHistory(tallyHistory);
     this.update(tally);
     return tallyHistory;
-    
+
   }
 
   convertLSToTallies(lsTallies: Array<object>): Array<Tally> {
@@ -192,7 +190,7 @@ export class TallyService {
 
   delete(deleteTally: Tally): void {
     const index = this.tallies.indexOf(deleteTally);
-    if(index > -1){
+    if (index > -1) {
       this.tallies.splice(index, 1);
     }
     this.localStorageService.removeItem(deleteTally.getUuid());
@@ -216,8 +214,8 @@ export class TallyService {
   removeDuplicatesInHistory() {
     this.tallies.forEach(tally => {
       let arr = tally.getHistory();
-      arr = arr.filter((history:any, index:any, self:any) =>
-        index === self.findIndex((t:any) => (
+      arr = arr.filter((history: any, index: any, self: any) =>
+        index === self.findIndex((t: any) => (
           t.date === history.date && t.value === history.value
         ))
       );
@@ -263,8 +261,8 @@ export class TallyService {
     if (!config.appVersion) {
       config["appVersion"] = [];
     }
-    
-    for(let i = 0; i < config.appVersion.length; i++){
+
+    for (let i = 0; i < config.appVersion.length; i++) {
       if (applicationversion.revision == config.appVersion[i].hash) {
         foundVersion = true;
       }
@@ -284,8 +282,8 @@ export class TallyService {
     return type === 'function' || type === 'object' && !!obj;
   };
 
-  public cloneTally(src: any): Tally{
-    let target:any = {};
+  public cloneTally(src: any): Tally {
+    let target: any = {};
     for (let prop in src) {
       if (src.hasOwnProperty(prop)) {
         // if the value is a nested object, recursively copy all it's properties
@@ -299,7 +297,7 @@ export class TallyService {
     return new Tally(target);
   }
 
-  reloadDataFromLS(){
+  reloadDataFromLS() {
     this.lsTallies = <Array<Object>>this.localStorageService.getAll();
     this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
   }
