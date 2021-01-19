@@ -13,7 +13,7 @@ async function createVersionsFile(filename: string) {
 
   await exec('npm version minor');
   
-  console.log(pjson);
+  console.log(pjson.version);
 
   console.log(`Application Version: '${process.env.npm_package_version}', revision: '${revision}', branch: '${branch}'`);
   
