@@ -26,7 +26,7 @@
                     <div class="clr-col-6">
                         <clr-input-container>
                             <label for="increaseBy">Öka</label>
-                            <input clrInput type="number" placeholder="10" formControlName="increseBy" id="increseBy"
+                            <input clrInput min="1" step="1" type="number" placeholder="10" formControlName="increseBy" id="increseBy"
                                 required />
                             <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                         </clr-input-container>
@@ -34,7 +34,7 @@
                     <div class="clr-col-6">
                         <clr-input-container>
                             <label for="decreseBy">Minska</label>
-                            <input clrInput type="number" placeholder="10" formControlName="decreseBy" id="decreseBy"
+                            <input clrInput min="1" step="1" type="number" placeholder="10" formControlName="decreseBy" id="decreseBy"
                                 required />
                             <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                         </clr-input-container>
@@ -44,14 +44,14 @@
                     <div class="clr-col-6">
                         <clr-input-container>
                             <label for="value">Värde</label>
-                            <input clrInput type="number" placeholder="0" formControlName="value" id="value" required />
+                            <input clrInput min="0" type="number" placeholder="0" formControlName="value" id="value" required />
                             <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                         </clr-input-container>
                     </div>
                     <div class="clr-col-6">
                         <clr-input-container>
                             <label for="goal">Mål</label>
-                            <input clrInput type="number" placeholder="0" formControlName="goal" id="goal" required />
+                            <input clrInput min="0" type="number" placeholder="0" formControlName="goal" id="goal" required />
                             <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                         </clr-input-container>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="clr-col-6">
                         <clr-input-container>
                             <label for="topScore">Högsta värdet</label>
-                            <input clrInput type="number" placeholder="0" formControlName="topScore" id="topScore"
+                            <input clrInput min="0" type="number" placeholder="0" formControlName="topScore" id="topScore"
                                 required />
                             <clr-control-error>Här måste det finnas ett värde</clr-control-error>
                         </clr-input-container>
@@ -116,5 +116,5 @@
 
 
 <pre>
-    {{ tallyForm.value | json }}
+    {{ tallyForm.valid | json }}
 </pre>

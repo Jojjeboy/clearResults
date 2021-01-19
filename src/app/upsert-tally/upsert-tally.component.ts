@@ -6,7 +6,7 @@ import { TallyService } from '../services/tally/tally.service';
 import { UUIDService } from '../services/uuid/uuid.service';
 import { Subscription } from 'rxjs';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-upsert-tally',
@@ -64,26 +64,43 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
   setupFormGroup(tally: Tally): void {
     
     this.tallyForm = new FormGroup({
-      title: new FormControl(tally.getTitle()),
-      increseBy: new FormControl(tally.getIncreseBy()),
-      decreseBy: new FormControl(tally.getDecreseBy()),
-      resetEveryDay: new FormControl(true),
-      value: new FormControl(tally.getValue()),
-      goal: new FormControl(tally.getGoal()),
-      topScore: new FormControl(tally.getTopScore())
+      title: new FormControl(tally.getTitle(), [Validators.required]),
+      increseBy: new FormControl(tally.getIncreseBy(), [Validators.required]),
+      decreseBy: new FormControl(tally.getDecreseBy(), [Validators.required]),
+      resetEveryDay: new FormControl(tally.getActive(), [Validators.required]),
+      value: new FormControl(tally.getValue(), [Validators.required]),
+      goal: new FormControl(tally.getGoal(), [Validators.required]),
+      topScore: new FormControl(tally.getTopScore(), [Validators.required])
     });
   }
 
   onSubmit() {
     
-    alert('submit');
-    //this.tallyService.update(this.tally);
-    //this.router.navigate(['/tally/' + this.tally.getUuid()]);
+    this.tally.setTitle(this.tallyForm.value.title);
+    this.tally.setIncreseBy(this.tallyForm.value.increseBy);
+    this.tally.setDecreseBy(this.tallyForm.value.decreseBy);
+    this.tally.setResetEveryday(this.tallyForm.value.resetEveryDay);
+    this.tally.setGoal(this.tallyForm.value.goal);
+    this.tally.setTopScore(this.tallyForm.value.topScore);
+    this.tally.setValue(this.tallyForm.value.value);
+    this.tally.setLastTouched(new Date());
+    
+    let action: string = 'skapad';
+    if(this.editMode){
+      this.tallyService.update(this.tally);
+      action = 'uppdaterad';
+    }
+    else {
+      this.tallyService.save(this.tally);
+    }
+    this.router.navigate(['/tally/' + this.tally.getUuid()], { queryParams: { type: 'success', message: 'Räknare ' + action} });
   }
 
 
   ngOnDestroy(): void {
-    this.tallyObservable.unsubscribe();
+    if(this.editMode){
+      this.tallyObservable.unsubscribe();
+    }
   }
 
 }
