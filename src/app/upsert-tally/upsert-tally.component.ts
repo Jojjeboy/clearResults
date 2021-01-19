@@ -23,17 +23,8 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
   editId!: string;
   tally!: Tally;
   tallyObservable!: Subscription;
+  tallyForm!: FormGroup;
 
-  tallyForm = new FormGroup({
-    title: new FormControl(''),
-    increseBy: new FormControl(0),
-    decreseBy: new FormControl(0),
-    resetEveryDay: new FormControl(true),
-    value: new FormControl(''),
-    goal: new FormControl(0),
-    topScore: new FormControl(0),
-    active: new FormControl(0)
-  });
 
   constructor(
     private location: Location,
@@ -66,6 +57,28 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
       this.tally = this.tallyService.getEmptyTally();
       this.tally.setUuid(this.uUIDService.UUID());
     }
+    this.setupFormGroup(this.tally)
+  }
+
+
+  setupFormGroup(tally: Tally): void {
+    
+    this.tallyForm = new FormGroup({
+      title: new FormControl(tally.getTitle()),
+      increseBy: new FormControl(tally.getIncreseBy()),
+      decreseBy: new FormControl(tally.getDecreseBy()),
+      resetEveryDay: new FormControl(true),
+      value: new FormControl(tally.getValue()),
+      goal: new FormControl(tally.getGoal()),
+      topScore: new FormControl(tally.getTopScore())
+    });
+  }
+
+  onSubmit() {
+    
+    alert('submit');
+    //this.tallyService.update(this.tally);
+    //this.router.navigate(['/tally/' + this.tally.getUuid()]);
   }
 
 
