@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import { dedent } from 'tslint/lib/utils';
 import { promisify } from 'util';
 import * as child from 'child_process';
-import { name, version} from './package.json';
+const pjson = require('./package.json')
 
 const exec = promisify(child.exec);
 
@@ -13,7 +13,7 @@ async function createVersionsFile(filename: string) {
 
   await exec('npm version minor');
   
-  console.log(version);
+  console.log(pjson);
 
   console.log(`Application Version: '${process.env.npm_package_version}', revision: '${revision}', branch: '${branch}'`);
   
