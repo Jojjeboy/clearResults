@@ -10,7 +10,6 @@
 
 <div class="card">
     <form [formGroup]="tallyForm" clrForm  (ngSubmit)="onSubmit()">
-
         <div class="card-block">
             <div class="card-text">
                 <div class="clr-row">
@@ -68,23 +67,24 @@
                     <div class="clr-col-6"></div>
                 </div>
 
-
-                <!--<div class="clr-col-6 resetEveryDay">
+                
+                <div class="clr-row">
+                    <div class="clr-col-6 resetEveryDay">
                         <span>Nollställ varje dag</span>
                         <div class="radio btn">
-                            <input type="radio" [checked]="true" name="btn-group-demo-radios"
-                                (click)="false(true)" id="btn-demo-radio-1">
+                            <input type="radio"
+                            formControlName="resetEveryDay" value="true" id="btn-demo-radio-1" [value]="true">
                             <label for="btn-demo-radio-1">Ja</label>
                         </div>
                     </div>
                     <div class="clr-col-6 resetEveryDay">
                         <span>&nbsp;</span>
                         <div class="radio btn">
-                            <input type="radio" [checked]="false" name="btn-group-demo-radios"
-                                (click)="false(false)" id="btn-demo-radio-4">
+                            <input type="radio" formControlName="resetEveryDay" value="false" id="btn-demo-radio-4" [value]="false">
                             <label for="btn-demo-radio-4">Nej</label>
                         </div>
-                    </div>-->
+                    </div>
+                </div>
                 <div class="clr-row">
                     <div class="clr-col-12">
                         <app-history-summary [tally]="tally"></app-history-summary>
@@ -114,7 +114,4 @@
     </form>
 </div>
 
-
-<pre>
-    {{ tallyForm.valid | json }}
-</pre>
+<app-modal [modalData]="cleanHistoryModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>

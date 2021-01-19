@@ -131,7 +131,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
 
     this.tally.setHistory([]);
     this.tallyService.update(this.tally);
-    this.router.navigate(['/tally/' + this.tally.getUuid()]);
+    this.router.navigate(['/tally/' + this.tally.getUuid()], { queryParams: { type: 'success', message: 'Historiken borttagen' } });
   }
 
   dateAlreadyExistConfirmed() {
@@ -148,7 +148,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
 
     this.tally.setHistory(historyArr);
     this.tallyService.update(this.tally);
-    this.router.navigate(['/tally/' + this.tally.getUuid()]);
+    this.router.navigate(['/tally/' + this.tally.getUuid()], { queryParams: { type: 'success', message: 'Historiken uppdaterad' } });
   }
 
   ngOnDestroy(): void {

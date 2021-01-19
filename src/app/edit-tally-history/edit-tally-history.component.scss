@@ -13,14 +13,6 @@
         }
     }
 }
-.required::after {
-    content: " *";
-    color: $dangerColor;
-}
-.form-control.ng-invalid {
-    border-bottom: 0.05rem solid $dangerColor;
-    color: $dangerColor;;
-}
 
 input {
     width: 100%;

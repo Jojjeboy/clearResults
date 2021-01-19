@@ -56,11 +56,11 @@ export class AddExampleComponent implements OnInit, OnDestroy {
       lastTouched: this.yesterday,
       history: [{
         value: 15,
-        date: this.dateHelperService.getDayOffset(2,0)
+        date: this.dateHelperService.getDayOffset(1,0)
       },
       {
         value: 125,
-        date: this.dateHelperService.getDayOffset(3,0)
+        date: this.dateHelperService.getDayOffset(2,0)
       }],
       goal: 100,
       topScore: 0,
@@ -79,7 +79,7 @@ export class AddExampleComponent implements OnInit, OnDestroy {
       resetEveryDay: true,
       uuid: this.uuidService.UUID(),
       value: 0,
-      lastTouched: new Date(),
+      lastTouched: this.yesterday,
       history: [{
         value: 2,
         date: this.dateHelperService.getDayOffset(2,0)

@@ -29,8 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   ## *** Att göra *** ##
 
-- Lägg till alert längst upp när tally är uppdaterad
-- Lägg till alert längst upp när historik är uppdaterad
 - Gör 'ny tally' formuläret reactive
 - Skapa History service 
 - Se till att historik inte läggs in om det datumet redan finns.

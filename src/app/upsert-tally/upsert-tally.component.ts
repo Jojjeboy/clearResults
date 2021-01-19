@@ -67,10 +67,21 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
       title: new FormControl(tally.getTitle(), [Validators.required]),
       increseBy: new FormControl(tally.getIncreseBy(), [Validators.required]),
       decreseBy: new FormControl(tally.getDecreseBy(), [Validators.required]),
-      resetEveryDay: new FormControl(tally.getActive(), [Validators.required]),
+      resetEveryDay: new FormControl(tally.getResetEveryday(), [Validators.required]),
       value: new FormControl(tally.getValue(), [Validators.required]),
       goal: new FormControl(tally.getGoal(), [Validators.required]),
       topScore: new FormControl(tally.getTopScore(), [Validators.required])
+    });
+
+    this.tallyForm.get('resetEveryDay')?.valueChanges.subscribe(resetEveryDay=>{
+      if(!resetEveryDay && this.tally.getHistory().length > 0){
+        this.cleanHistoryModalData = {
+          open: true,
+          header: 'Radera historik',
+          body: 'Är du säker på att du vill radera historiken.\n Det verkar som det finns ' + this.tally.getHistory().length + ' dagars historik',
+          footer: ''
+        }
+      }
     });
   }
 
@@ -94,6 +105,11 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
       this.tallyService.save(this.tally);
     }
     this.router.navigate(['/tally/' + this.tally.getUuid()], { queryParams: { type: 'success', message: 'Räknare ' + action} });
+  }
+
+  cleanHistoryConfirmed(): void {
+    //this.tally.setHistory([]);
+    this.cleanHistoryModalData = { open: false };
   }
 
 
