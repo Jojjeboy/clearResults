@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "prebuild": "npm version --no-commit-hooks minor",
+    "prebuild": "npm version minor",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
