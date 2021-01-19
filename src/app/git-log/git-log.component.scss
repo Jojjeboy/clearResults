@@ -1,0 +1,19 @@
+.entry{
+    margin: 0 0 10px 0;
+    padding: 0;
+    
+    .clr-row.commit-log{
+        //background: lightpink;
+        padding-bottom: 10px;
+        border-bottom: .05rem solid rgb(236, 236, 236);
+
+        .time-ago {
+            small {
+                background: #efefef;
+                padding: 2px 5px;
+            }
+        }
+    }
+
+    
+}

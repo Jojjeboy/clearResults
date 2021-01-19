@@ -35,6 +35,7 @@ if [[ $(git diff --stat) != '' ]]; then
 #  git add . && 
 #  git commit -m"$1" && 
   npm run postinstall && 
+  git log --all --pretty=format:'%n{%n%d%n  "commithash": "%H", "date": "%ad",%n  "message": "%f"%n}'| grep -v "origin" | tr -d '\n' | sed 's/}{/}, {/g' | sed -e 's/^/[/' |sed -e 's/$/]/' > src/assets/gitlog.json
   git add . && 
   git commit -m"$1" && 
   git push
