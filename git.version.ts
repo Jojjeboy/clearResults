@@ -9,6 +9,8 @@ async function createVersionsFile(filename: string) {
   const branch = (await exec('git rev-parse --abbrev-ref HEAD')).stdout.toString().trim();
   const date = (await exec('git log -1 --format=%cd')).stdout.toString().trim();
 
+  exec('npm run patch')
+
   console.log(`Application Version: '${process.env.npm_package_version}', revision: '${revision}', branch: '${branch}'`);
 
   const content = dedent`
