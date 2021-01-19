@@ -6,72 +6,55 @@
     </div>
 </div>
 
-<h1>Redigera historik</h1>
-
-<div class="card">
-    <div class="card-header">
-        {{ tally.getTitle() }}
-    </div>
-    <div class="card-block">
-        <div class="card-text">
-            <form clrForm>
-                <div class="clr-row" *ngFor="let history of tallyHistory; let i = index">
-                    <div class="clr-col-7">
-                        <label>{{ history.date | timeago }}</label>
-                        <input type="datetime-local" name="date-{{i}}" max="{{ yesterday }}"
-                            id="date_{{i}}" [value]="history.date | date: 'yyyy-MM-ddThh:mm'" />
+<div class="clr-row">
+    <div class="clr-col-12">
+        <div class="card">
+            <form class="container" [formGroup]="historyForm" (ngSubmit)="onSubmit()">
+                <div formArrayName="histories">
+                    <div class="card-header">
+                        {{ tally.getTitle() }}
+                        <span>
+                            <div (click)="addHistory()"
+                                class="btn btn-sm btn-outline-success add-new-history pull-right">Lägg till</div>
+                        </span>
                     </div>
-                    <div class="clr-col-5">
-                        <label>Värde</label>
-                        <input type="number" min="1" [(ngModel)]="history.value" name="value{{i}}" />
+                    <div class="card-block">
+                        <div class="card-text">
+                            <div class="clr-row" *ngFor="let history of histories().controls; let i=index"
+                                [formGroupName]="i">
+                                <div class="clr-col-7">
+                                    <span class="col-header p3">Datum</span><br />
+                                    <input type="date" max="{{ yesterday }}" formControlName="date"
+                                        (ngModelChange)="dateChange($event, i)" class="form-control" required />
+                                </div>
+                                <div class="clr-col-3">
+                                    <span class="col-header p3">Värde</span><br />
+                                    <input type="number" formControlName="value" class="form-control">
+                                </div>
+                                <div class="clr-col-1">
+                                    <div class="action-history" (click)="removeHistory(i)">
+                                        <clr-icon class="close" shape="window-close"></clr-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="action-history" (click)="deleteHistory(history)">
-                        <clr-icon class="close" shape="window-close"></clr-icon>
-                    </div>
-                </div>
-                
-                <div class="clr-row">
-                    <div class="clr-col-7">
-                        <label>Lägg till ny historik</label>
-                        <input type="date" #newDateInput name="date{{tally.getHistory().length + 1}}"
-                            (change)="newDateChosen($event)" max="{{ yesterday }}" [value]="newHistory.date | date:'yyyy-MM-dd'" />
-                    </div>
-                    <div class="clr-col-5">
-                        <label>Värde</label>
-                        <input type="number" min="1" #newValueInput [(ngModel)]="newHistory.value"
-                            name="value{{tally.getHistory().length + 1}}" />
-                    </div>
-                    <div class="action-history">
-                        <clr-icon class="add" *ngIf="!addNewHistoryValid()" shape="plus-circle"></clr-icon>
-                        <clr-icon class="add valid" (click)="addHistory()" *ngIf="addNewHistoryValid()" shape="plus-circle"></clr-icon>
-                    </div>
-                </div>
-
-                <div class="clr-row">
-                    <div class="clr-col-12 clear-history">
-                        <small *ngIf="tally.getHistory().length < 1" class="btn btn-sm btn-link">Radera historik</small>
-                        <button *ngIf="tally.getHistory().length > 0" class="btn btn-sm btn-link"
-                            (click)="cleanHistory()">Radera all historik</button>
+                    <div class="card-footer">
+                        <div class="clr-row">
+                            <div class="clr-col-6">
+                                <a routerLink="/tally/{{ tally.getUuid() }}"
+                                    class="btn btn-danger-outline block">Ångra</a>
+                            </div>
+                            <div class="clr-col-6">
+                                <button [disabled]="!historyForm.valid" class="btn btn-success-outline block"
+                                    type="submit">Spara</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="card-footer">
-        <div class="clr-row">
-            <div class="clr-col-6">
-                <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
-            </div>
-            <div class="clr-col-6">
-                <button [disabled]="!valid()" class="btn btn-success-outline block" (click)="save()">Uppdatera</button>
-            </div>
-        </div>
-    </div>
 </div>
 
-<app-modal [modalData]="cleanHistoryConfirmedModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>
-
-<app-modal [modalData]="newDateChosenModalData" (parentEvent)="wrongDateConfirmed()"></app-modal>
-
-<app-modal [modalData]="deleteHistoryModalData" (parentEvent)="deleteHistoryConfirmed()"></app-modal>
-
+<app-modal [modalData]="dateAlreadyExistModalData" (parentEvent)="dateAlreadyExistConfirmed()"></app-modal>
