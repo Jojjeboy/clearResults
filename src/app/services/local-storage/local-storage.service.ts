@@ -105,16 +105,15 @@ export class LocalStorageService {
     return updated;
   }
 
-  public getItem(id: String): any {
-    const lsItems: any = this.getAll(),
-      newData = [],
-      foundIt = false;
+  public getItem(id: String): Array<object> {
+    const lsItems: any = this.getAll();
+    let returnArr = [];
     for (let i = 0; i < lsItems.length; i++) {
       if (lsItems[i]['uuid'] === id) {
-        return lsItems[i];
+        returnArr.push(lsItems[i]);
       }
     }
-    return foundIt;
+    return returnArr;
   }
 
   public getNrOfItems(): number {

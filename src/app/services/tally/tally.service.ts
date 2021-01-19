@@ -55,11 +55,17 @@ export class TallyService {
   getTallyById(id: String): Observable<Tally> {
     return new Observable<Tally>(observer => {
       let tally: Tally = this.getEmptyTally();
+      let found = false;
       this.tallies.forEach(eachTally => {
         if (eachTally.getUuid() === id) {
           tally = eachTally;
+          found = true;
         }
       });
+      if(!found){
+        let objArr:Array<object> = this.localStorageService.getItem(id);
+        tally = this.convertLSToTallies(objArr)[0];
+      }
       observer.next(tally);
     });
 
@@ -138,7 +144,7 @@ export class TallyService {
 
   }
 
-  convertLSToTallies(lsTallies: Array<object>): Array<Tally> {
+  convertLSToTallies(lsTallies: Array<object>): Tally[] {
     const returnArr = new Array<Tally>();
     for (const obj of lsTallies) {
       let tally = new Tally(obj);
