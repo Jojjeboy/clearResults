@@ -13,7 +13,8 @@ import { TallyListComponent } from './tally-list/tally-list.component';
 import { AddExampleComponent } from './add-example/add-example.component';
 import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-history.component';
 import { ModalComponent } from './modal/modal.component';
-import { HistorySummaryComponent } from './history-summary/history-summary.component';;
+import { HistorySummaryComponent } from './history-summary/history-summary.component';
+import { UpsertTallyComponent } from './upsert-tally/upsert-tally.component';;
 
 const routes: Routes = [
   {
@@ -37,8 +38,18 @@ const routes: Routes = [
     data: { title: 'Add Tally' }
   },
   {
+    path: 'add2',
+    component: UpsertTallyComponent,
+    data: { title: 'Add Tally' }
+  },
+  {
     path: 'edit/:id',
     component: AddEditTallyComponent,
+    data: { title: 'Edit Tally' }
+  },
+  {
+    path: 'edit2/:id',
+    component: UpsertTallyComponent,
     data: { title: 'Edit Tally' }
   },
   {
@@ -65,7 +76,8 @@ const routes: Routes = [
     AddExampleComponent,
     EditTallyHistoryComponent,
     ModalComponent,
-    HistorySummaryComponent
+    HistorySummaryComponent,
+    UpsertTallyComponent
     
   ],
   exports: [RouterModule]

@@ -30,11 +30,11 @@ export class LocalStorageService {
       const lsConfig: any = this.getConfig();
       if (typeof lsConfig === 'object') {
         this.config = lsConfig;
-      } 
+      }
     }
   }
 
-  private setKey(key: string){
+  private setKey(key: string) {
     this.key = key;
   }
 
@@ -77,7 +77,7 @@ export class LocalStorageService {
   public removeItem(key: String): boolean {
     const lsItems: any = this.getAll(),
       newData = [];
-      let foundItem = false,
+    let foundItem = false,
       iter = 0;
     while (iter < lsItems.length) {
       if (key !== lsItems[iter]['uuid']) {
@@ -94,7 +94,7 @@ export class LocalStorageService {
   public update(obj: any): boolean {
     const lsItems: any = this.getAll(),
       newData = [];
-      let updated = false;
+    let updated = false;
     for (let i = 0; i < lsItems.length; i++) {
       if (lsItems[i]['uuid'] === obj['uuid']) {
         lsItems[i] = obj;
@@ -123,17 +123,19 @@ export class LocalStorageService {
 
   public emptyItemsInKey(): void {
     localStorage.setItem(this.key, JSON.stringify(
-      { config: {
-        showAll: false, 
-        appVersion: [
-          { 
-            date: new Date(),
-            hash: applicationversion.revision
-          }
-        ]
-        }, data: [] }
-      
-      ));
+      {
+        config: {
+          showAll: false,
+          appVersion: [
+            {
+              date: new Date(),
+              hash: applicationversion.revision
+            }
+          ]
+        }, data: []
+      }
+
+    ));
   }
 
   public clear(): any {
@@ -143,11 +145,11 @@ export class LocalStorageService {
   public getConfig(): any {
     const lSData: any = JSON.parse(this.localStorage.getItem(this.key));
     if (!lSData['config']) {
-      
+
       return lSData['config'] = {
         showAll: false,
         appVersion: [
-          { 
+          {
             date: new Date(),
             hash: applicationversion.revision
           }

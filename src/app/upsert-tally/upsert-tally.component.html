@@ -1,0 +1,94 @@
+<div class="card">
+    <form [formGroup]="tallyForm" clrForm class="clr-row">
+        <div class="card-block">
+            <div class="card-text">
+                <div class="clr-col-12">
+                    <clr-input-container>
+                        <label for="title">Titel</label>
+                        <input clrInput type="text" id="title" formControlName="title" required />
+                        <clr-control-error>Här måste det finnas ett värde</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="increaseBy">Öka</label>
+                        <input clrInput type="number" placeholder="10" formControlName="increseBy" id="increseBy"
+                            required />
+                        <clr-control-error>Här måste det finnas ett värde</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="decreseBy">Minska</label>
+                        <input clrInput type="number" placeholder="10" formControlName="decreseBy" id="decreseBy"
+                            required />
+                        <clr-control-error>Här måste det finnas ett värde</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="value">Värde</label>
+                        <input clrInput type="number" placeholder="0" formControlName="value" id="value" required />
+                        <clr-control-error>Här måste det finnas ett värde</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="goal">Mål</label>
+                        <input clrInput type="number" placeholder="0" formControlName="goal" id="goal" required />
+                        <clr-control-error>Här måste det finnas ett värde</clr-control-error>
+                    </clr-input-container>
+                </div>
+
+                <div class="clr-col-6">
+                    <clr-input-container>
+                        <label for="topScore">Högsta värdet</label>
+                        <input clrInput type="number" placeholder="0" formControlName="topScore" id="topScore"
+                            required />
+                        <clr-control-error>Här måste det finnas ett värde</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-6"></div>
+
+
+                <!--<div class="clr-col-6 resetEveryDay">
+                        <span>Nollställ varje dag</span>
+                        <div class="radio btn">
+                            <input type="radio" [checked]="true" name="btn-group-demo-radios"
+                                (click)="false(true)" id="btn-demo-radio-1">
+                            <label for="btn-demo-radio-1">Ja</label>
+                        </div>
+                    </div>
+                    <div class="clr-col-6 resetEveryDay">
+                        <span>&nbsp;</span>
+                        <div class="radio btn">
+                            <input type="radio" [checked]="false" name="btn-group-demo-radios"
+                                (click)="false(false)" id="btn-demo-radio-4">
+                            <label for="btn-demo-radio-4">Nej</label>
+                        </div>
+                    </div>-->
+
+                <div class="clr-col-12">
+                    <app-history-summary [tally]="tally"></app-history-summary>
+                </div>
+
+                <div class="clr-col-12">
+                    <span class="success status-badge block" *ngIf="tally.getActive()" (click)="false">Aktiv</span>
+                    <span class="danger status-badge block" *ngIf="!tally.getActive()" (click)="false">Inaktiv</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="clr-row">
+                <div class="clr-col-6">
+                    <a routerLink="/tally/{{ tally.getUuid() }}" class="btn btn-danger-outline block">Ångra</a>
+                </div>
+                <div class="clr-col-6">
+                    <button [disabled]="false" class="btn btn-success-outline block" (click)="false">{{ editMode ?
+                        'Uppdatera' : 'Spara' }}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

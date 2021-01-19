@@ -38,9 +38,15 @@ export class AddEditTallyComponent implements OnInit, OnDestroy {
     if (this.location.path().split('/').length === 3) {
       this.editMode = true;
       this.editId = this.location.path().split('/')[2];
-      this.tallyObservable = this.tallyService.getTallyById(this.editId).subscribe(tally => {
-        this.tally = tally;
-      });
+      try {
+        this.tallyObservable = this.tallyService.getTallyById(this.editId).subscribe(tally => {
+          this.tally = tally;
+        });
+      }
+      catch (e) {
+        console.log(e);
+        this.location.back();
+      }
     }
     else {
       this.tally = this.tallyService.getEmptyTally();

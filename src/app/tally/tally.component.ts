@@ -18,7 +18,7 @@ export class TallyComponent implements OnInit, OnDestroy {
   tally!: Tally;
   percentage = 0.00;
   editMode = false;
-  tallyObservable!: Subscription; 
+  tallyObservable!: Subscription;
 
   @Output() tallyDelete = new EventEmitter<Tally>();
 

@@ -27,10 +27,6 @@ if [ $# -eq 0 ]; then
 fi
 
 
-
-
-
-
 if [[ $(git diff --stat) != '' ]]; then
 
   # upLevel="minor"
