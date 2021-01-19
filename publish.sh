@@ -44,7 +44,7 @@ if [[ $(git diff --stat) != '' ]]; then
 
     git add . &&
     git commit -m"$1" &&
-    $(npm version $upLevel) &&
+    $(npm version "$upLevel") &&
     npm run postinstall &&
     ng build --prod --output-path docs --base-href "$PUBLISH_URL" &&
     git add . &&
