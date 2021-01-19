@@ -3,8 +3,7 @@ import { Tally } from '../classes/Tally';
 
 @Component({
   selector: 'app-history-summary',
-  templateUrl: './history-summary.component.html',
-  styleUrls: ['./history-summary.component.scss']
+  templateUrl: './history-summary.component.html'
 })
 export class HistorySummaryComponent implements OnInit {
 
@@ -13,5 +12,4 @@ export class HistorySummaryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
