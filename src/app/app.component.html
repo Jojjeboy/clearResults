@@ -18,7 +18,7 @@
   <header class="header-6">
     <div class="branding">
       <a routerLink="/" class="nav-link">
-        <span class="title">Clear Results <small class="appversion">{{ appVersion.revision }} {{ appVersion.date | date: 'd, MMMM hh:mm'  }}</small></span>
+        <span class="title">Clear Results <small class="appversion" (click)="toggleShowAppVersion()">{{ appVersion.revision }} | {{ appVersion.date | date: 'd, MMMM hh:mm'  }}</small></span>
       </a>
     </div>
 
@@ -32,7 +32,6 @@
           <a routerLink="/add" clrDropdownItem>Lägg till ny räknare</a>
           <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
           <a (click)="clearCache()" clrDropdownItem>Rensa Local Storage</a>
-          <a (click)="toggleShowAppVersion()" clrDropdownItem>{{ showAppVersion ? 'Göm' : 'Visa' }} version</a>
           
         </clr-dropdown-menu>
       </clr-dropdown>
