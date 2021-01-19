@@ -27,15 +27,13 @@ export class AppComponent implements OnInit {
     open: false,
     header: '',
     body: '',
-    footer: '',
-    callBackFn: ''
+    footer: ''
   }
   versionModal = {
     open: false,
     header: '',
     body: '',
-    footer: '',
-    callBackFn: ''
+    footer: ''
   }
 
   constructor(private localStorageService: LocalStorageService,
@@ -69,7 +67,6 @@ export class AppComponent implements OnInit {
     this.modal.open = modalData.open;
     this.modal.header = modalData.header;
     this.modal.body = modalData.body;
-    this.modal.callBackFn = modalData.callBackFn;
   }
 
   closeModal(): void {
@@ -81,7 +78,6 @@ export class AppComponent implements OnInit {
       open: true,
       header: 'Radera Local Storage',
       body: 'Är du säker på att du vill radera all Local Storage',
-      callBackFn: 'clearCacheConfirmed'
     });
   }
 

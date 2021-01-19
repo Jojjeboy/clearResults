@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -7,7 +7,7 @@ import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@ang
 import { History } from '../classes/History';
 import { Tally } from '../classes/Tally';
 
-import { DateHelperService } from '../services/Date/date-helper.service';
+import { DateHelperService } from '../services/date/date-helper.service';
 import { TallyService } from '../services/tally/tally.service';
 
 
@@ -30,17 +30,12 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
   yesterday: String = this.dateService.getDayOffset(1, 0).toISOString().substring(0, 10);
 
 
-
-
-
-
   constructor(
     private tallyService: TallyService,
     private dateService: DateHelperService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder,
-    private changeDetectorRef: ChangeDetectorRef,
+    private fb: FormBuilder
   ) {
 
 
@@ -52,14 +47,12 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
         this.tally = tally;
 
         this.tallyHistory = this.tallyService.sortHistoryByDate(this.tally);
-
         let fgArr: any = [];
 
         this.tallyHistory.forEach(hist => {
           let aFormControl = new FormControl(hist.getDate().toISOString().substring(0, 10), [Validators.required, Validators.minLength(3)]);
 
-
-
+          // Add formgroup to array
           fgArr.push(
             this.fb.group({
               date: aFormControl,
@@ -69,14 +62,10 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
           );
         });
 
-
+        // Add formgrouparr to form
         this.historyForm = this.fb.group({
-
           histories: this.fb.array(fgArr)
-
         });
-
-
       });
     });
   }
@@ -115,10 +104,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
         body: 'Valt datum: ' + newDate + ' finns redan i historiken, välj ett nytt datum!',
         footer: ''
       }
-
-
     }
-
   }
 
   histories(): FormArray {
@@ -146,7 +132,6 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
   cleanHistoryConfirmed(): void {
 
     this.tally.setHistory([]);
-    //this.histories().removeAt(0);
     this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
   }
@@ -164,7 +149,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
     });
 
     this.tally.setHistory(historyArr);
-    this.tallyService.save(this.tally);
+    this.tallyService.update(this.tally);
     this.router.navigate(['/tally/' + this.tally.getUuid()]);
 
   }

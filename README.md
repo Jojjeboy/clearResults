@@ -29,10 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   ## *** Att göra *** ##
 
-- Squach flera testcommits
 - Lägg till alert längst upp när tally är uppdaterad
 - Lägg till alert längst upp när historik är uppdaterad
-- History css lite off när man tagit bort alla
 - Gör 'ny tally' formuläret reactive
 - Skapa History service 
 - Se till att historik inte läggs in om det datumet redan finns.

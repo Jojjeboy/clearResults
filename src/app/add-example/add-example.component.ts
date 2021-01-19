@@ -3,7 +3,7 @@ import { UUIDService } from '../services/uuid/uuid.service';
 import { TallyService } from '../services/tally/tally.service';
 import { Tally } from '../classes/Tally';
 import { Subscription } from 'rxjs';
-import { DateHelperService } from '../services/Date/date-helper.service';
+import { DateHelperService } from '../services/date/date-helper.service';
 
 @Component({
   selector: 'app-add-example',
@@ -14,7 +14,7 @@ export class AddExampleComponent implements OnInit, OnDestroy {
   constructor(
     private dateHelperService: DateHelperService,
     private uuidService: UUIDService,
-    private tallyService: TallyService
+    private tallyService: TallyService 
     ){
 
   }
