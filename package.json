@@ -1,6 +1,6 @@
 {
   "name": "clear-results",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" git.version.ts",
-    "postpublish" : "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
   },
   "private": true,
   "dependencies": {
