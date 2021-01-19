@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { applicationversion } from '../environments/applicationversion';
 
+export interface Appversion {
+  version: string
+  revision: string
+  branch: string
+  date: string
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +20,8 @@ export class AppComponent implements OnInit {
   showAlert: boolean = false;
   alertText!: string;
   alertType: string = 'error';
+  appVersion:Appversion  = applicationversion;
+  showAppVersion:boolean = false;
 
   modal = {
     open: false,
@@ -43,6 +52,10 @@ export class AppComponent implements OnInit {
           }, 2500);
         }
       });
+  }
+
+  toggleShowAppVersion() {
+    this.showAppVersion = !this.showAppVersion;
   }
 
   openModal(modalData: any): void {

@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
-
 /* Components */
 import { TallyComponent } from './tally/tally.component';
 import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component';
@@ -17,7 +15,6 @@ import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-histo
 import { ModalComponent } from './modal/modal.component';
 import { HistorySummaryComponent } from './history-summary/history-summary.component';
 import { EditTallyHistory2Component } from './edit-tally-history2/edit-tally-history2.component';
-import { GitLogComponent } from './git-log/git-log.component';
 
 const routes: Routes = [
   {
@@ -55,11 +52,6 @@ const routes: Routes = [
     component: EditTallyHistory2Component,
     data: { title: 'Edit tally history' }
   },
-  {
-    path: 'gitlog',
-    component: GitLogComponent,
-    data: { title: 'Git logs' }
-  },
 
   { path: '**', component: TallyListComponent }
 ];
@@ -80,8 +72,7 @@ const routes: Routes = [
     EditTallyHistoryComponent,
     ModalComponent,
     HistorySummaryComponent,
-    EditTallyHistory2Component,
-    GitLogComponent
+    EditTallyHistory2Component
   ],
   exports: [RouterModule]
 })

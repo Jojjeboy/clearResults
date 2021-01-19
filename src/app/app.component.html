@@ -18,7 +18,7 @@
   <header class="header-6">
     <div class="branding">
       <a routerLink="/" class="nav-link">
-        <span class="title">Clear Results</span>
+        <span class="title">Clear Results <small class="font-smaller">{{ appVersion.revision }}</small></span>
       </a>
     </div>
 
@@ -32,12 +32,32 @@
           <a routerLink="/add" clrDropdownItem>Lägg till ny räknare</a>
           <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
           <a (click)="clearCache()" clrDropdownItem>Rensa Local Storage</a>
-          <a routerLink="/gitlog" clrDropdownItem>Git Logs</a>
+          <a (click)="toggleShowAppVersion()" clrDropdownItem>{{ showAppVersion ? 'Göm' : 'Visa' }} version</a>
           
         </clr-dropdown-menu>
       </clr-dropdown>
     </div>
   </header>
+
+  <div class="clr-row" *ngIf="showAppVersion">
+    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+        <div class="card">
+  
+            <div class="card-block">
+                <div class="card-title">
+                    <strong>Git version</strong>
+                </div>
+                <div class="card-text">
+                    <p><small>App version: {{ appVersion.version }}<br />
+                    App revision: {{ appVersion.revision }}<br />
+                    App branch: {{ appVersion.branch }}<br />
+                    Build date: {{ appVersion.date | date: 'd MMMM'  }}<br />
+                  </small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
 
   <!-- Main content -->
   <div class="content-container">
@@ -58,3 +78,5 @@
     <button type="button" class="btn btn-primary" (click)="clearCacheConfirmed()">Ok</button>
   </div>
 </clr-modal>
+
+
