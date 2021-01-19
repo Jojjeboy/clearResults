@@ -18,8 +18,8 @@
   <header class="header-6">
     <div class="branding">
       <a routerLink="/" class="nav-link">
-        <span class="title">Clear Results <small class="appversion" (click)="versionModal.open = true">{{
-            appVersion.revision }} | {{ appVersion.date | date: 'd, MMMM hh:mm' }}</small></span>
+        <span class="title">Clear Results <small class="appversion" (click)="versionModal.open = true">
+          v{{ appVersion.version }} | {{ appVersion.date | date: 'd, MMMM hh:mm' }}</small></span>
       </a>
     </div>
 
@@ -65,7 +65,7 @@
   <div class="modal-body">
     <p><small>App version: {{ appVersion.version }}<br />
       App revision: <a href="https://github.com/Jojjeboy/clearResults/commit/{{appVersion.revision}}">{{
-        appVersion.revision }}</a><br />
+        appVersion.revision }}</a> / <a href="https://github.com/Jojjeboy/clearResults/commits/main">Alla commits</a><br />
       App branch: {{ appVersion.branch }}<br />
       Build date: {{ appVersion.date | date: 'd, MMMM hh:mm' }}<br />
     </small></p>
