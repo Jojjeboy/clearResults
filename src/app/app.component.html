@@ -18,7 +18,8 @@
   <header class="header-6">
     <div class="branding">
       <a routerLink="/" class="nav-link">
-        <span class="title">Clear Results <small class="appversion" (click)="toggleShowAppVersion()">{{ appVersion.revision }} | {{ appVersion.date | date: 'd, MMMM hh:mm'  }}</small></span>
+        <span class="title">Clear Results <small class="appversion" (click)="versionModal.open = true">{{
+            appVersion.revision }} | {{ appVersion.date | date: 'd, MMMM hh:mm' }}</small></span>
       </a>
     </div>
 
@@ -32,32 +33,13 @@
           <a routerLink="/add" clrDropdownItem>Lägg till ny räknare</a>
           <a routerLink="/example" clrDropdownItem>Lägg till exempel</a>
           <a (click)="clearCache()" clrDropdownItem>Rensa Local Storage</a>
-          
+
         </clr-dropdown-menu>
       </clr-dropdown>
     </div>
   </header>
 
-  <div class="clr-row" *ngIf="showAppVersion">
-    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
-        <div class="card">
   
-            <div class="card-block">
-                <div class="card-title">
-                    <strong>Git version</strong>
-                </div>
-                <div class="card-text">
-                    <p><small>App version: {{ appVersion.version }}<br />
-                    App revision: <a href="https://github.com/Jojjeboy/clearResults/commit/{{appVersion.revision}}">{{ appVersion.revision }}</a><br />
-                    App branch: {{ appVersion.branch }}<br />
-                    Build date: {{ appVersion.date | date: 'd, MMMM hh:mm'  }}<br />
-                  </small></p>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-
   <!-- Main content -->
   <div class="content-container">
     <div class="content-area">
@@ -78,4 +60,17 @@
   </div>
 </clr-modal>
 
-
+<clr-modal [(clrModalOpen)]="versionModal.open">
+  <h3 class="modal-title">Git version</h3>
+  <div class="modal-body">
+    <p><small>App version: {{ appVersion.version }}<br />
+      App revision: <a href="https://github.com/Jojjeboy/clearResults/commit/{{appVersion.revision}}">{{
+        appVersion.revision }}</a><br />
+      App branch: {{ appVersion.branch }}<br />
+      Build date: {{ appVersion.date | date: 'd, MMMM hh:mm' }}<br />
+    </small></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="versionModal.open = false">Ok</button>
+  </div>
+</clr-modal>

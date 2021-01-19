@@ -30,6 +30,13 @@ export class AppComponent implements OnInit {
     footer: '',
     callBackFn: ''
   }
+  versionModal = {
+    open: false,
+    header: '',
+    body: '',
+    footer: '',
+    callBackFn: ''
+  }
 
   constructor(private localStorageService: LocalStorageService,
     private route: ActivatedRoute, private router: Router) {
