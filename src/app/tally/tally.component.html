@@ -11,9 +11,10 @@
     <small>{{ tally.getLastTouched() | timeago }}</small>
 </div>
 
-<hr />
+<small class="status">{{ tally.getActive() ? 'Aktiv' : 'Inaktiv' }}</small>
+<hr [class.active]="tally.getActive()" />
 
-<div class="clr-container">
+<div class="clr-container" [class.inactive]="!tally.getActive()">
 
     <div class="clr-row tally-meta">
         <div class="clr-col-6">
@@ -56,10 +57,10 @@
 
     <div class="clr-row tally-meta">
         <div class="clr-col-6">
-            <button class="btn btn-danger-outline block decrese" (click)="decrease()">Minska</button>
+            <button class="btn btn-danger-outline block decrese"  [disabled]="!tally.getActive()" (click)="decrease()">Minska</button>
         </div>
         <div class="clr-col-6">
-            <button class="btn btn-success-outline block increse" (click)="increase()">Öka</button>
+            <button class="btn btn-success-outline block increse"  [disabled]="!tally.getActive()" (click)="increase()">Öka</button>
         </div>
     </div>
 </div>

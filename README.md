@@ -29,11 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   ## *** Att göra *** ##
 
-- Gör 'ny tally' formuläret reactive
 - Skapa History service 
 - Se till att historik inte läggs in om det datumet redan finns.
-- Skriv ut datum på senaste version
-- Byt ut dynamiskt mål med senaste ändrad
 - Organisera komponenter och moduler
 - Fixa så att exempel hämtas från example.json
 - Statistiska mål

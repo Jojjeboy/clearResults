@@ -1,33 +1,50 @@
-@import './../../assets/styles/variables';
+@import "./../../assets/styles/variables";
 
-.clr-row.tally-meta {
-    margin-bottom: 20px;
-    .clr-col-6 {
-        background: #fff;
-        padding: 20px;
-        border: 1px solid #e6e6e6;
-        border-right: none;
-        
-        &:last-child {
-            border-radius: 3px;
+.clr-container {
+    &.inactive {
+        opacity: 0.3;
+    }
+    .clr-row.tally-meta {
+        margin-bottom: 20px;
+        .clr-col-6 {
+            background: #fff;
+            padding: 20px;
             border: 1px solid #e6e6e6;
+            border-right: none;
+
+            &:last-child {
+                border-radius: 3px;
+                border: 1px solid #e6e6e6;
+            }
+        }
+
+        h4 {
+            margin-top: 0;
+        }
+
+        &.tally-progress {
+            background: #fff;
+            padding: 0.5rem 0;
+            border: 1px solid #e6e6e6;
+
+            .progress-meter {
+                height: 4px;
+            }
         }
     }
+}
 
-
-    h4 {
-        margin-top: 0;
+hr {
+    margin-top: 0;
+    &.active {
+        border-bottom: 1px solid $successColor;
     }
+}
 
-    &.tally-progress{
-        background: #fff;
-        padding: 0.5rem 0;
-        border: 1px solid #e6e6e6;
-
-        .progress-meter {
-            height: 4px;
-        }
-    }
+.status {
+    display: block;
+    text-align: right;
+    text-transform: uppercase;
 }
 
 h3.modal-title::first-letter {

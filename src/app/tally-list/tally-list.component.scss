@@ -4,10 +4,10 @@
     &.clear-spinner {
         text-align: center;
     }
-    .inactive{
+    &.inactive{
         opacity: 0.5;
     }
-    .hideInactive {
+    &.hideInactive {
         display: none;
     }
 }

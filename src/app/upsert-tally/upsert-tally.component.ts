@@ -68,6 +68,7 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
       increseBy: new FormControl(tally.getIncreseBy(), [Validators.required]),
       decreseBy: new FormControl(tally.getDecreseBy(), [Validators.required]),
       resetEveryDay: new FormControl(tally.getResetEveryday(), [Validators.required]),
+      active: new FormControl(tally.getActive(), [Validators.required]),
       value: new FormControl(tally.getValue(), [Validators.required]),
       goal: new FormControl(tally.getGoal(), [Validators.required]),
       topScore: new FormControl(tally.getTopScore(), [Validators.required])
@@ -94,6 +95,7 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
     this.tally.setGoal(this.tallyForm.value.goal);
     this.tally.setTopScore(this.tallyForm.value.topScore);
     this.tally.setValue(this.tallyForm.value.value);
+    this.tally.setActive(this.tallyForm.value.active);
     this.tally.setLastTouched(new Date());
     
     let action: string = 'skapad';
