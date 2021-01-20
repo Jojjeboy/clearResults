@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Tally } from '../../classes/Tally';
 import { History } from '../../classes/History';
 import { LocalStorageService } from '../../services/local-storage/local-storage.service';
+import { HistoryService } from '../../services/history/history.service';
 import { applicationversion } from '../../../environments/applicationversion';
 import { Observable } from 'rxjs';
+import { BaseTally } from '../baseTally.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TallyService {
+export class TallyService extends BaseTally {
 
   lsTallies = Array<Object>();
   tallies: Array<Tally> = [];
@@ -16,8 +18,9 @@ export class TallyService {
   percentage = 0.00;
   private showAll = false;
 
-  constructor(private localStorageService: LocalStorageService) {
-    this.lsTallies = <Array<Object>>this.localStorageService.getAll();
+  constructor(private historyService: HistoryService, localStorageService: LocalStorageService){
+    super(localStorageService);
+    this.lsTallies = localStorageService.getAll();
     this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
 
     this.resetOldTallyCounter();
@@ -74,37 +77,14 @@ export class TallyService {
   resetOldTallyCounter(): void {
     for (let tally of this.tallies) {
       if (this.isOld(tally) && tally.getResetEveryday() === true) {
-        tally = this.addToHistory(tally);
-        tally.setValue(0);
-        this.update(tally);
+        tally = this.historyService.addToHistory(tally);
       }
     }
   }
 
   isOld(tally: Tally): Boolean {
     const now = new Date();
-    return now.getDate() !== tally.getLastTouched().getDate();
-  }
-
-  addToHistory(tally: Tally): Tally {
-    const tallyHistory: Array<History> = tally.getHistory();
-    const newHistoryEntry = new History({
-      value: tally.getValue(),
-      date: tally.getLastTouched()
-    });
-    if (tallyHistory.length < 1) {
-      tallyHistory.push(newHistoryEntry);
-      tally.setHistory(tallyHistory);
-    }
-    else {
-      tallyHistory.forEach(history => {
-        if (new Date(history.date).toDateString() !== tally.getLastTouched().toDateString()) {
-          tallyHistory.push(newHistoryEntry);
-          tally.setHistory(tallyHistory);
-        }
-      });
-    }
-    return tally;
+    return now.getDate () !== tally.getLastTouched().getDate();
   }
 
   increase(tally: Tally): void {
@@ -129,7 +109,7 @@ export class TallyService {
   }
 
   cleanHistory(tally: Tally): void {
-    tally.setHistory([]);
+    tally = this.historyService.cleanHistory(tally);
     this.update(tally);
   }
 
@@ -202,9 +182,6 @@ export class TallyService {
     this.localStorageService.removeItem(deleteTally.getUuid());
   }
 
-  touch(tally: Tally): void {
-    tally.setLastTouched(new Date());
-  }
 
   toggleShowAll(): void {
     let config = this.localStorageService.getConfig();
@@ -304,7 +281,7 @@ export class TallyService {
   }
 
   reloadDataFromLS() {
-    this.lsTallies = <Array<Object>>this.localStorageService.getAll();
-    this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
+    this.lsTallies = this.localStorageService.getAll();
+    this.tallies = this.convertLSToTallies(this.lsTallies);
   }
 }

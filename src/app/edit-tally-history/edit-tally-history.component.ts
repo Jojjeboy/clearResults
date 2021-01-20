@@ -9,6 +9,7 @@ import { Tally } from '../classes/Tally';
 
 import { DateHelperService } from '../services/date/date-helper.service';
 import { TallyService } from '../services/tally/tally.service';
+import { HistoryService } from '../services/history/history.service';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
 
   constructor(
     private tallyService: TallyService,
+    private historyService: HistoryService,
     private dateService: DateHelperService,
     private route: ActivatedRoute,
     private router: Router,
@@ -46,7 +48,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
       this.tallyObservable = this.tallyService.getTallyById(params['id']).subscribe(tally => {
         this.tally = tally;
 
-        this.tallyHistory = this.tallyService.sortHistoryByDate(this.tally);
+        this.tallyHistory = this.historyService.sortHistoryByDate(this.tally);
         let fgArr: any = [];
 
         this.tallyHistory.forEach(hist => {

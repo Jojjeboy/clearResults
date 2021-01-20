@@ -3,6 +3,7 @@ import { Tally } from '../classes/Tally';
 import { TallyService } from '../services/tally/tally.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HistoryService } from '../services/history/history.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class TallyComponent implements OnInit, OnDestroy {
   constructor(
     private tallyService: TallyService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private historyService: HistoryService
   ) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class TallyComponent implements OnInit, OnDestroy {
   }
 
   cleanHistoryConfirmed(): void {
-    this.tallyService.cleanHistory(this.tally);
+    this.historyService.cleanHistory(this.tally);
     this.cleanHistoryModalData = { open: false };
   }
 
