@@ -38,6 +38,7 @@ export class HistoryService extends BaseTally {
 
   cleanHistory(tally: Tally): Tally {
     tally.setHistory([]);
+    this.update(tally);
     return tally;
   }
 
@@ -48,5 +49,19 @@ export class HistoryService extends BaseTally {
 
     tally.setHistory(tallyHistory);
     return tallyHistory;
+  }
+
+  // Deprecated
+  removeDuplicatesInHistory(tallies: Tally[]): void {
+    tallies.forEach(tally => {
+      let arr = tally.getHistory();
+      arr = arr.filter((history: any, index: any, self: any) =>
+        index === self.findIndex((t: any) => (
+          t.date === history.date && t.value === history.value
+        ))
+      );
+      tally.setHistory(arr);
+      this.update(tally);
+    });
   }
 }

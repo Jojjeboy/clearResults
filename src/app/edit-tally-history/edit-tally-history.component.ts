@@ -130,9 +130,7 @@ export class EditTallyHistoryComponent implements OnInit, OnDestroy {
   }
 
   cleanHistoryConfirmed(): void {
-
-    this.tally.setHistory([]);
-    this.tallyService.update(this.tally);
+    this.historyService.cleanHistory(this.tally)
     this.router.navigate(['/tally/' + this.tally.getUuid()], { queryParams: { type: 'success', message: 'Historiken borttagen' } });
   }
 

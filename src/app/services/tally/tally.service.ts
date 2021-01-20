@@ -27,13 +27,6 @@ export class TallyService extends BaseTally {
     this.updateAppVersion();
   }
 
-  /*
-  getTallies(): Array<Tally>{
-    this.reloadDataFromLS();
-    return this.sortByActive();
-  }
-  */
-
   getTallies(): Observable<Tally[]> {
     return new Observable<Tally[]>(observer => {
       this.reloadDataFromLS();
@@ -113,16 +106,6 @@ export class TallyService extends BaseTally {
     this.update(tally);
   }
 
-  sortHistoryByDate(tally: Tally) {
-    let tallyHistory: History[] = tally.getHistory().sort((a: any, b: any) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
-
-    tally.setHistory(tallyHistory);
-    this.update(tally);
-    return tallyHistory;
-
-  }
 
   convertLSToTallies(lsTallies: Array<object>): Tally[] {
     const returnArr = new Array<Tally>();
@@ -144,10 +127,6 @@ export class TallyService extends BaseTally {
     return returnArr;
   }
 
-  convertToLsTally(tallyCounter: Tally): Object {
-    const po = Object.assign({}, tallyCounter);
-    return po;
-  }
 
   getEmptyTally() {
     return new Tally({
@@ -165,14 +144,6 @@ export class TallyService extends BaseTally {
     });
   }
 
-  save(tally: Tally): void {
-    this.localStorageService.add(this.convertToLsTally(tally));
-  }
-
-  update(tally: Tally): void {
-    this.touch(tally);
-    this.localStorageService.update(this.convertToLsTally(tally));
-  }
 
   delete(deleteTally: Tally): void {
     const index = this.tallies.indexOf(deleteTally);
@@ -193,20 +164,6 @@ export class TallyService extends BaseTally {
   getShowAll(): boolean {
     return this.showAll;
   }
-
-  removeDuplicatesInHistory() {
-    this.tallies.forEach(tally => {
-      let arr = tally.getHistory();
-      arr = arr.filter((history: any, index: any, self: any) =>
-        index === self.findIndex((t: any) => (
-          t.date === history.date && t.value === history.value
-        ))
-      );
-      tally.setHistory(arr);
-      this.update(tally);
-    });
-  }
-
 
   sortByLastTouched(): Array<Tally> {
     let sortedArray: Tally[] = this.tallies.sort((obj1, obj2) => {
@@ -258,26 +215,6 @@ export class TallyService extends BaseTally {
       });
       this.localStorageService.saveConfig(config);
     }
-  }
-
-  private isObject(obj: any) {
-    var type = typeof obj;
-    return type === 'function' || type === 'object' && !!obj;
-  };
-
-  public cloneTally(src: any): Tally {
-    let target: any = {};
-    for (let prop in src) {
-      if (src.hasOwnProperty(prop)) {
-        // if the value is a nested object, recursively copy all it's properties
-        if (this.isObject(src[prop])) {
-          target[prop] = this.cloneTally(src[prop]);
-        } else {
-          target[prop] = src[prop];
-        }
-      }
-    }
-    return new Tally(target);
   }
 
   reloadDataFromLS() {

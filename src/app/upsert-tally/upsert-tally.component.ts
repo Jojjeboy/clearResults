@@ -7,6 +7,7 @@ import { UUIDService } from '../services/uuid/uuid.service';
 import { Subscription } from 'rxjs';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HistoryService } from '../services/history/history.service';
 
 @Component({
   selector: 'app-upsert-tally',
@@ -30,6 +31,7 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
     private location: Location,
     private router: Router,
     private tallyService: TallyService,
+    private historyService: HistoryService,
     private uUIDService: UUIDService) {
 
   }
@@ -110,7 +112,7 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
   }
 
   cleanHistoryConfirmed(): void {
-    //this.tally.setHistory([]);
+    this.historyService.cleanHistory(this.tally)
     this.cleanHistoryModalData = { open: false };
   }
 
