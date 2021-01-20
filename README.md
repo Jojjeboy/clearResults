@@ -29,9 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
   ## *** Att göra *** ##
 
-- Skapa History service 
-- Se till att historik inte läggs in om det datumet redan finns.
 - Organisera komponenter och moduler
-- Fixa så att exempel hämtas från example.json
 - Statistiska mål
+- Se till att historik inte läggs in om det datumet redan finns.
+- Fixa så att exempel hämtas från example.json
 - Gör en komponent av modal - https://levelup.gitconnected.com/how-to-create-a-reusable-modal-component-in-angular-9-using-ng-bootstrap-50c0aa5f3a65
