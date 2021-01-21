@@ -6,6 +6,7 @@ import { HistoryService } from '../../services/history/history.service';
 import { applicationversion } from '../../../environments/applicationversion';
 import { Observable } from 'rxjs';
 import { BaseTally } from '../baseTally.service';
+import { DateHelperService } from '../date/date-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,16 @@ export class TallyService extends BaseTally {
   percentage = 0.00;
   private showAll = false;
 
-  constructor(private historyService: HistoryService, localStorageService: LocalStorageService){
-    super(localStorageService);
+  constructor(
+    private historyService: HistoryService,
+    localStorageService: LocalStorageService,
+    dateHelperService: DateHelperService) {
+
+    super(localStorageService, dateHelperService);
     this.lsTallies = localStorageService.getAll();
     this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
 
-    this.resetOldTallyCounter();
+    this.resetOldTallys();
     this.updateAppVersion();
   }
 
@@ -58,26 +63,41 @@ export class TallyService extends BaseTally {
           found = true;
         }
       });
-      if(!found){
-        let objArr:Array<object> = this.localStorageService.getItem(id);
+      if (!found) {
+        let objArr: Array<object> = this.localStorageService.getItem(id);
         tally = this.convertLSToTallies(objArr)[0];
       }
       observer.next(tally);
     });
-
   }
 
-  resetOldTallyCounter(): void {
+  resetOldTallys(): void {
     for (let tally of this.tallies) {
-      if (this.isOld(tally) && tally.getResetEveryday() === true) {
-        tally = this.historyService.addToHistory(tally);
+      if (this.shouldAddToHistory(tally)) {
+        let histories = this.historyService.addToHistory(tally.getValue(), tally.getLastTouched(), tally.getHistory());
+        tally.setHistory(histories);
+        tally.setValue(0);
+        this.touch(tally);
+        this.update(tally);
       }
     }
   }
 
+  shouldAddToHistory(tally: Tally): boolean {
+    let shouldAddToHistory = false;
+    if (tally.getResetEveryday()) {
+      if (this.dateHelperService.lastTouchedIsOld(tally.getLastTouched())) {
+        if (this.historyService.dateExistInHistory(tally.getLastTouched(), tally.getHistory()) === false) {
+          shouldAddToHistory = true;
+        }
+      }
+    }
+    return shouldAddToHistory;
+  }
+
   isOld(tally: Tally): Boolean {
     const now = new Date();
-    return now.getDate () !== tally.getLastTouched().getDate();
+    return now.getDate() !== tally.getLastTouched().getDate();
   }
 
   increase(tally: Tally): void {
@@ -88,6 +108,7 @@ export class TallyService extends BaseTally {
     if (tallyValue > tally.getTopScore()) {
       tally.setTopScore(tally.getValue());
     }
+    this.touch(tally);
     this.update(tally);
   }
 
@@ -97,12 +118,14 @@ export class TallyService extends BaseTally {
     if (tallyValue > 0) {
       tallyValue -= tallyIncreseBy;
       tally.setValue(tallyValue);
+      this.touch(tally);
       this.update(tally);
     }
   }
 
   cleanHistory(tally: Tally): void {
     tally = this.historyService.cleanHistory(tally);
+    this.touch(tally);
     this.update(tally);
   }
 

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { TallyService } from './tally.service';
 
-describe('TallyCounterService', () => {
+describe('TallyService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

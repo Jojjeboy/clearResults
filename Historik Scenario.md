@@ -6,8 +6,10 @@ Allmänt
 
 Tanken är att: 
 1. När man laddar appen så loopar den igenom alla räknare
-2. kollar om den ska nollställas varje dag (resetEveryDay)
-3. och isåfall kollar om lastTouched är nåt annat datum än idag och isåfall lägger in det datumet i historiken och nollställer värdet och viktigt är att den uppdaterar lastTouched till nu
+2. Kollar om den ska nollställas varje dag (resetEveryDay)
+3. Och isåfall kollar om lastTouched är nåt annat datum än idag och isåfall 
+4. Kollar att datumet inte redan är tillagt, borde inte behövas eftersom lastTouched är uppdaterat) och isåfall
+5. Lägger in det datumet i historiken och nollställer värdet och viktigt är att den uppdaterar lastTouched till nu
 
 
 

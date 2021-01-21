@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { History } from 'src/app/classes/History';
 import { Tally } from 'src/app/classes/Tally';
 import { BaseTally } from '../baseTally.service';
+import { DateHelperService } from '../date/date-helper.service';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable({
@@ -9,40 +10,43 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
 })
 export class HistoryService extends BaseTally {
 
-  constructor(localStorageService: LocalStorageService) {
-    super(localStorageService);
+  constructor(localStorageService: LocalStorageService, dateHelperService: DateHelperService) {
+    super(localStorageService, dateHelperService);
   }
 
-  addToHistory(tally: Tally): Tally {
-    const tallyHistory: Array<History> = tally.getHistory();
-    const newHistoryEntry = new History({
-      value: tally.getValue(),
-      date: tally.getLastTouched()
+  dateExistInHistory(lastTouched: Date, histories: History[]): boolean {
+    let dateExist = false;
+    const dateTimestampLastTouched = lastTouched.setHours(0, 0, 0, 0);
+
+    histories.forEach((history) => {
+      if(dateTimestampLastTouched === history.getDate().setHours(0, 0, 0, 0)){
+        dateExist = true;
+      }
     });
-    if (tallyHistory.length < 1) {
-      tallyHistory.push(newHistoryEntry);
-      tally.setHistory(tallyHistory);
-    }
-    else {
-      tallyHistory.forEach(history => {
-        if (new Date(history.date).toDateString() !== tally.getLastTouched().toDateString()) {
-          tallyHistory.push(newHistoryEntry);
-          tally.setHistory(tallyHistory);
-        }
-      });
-    }
-    tally.setValue(0);
-    this.update(tally);
-    return tally;
+
+    return dateExist;
+  }
+
+  addToHistory(value: number, lastTouched: Date, histories: History[]): Array<History> {
+    const newHistoryEntry = new History({
+      value: value,
+      date: lastTouched
+    });
+    histories.push(newHistoryEntry);
+    
+
+    
+    return histories;
   }
 
   cleanHistory(tally: Tally): Tally {
     tally.setHistory([]);
+    this.touch(tally);
     this.update(tally);
     return tally;
   }
 
-  sortHistoryByDate(tally: Tally): History[]{
+  sortHistoryByDate(tally: Tally): History[] {
     let tallyHistory: History[] = tally.getHistory().sort((a: any, b: any) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
@@ -51,7 +55,7 @@ export class HistoryService extends BaseTally {
     return tallyHistory;
   }
 
-  // Deprecated
+  /*
   removeDuplicatesInHistory(tallies: Tally[]): void {
     tallies.forEach(tally => {
       let arr = tally.getHistory();
@@ -61,7 +65,9 @@ export class HistoryService extends BaseTally {
         ))
       );
       tally.setHistory(arr);
+      this.touch(tally);
       this.update(tally);
     });
   }
+  */
 }

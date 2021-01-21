@@ -37,4 +37,24 @@ export class DateHelperService {
     }
     return offsetDate;
   }
+
+
+  lastTouchedIsOld(lastTouched: Date): boolean {
+
+    if (new Date().setHours(0, 0, 0, 0) - lastTouched.setHours(0, 0, 0, 0) > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  fixDateBeforeSaving(lastTouched: Date): Date {
+    let hoursDiff = lastTouched.getHours() - lastTouched.getTimezoneOffset() / 60;
+    let minutesDiff = (lastTouched.getHours() - lastTouched.getTimezoneOffset()) % 60;
+    lastTouched.setHours(hoursDiff);
+    lastTouched.setMinutes(minutesDiff);
+
+    return lastTouched;
+  }
+
 }

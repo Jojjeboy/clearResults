@@ -12,8 +12,11 @@
             <div class="card-info">
                 <div class="card-header">
                     <div class="header-main-text">
-                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getTitle() }}</a> <span
-                            class="pull-right" *ngIf="!tally.getActive()"> Inaktiv</span>
+                        <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getTitle() }}</a>
+                        <span class="pull-right" *ngIf="tally.getResetEveryday()">
+                            <clr-icon shape="recycle"></clr-icon>
+
+                        </span>
                     </div>
                     <div class="pull-right header-meta-text">
                     </div>
