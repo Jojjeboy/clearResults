@@ -22,15 +22,19 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-  ## *** Att göra *** ##
+### Webbsidan
 
+[https://jojjeboy.github.io/clearResults](https://jojjeboy.github.io/clearResults).
+
+
+  # *** Att göra *** ##
+
+- Se till att historik inte läggs in om det datumet redan finns.
 - Organisera komponenter och moduler
 - Statistiska mål
-- Se till att historik inte läggs in om det datumet redan finns.
 - Fixa så att exempel hämtas från example.json
 - Gör en komponent av modal - https://levelup.gitconnected.com/how-to-create-a-reusable-modal-component-in-angular-9-using-ng-bootstrap-50c0aa5f3a65
+
+
