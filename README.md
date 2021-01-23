@@ -33,7 +33,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 - Organisera komponenter och moduler
 - Statistiska mål
-- Fixa så att exempel hämtas från example.json
-- Gör en komponent av modal - https://levelup.gitconnected.com/how-to-create-a-reusable-modal-component-in-angular-9-using-ng-bootstrap-50c0aa5f3a65
 
 

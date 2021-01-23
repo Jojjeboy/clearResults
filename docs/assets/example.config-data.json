@@ -18,7 +18,7 @@
     },
     "data": [
         {
-            "name": "Armhävningar",
+            "title": "Armhävningar",
             "increseBy": 25,
             "decreseBy": 25,
             "resetEveryDay": true,
@@ -44,7 +44,7 @@
             "active": true
         },
         {
-            "name": "Plankan (30sek)",
+            "title": "Plankan (30sek)",
             "increseBy": 10,
             "decreseBy": 10,
             "resetEveryDay": true,
@@ -57,7 +57,7 @@
             "active": false
         },
         {
-            "name": "Ab-rolls",
+            "title": "Ab-rolls",
             "increseBy": 10,
             "decreseBy": 10,
             "resetEveryDay": true,
@@ -83,7 +83,7 @@
             "active": true
         },
         {
-            "name": "sushi rolls",
+            "title": "sushi rolls",
             "increseBy": 10,
             "decreseBy": 10,
             "resetEveryDay": true,
@@ -109,7 +109,7 @@
             "active": true
         },
         {
-            "name": "other rols rolls",
+            "title": "other rols rolls",
             "increseBy": 10,
             "decreseBy": 10,
             "resetEveryDay": true,
