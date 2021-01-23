@@ -5,10 +5,10 @@ import { Subscription } from 'rxjs';
 import { HttpService } from '../shared/service/http/http.service';
 
 @Component({
-  selector: 'app-add-example',
-  templateUrl: './add-example.component.html'
+  selector: 'example',
+  templateUrl: './example.component.html'
 })
-export class AddExampleComponent implements OnInit, OnDestroy {
+export class ExampleComponent implements OnInit, OnDestroy {
 
   constructor(
     private tallyService: TallyService,
@@ -41,7 +41,6 @@ export class AddExampleComponent implements OnInit, OnDestroy {
       if (uuid === tally.getUuid()) {
         this.tallyService.save(tally);
         this.talliesAdded.push(uuid);
-        // Also mark it done
       }
     });
   }

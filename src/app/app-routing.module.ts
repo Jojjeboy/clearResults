@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 /* Components */
 import { DetailComponent } from './tally/components/detail/detail.component';
 import { ListComponent } from './tally/components/list/list.component';
-import { AddExampleComponent } from './add-example/add-example.component';
+import { ExampleComponent } from './example/example.component';
 import { EditTallyHistoryComponent } from './history/components/edit-tally-history/edit-tally-history.component';
 import { HistorySummaryComponent } from './shared/components/history-summary/history-summary.component';
 import { UpsertTallyComponent } from './tally/components/upsert/upsert-tally.component';;
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'example',
-    component: AddExampleComponent,
+    component: ExampleComponent,
     data: { title: 'Add example' }
   },
   {
@@ -60,7 +60,7 @@ const routes: Routes = [
   declarations: [
     ListComponent,
     DetailComponent,
-    AddExampleComponent,
+    ExampleComponent,
     EditTallyHistoryComponent,
     HistorySummaryComponent,
     UpsertTallyComponent

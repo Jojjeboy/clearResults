@@ -30,6 +30,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
   # *** Att göra *** ##
 
 - Lägg in dynamiskt mål på tally
-- Organisera komponenter och moduler
 
 
