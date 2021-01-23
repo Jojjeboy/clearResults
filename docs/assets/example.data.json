@@ -6,7 +6,7 @@
             "decreseBy": 25,
             "resetEveryDay": true,
             "uuid": "9adb151f-d3f2-afe1-845e-4438419c83a9",
-            "value": 50,
+            "value": 0,
             "lastTouched": "2021-01-22T16:41:36.004Z",
             "history": [
                 {
@@ -18,7 +18,7 @@
                     "date": "2021-01-03T12:16:28.406Z"
                 },
                 {
-                    "value": 0,
+                    "value": 33,
                     "date": "2021-01-04T12:16:28.406Z"
                 }
             ],
