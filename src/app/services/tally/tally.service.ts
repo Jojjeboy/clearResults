@@ -52,7 +52,6 @@ export class TallyService extends BaseTally {
     return percentage;
   }
 
-
   getTallyById(id: String): Observable<Tally> {
     return new Observable<Tally>(observer => {
       let tally: Tally = this.getEmptyTally();
@@ -86,7 +85,7 @@ export class TallyService extends BaseTally {
   shouldAddToHistory(tally: Tally): boolean {
     let shouldAddToHistory = false;
     if (tally.getResetEveryday()) {
-      if (this.dateHelperService.lastTouchedIsOld(tally.getLastTouched())) {
+      if (this.dateHelperService.lastTouchedIsOld(tally.getLastTouched()) && tally.getValue() > 0) {
         if (this.historyService.dateExistInHistory(tally.getLastTouched(), tally.getHistory()) === false) {
           shouldAddToHistory = true;
         }

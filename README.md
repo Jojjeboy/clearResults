@@ -32,6 +32,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
   # *** Att göra *** ##
 
 - Organisera komponenter och moduler
-- Statistiska mål
 
 

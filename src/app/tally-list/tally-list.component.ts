@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Tally } from '../classes/Tally';
+import { History } from '../classes/History';
 import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { TallyService } from '../services/tally/tally.service';
 
@@ -61,6 +62,29 @@ export class TallyListComponent implements OnInit, OnDestroy {
     this.showAll = event.target.checked;
     config.showAll = this.showAll;
     this.localStorageService.saveConfig(config);
+  }
+
+  getDynamicTallyGoal(histories: History[]): number {
+    let total:number = 0;
+    let dynamicGoal:number = 0;
+
+    histories.forEach((history: History) => {
+      total =+ history.getValue();
+    });
+
+    dynamicGoal = total * 1.1 / histories.length;
+
+    if(!isNaN(dynamicGoal)){
+
+    }
+    return Math.round(dynamicGoal);
+  }
+
+  showDynamicGoal(tally: Tally): boolean {
+    if(tally.getResetEveryday() && tally.getHistory().length > 2){
+      return true;
+    }
+    return false;
   }
 
   ngOnDestroy() {

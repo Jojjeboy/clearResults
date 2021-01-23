@@ -4,11 +4,17 @@
     &.clear-spinner {
         text-align: center;
     }
-    &.inactive{
+    &.inactive {
         opacity: 0.3;
     }
     &.hideInactive {
         display: none;
+    }
+
+    &.dynamic-goal {
+        bottom: 13px;
+        position: relative;
+        font-size: 0.75em;
     }
 }
 
