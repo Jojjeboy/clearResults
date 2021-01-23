@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { applicationversion } from '../environments/applicationversion';
+import { DatePipe } from '@angular/common';
+import { ModalComponent } from './shared/modal/modal.component';
 
 export interface Appversion {
   version: string
@@ -23,21 +25,11 @@ export class AppComponent implements OnInit {
   appVersion:Appversion  = applicationversion;
   showAppVersion:boolean = false;
 
-  modal = {
-    open: false,
-    header: '',
-    body: '',
-    footer: ''
-  }
-  versionModal = {
-    open: false,
-    header: '',
-    body: '',
-    footer: ''
-  }
+  clearCacheModal: Object = {};
+  
 
   constructor(private localStorageService: LocalStorageService,
-    private route: ActivatedRoute, private router: Router) {
+    private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) {
     this.localStorageService.init(this.title);
   }
 
@@ -63,27 +55,18 @@ export class AppComponent implements OnInit {
     this.showAppVersion = !this.showAppVersion;
   }
 
-  openModal(modalData: any): void {
-    this.modal.open = modalData.open;
-    this.modal.header = modalData.header;
-    this.modal.body = modalData.body;
-  }
-
-  closeModal(): void {
-    this.modal.open = false;
-  }
-
   clearCache() {
-    this.openModal({
+    this.clearCacheModal = {
       open: true,
       header: 'Radera Local Storage',
       body: 'Är du säker på att du vill radera all Local Storage',
-    });
+    }
   }
 
   clearCacheConfirmed() {
     this.localStorageService.clear();
-    this.closeModal();
+    this.clearCacheModal = { open: false }
     this.router.navigate(['/']);
   }
+
 }

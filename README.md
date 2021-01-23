@@ -31,7 +31,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
   # *** Att göra *** ##
 
-- Se till att historik inte läggs in om det datumet redan finns.
 - Organisera komponenter och moduler
 - Statistiska mål
 - Fixa så att exempel hämtas från example.json

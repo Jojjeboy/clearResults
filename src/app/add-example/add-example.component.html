@@ -6,34 +6,43 @@
 
 <div class="clr-container">
 
-    <div class="clr-row">
+    <div class="clr-row" *ngFor="let tally of talliesFromJson">
         <div class="clr-col-12">
-            <button class="btn btn-success-outline block" [disabled]="pushupAdded"
+            <button class="btn btn-success-outline block" [disabled]="tallyAdded(tally.getUuid())"
+            (click)="addExampleTally(tally.getUuid())">{{ tally.getTitle() }}</button>
+            <hr />
+        </div>
+    </div>
+    <!--
+        <div class="clr-row">
+            <div class="clr-col-12">
+                <button class="btn btn-success-outline block" [disabled]="pushupAdded"
                 (click)="addPushups()">Armhävningar</button>
-            <hr />
+                <hr />
+            </div>
         </div>
-    </div>
-
-    <div class="clr-row">
-        <div class="clr-col-12">
-            <button class="btn btn-success-outline block" [disabled]="plankAdded" (click)="addplank()">Plankan</button>
-            <hr />
+        
+        <div class="clr-row">
+            <div class="clr-col-12">
+                <button class="btn btn-success-outline block" [disabled]="plankAdded" (click)="addplank()">Plankan</button>
+                <hr />
+            </div>
         </div>
-    </div>
-
-    <div class="clr-row">
-        <div class="clr-col-12">
-            <button class="btn btn-success-outline block" [disabled]="squatsAdded" (click)="addSquats()">Squats</button>
-            <hr />
+        
+        <div class="clr-row">
+            <div class="clr-col-12">
+                <button class="btn btn-success-outline block" [disabled]="squatsAdded" (click)="addSquats()">Squats</button>
+                <hr />
+            </div>
         </div>
-    </div>
-
-    <div class="clr-row">
-        <div class="clr-col-12">
-            <button class="btn btn-success-outline block" [disabled]="workoutdaysAdded"
+        
+        <div class="clr-row">
+            <div class="clr-col-12">
+                <button class="btn btn-success-outline block" [disabled]="workoutdaysAdded"
                 (click)="addWorkoutDays()">Träningsdagar</button>
-            <hr />
+                <hr />
+            </div>
         </div>
+    -->
+        
     </div>
-
-</div>

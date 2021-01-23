@@ -18,7 +18,7 @@
   <header class="header-6">
     <div class="branding">
       <a routerLink="/" class="nav-link">
-        <span class="title">Clear Results <small class="appversion" (click)="versionModal.open = true">
+        <span class="title">Clear Results <small class="appversion">
           v{{ appVersion.version }} | {{ appVersion.date | date: 'd, MMMM hh:mm' }}</small></span>
       </a>
     </div>
@@ -48,29 +48,4 @@
   </div>
 </div>
 
-
-<clr-modal [(clrModalOpen)]="modal.open">
-  <h3 class="modal-title">{{ modal.header }}</h3>
-  <div class="modal-body">
-    <p>{{ modal.body }}</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="modal.open = false">Ångra</button>
-    <button type="button" class="btn btn-primary" (click)="clearCacheConfirmed()">Ok</button>
-  </div>
-</clr-modal>
-
-<clr-modal [(clrModalOpen)]="versionModal.open">
-  <h3 class="modal-title">Git version</h3>
-  <div class="modal-body">
-    <p><small>App version: {{ appVersion.version }}<br />
-      App revision: <a href="https://github.com/Jojjeboy/clearResults/commit/{{appVersion.revision}}">{{
-        appVersion.revision }}</a> / <a href="https://github.com/Jojjeboy/clearResults/commits/main">Alla commits</a><br />
-      App branch: {{ appVersion.branch }}<br />
-      Build date: {{ appVersion.date | date: 'd, MMMM hh:mm' }}<br />
-    </small></p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="versionModal.open = false">Ok</button>
-  </div>
-</clr-modal>
+<app-modal [modalData]="clearCacheModal" (parentEvent)="clearCacheConfirmed()"></app-modal>

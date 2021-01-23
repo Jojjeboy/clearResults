@@ -4,10 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { TimeagoModule } from 'ngx-timeago';
 import { ClarityModule } from '@clr/angular';
 import { BrowserModule } from '@angular/platform-browser';
+import { ModalComponent } from './modal/modal.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ModalComponent
+  ],
   imports: [
     TimeagoModule.forRoot(),
     ClarityModule
@@ -17,7 +21,11 @@ import { BrowserModule } from '@angular/platform-browser';
     TimeagoModule,
     ClarityModule,
     BrowserModule,
-    HttpClientModule
-  ]
+    HttpClientModule,
+    ModalComponent
+  ],
+  providers: [
+    DatePipe
+  ],
 })
 export class SharedModule { }

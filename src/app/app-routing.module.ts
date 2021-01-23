@@ -1,7 +1,7 @@
 /* Modules */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from './shared.module';
+import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,6 @@ import { AddEditTallyComponent } from './add-edit-tally/add-edit-tally.component
 import { TallyListComponent } from './tally-list/tally-list.component';
 import { AddExampleComponent } from './add-example/add-example.component';
 import { EditTallyHistoryComponent } from './edit-tally-history/edit-tally-history.component';
-import { ModalComponent } from './modal/modal.component';
 import { HistorySummaryComponent } from './history-summary/history-summary.component';
 import { UpsertTallyComponent } from './upsert-tally/upsert-tally.component';;
 
@@ -75,7 +74,6 @@ const routes: Routes = [
     AddEditTallyComponent,
     AddExampleComponent,
     EditTallyHistoryComponent,
-    ModalComponent,
     HistorySummaryComponent,
     UpsertTallyComponent
     

@@ -14,16 +14,25 @@ export interface Gitlog {
 })
 export class HttpService {
 
-  configUrl = 'assets/gitlog.json';
+  configAndExampleData = 'assets/example.config-data.json';
+  exampleData = 'assets/example.data.json';
 
   constructor(private http: HttpClient) { }
 
-  getGitLog() {
-    return this.http.get<Object[]>(this.configUrl)
-      .pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
-      );
+  getExamplesWithConfig(){
+    return this.http.get<Object[]>(this.configAndExampleData)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
+  }
+
+  getExamplesOnly(){
+    return this.http.get<Object[]>(this.exampleData)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -41,6 +50,7 @@ export class HttpService {
     return throwError(
       'Something bad happened; please try again later.');
   }
+
 
 
 }
