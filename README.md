@@ -22,8 +22,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-
-
 ### Webbsidan
 
 [https://jojjeboy.github.io/clearResults](https://jojjeboy.github.io/clearResults).
@@ -31,6 +29,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
   # *** Att göra *** ##
 
+- Lägg in dynamiskt mål på tally
 - Organisera komponenter och moduler
 
 

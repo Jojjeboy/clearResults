@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { LocalStorageService } from './services/local-storage/local-storage.service';
+import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from './shared/service/local-storage/local-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { applicationversion } from '../environments/applicationversion';
 import { DatePipe } from '@angular/common';
-import { ModalComponent } from './shared/modal/modal.component';
 
 export interface Appversion {
   version: string

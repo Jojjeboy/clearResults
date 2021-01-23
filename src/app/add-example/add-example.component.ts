@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TallyService } from '../services/tally/tally.service';
-import { Tally } from '../classes/Tally';
+import { TallyService } from '../tally/service/tally.service';
+import { Tally } from '../tally/types/Tally';
 import { Subscription } from 'rxjs';
-import { HttpService } from '../services/http/http.service';
+import { HttpService } from '../shared/service/http/http.service';
 
 @Component({
   selector: 'app-add-example',
@@ -31,7 +31,6 @@ export class AddExampleComponent implements OnInit, OnDestroy {
     });
 
     this.httpService.getExamplesOnly().subscribe((data: any) => {
-      console.log(data);
       this.talliesFromJson = this.tallyService.convertLSToTallies(data.data);
     });
 
