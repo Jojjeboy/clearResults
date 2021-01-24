@@ -28,25 +28,25 @@
         },
         {
             "title": "Plankan (30sek)",
-            "increseBy": 10,
-            "decreseBy": 10,
+            "increseBy": 1,
+            "decreseBy": 1,
             "resetEveryDay": true,
             "uuid": "d0f4f762-91e2-70eb-1fa4-8b99aabadaca",
-            "value": 0,
+            "value": 2,
             "lastTouched": "2021-01-06T12:28:29.317Z",
             "history": [],
             "goal": 3,
-            "topScore": 10,
-            "active": false
+            "topScore": 2,
+            "active": true
         },
         {
             "title": "Ab-rolls",
-            "increseBy": 10,
-            "decreseBy": 10,
+            "increseBy": 5,
+            "decreseBy": 5,
             "resetEveryDay": true,
             "uuid": "0891cc48-798d-9f8b-010c-14b2f2c43416",
-            "value": 0,
-            "lastTouched": "2021-01-04T12:16:28.406Z",
+            "value": 3,
+            "lastTouched": "2021-01-06T12:16:28.406Z",
             "history": [
                 {
                     "value": 30,
@@ -66,7 +66,7 @@
             "active": true
         },
         {
-            "title": "sushi rolls",
+            "title": "Squats",
             "increseBy": 10,
             "decreseBy": 10,
             "resetEveryDay": true,
@@ -79,10 +79,6 @@
                     "date": "2021-01-02T12:05:48.662Z"
                 },
                 {
-                    "value": 20,
-                    "date": "2021-01-03T12:16:28.406Z"
-                },
-                {
                     "value": 0,
                     "date": "2021-01-04T12:16:28.406Z"
                 }
@@ -92,30 +88,43 @@
             "active": true
         },
         {
-            "title": "other rols rolls",
-            "increseBy": 10,
-            "decreseBy": 10,
-            "resetEveryDay": true,
+            "title": "Träningsdagar",
+            "increseBy": 1,
+            "decreseBy": 1,
+            "resetEveryDay": false,
             "uuid": "0891cc48-798d-9f8d-010c-14b2f2c43416",
-            "value": 0,
+            "value": 1,
             "lastTouched": "2021-01-04T12:16:28.406Z",
-            "history": [
-                {
-                    "value": 30,
-                    "date": "2021-01-02T12:05:48.662Z"
-                },
-                {
-                    "value": 20,
-                    "date": "2021-01-03T12:16:28.406Z"
-                },
-                {
-                    "value": 0,
-                    "date": "2021-01-04T12:16:28.406Z"
-                }
-            ],
-            "goal": 30,
+            "history": [],
+            "goal": 10,
+            "topScore": 5,
+            "active": true
+        },
+        {
+            "title": "Gummiband armar",
+            "increseBy": 1,
+            "decreseBy": 1,
+            "resetEveryDay": false,
+            "uuid": "0891cc48-798d-9f8d-010c-14btf2c43416",
+            "value": 1,
+            "lastTouched": "2021-01-04T12:16:28.406Z",
+            "history": [],
+            "goal": 4,
             "topScore": 20,
             "active": true
+        },
+        {
+            "title": "Cykla till jobbet",
+            "increseBy": 1,
+            "decreseBy": 1,
+            "resetEveryDay": false,
+            "uuid": "0891cc48-798d-9f8d-010c-14b2frc43416",
+            "value": 1,
+            "lastTouched": "2021-01-04T12:16:28.406Z",
+            "history": [],
+            "goal": 15,
+            "topScore": 10,
+            "active": false
         }
     ]
 }
