@@ -12,7 +12,9 @@ import { ListComponent } from './tally/components/list/list.component';
 import { ExampleComponent } from './example/example.component';
 import { EditTallyHistoryComponent } from './history/components/edit-tally-history/edit-tally-history.component';
 import { HistorySummaryComponent } from './shared/components/history-summary/history-summary.component';
-import { UpsertTallyComponent } from './tally/components/upsert/upsert-tally.component';;
+import { UpsertTallyComponent } from './tally/components/upsert/upsert-tally.component';import { HistoryService } from './history/service/history.service';
+import { HistoryGuardService } from './history/service/history-guard.service';
+;
 
 const routes: Routes = [
   {
@@ -43,6 +45,7 @@ const routes: Routes = [
   {
     path: 'history/edit/:id',
     component: EditTallyHistoryComponent,
+    canActivate: [HistoryGuardService],
     data: { title: 'Edit tally history' }
   },
 
