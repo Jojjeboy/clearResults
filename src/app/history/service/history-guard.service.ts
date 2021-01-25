@@ -21,7 +21,24 @@ export class HistoryGuardService implements CanActivate {
     this.tallyObservable = this.tallyService.getTallyById(activatedRouteSnapshot.params.id).subscribe(tally => {
       resetEveryDay = tally.getResetEveryday();
     });
-    console.log('Can access', resetEveryDay);
+
+    const userReferedHere: boolean = this.router.url.split('/').length === 3;
+
+    //if(!userReferedHere){
+      this.router.navigate(['/tally/' + activatedRouteSnapshot.params.id], { queryParams: { type: 'error', message: 'Du har inte tillåtelse att redigera historiken för denna!' } });
+    //}
+
+    //console.log(userReferedHere);
+    //console.log('Can access', resetEveryDay);
     return resetEveryDay;
+
+    /*
+      1. Om (this.reuter.url) är: / Då har vi försökt laddat url:en direkt
+      2 Annars kommer vi från 
+      
+      
+      0891cc48-798d-9f8d-010c-14b2frc43416
+
+    */
   }
 }
