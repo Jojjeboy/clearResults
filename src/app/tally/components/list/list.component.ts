@@ -17,8 +17,7 @@ export class ListComponent implements OnInit, OnDestroy {
   tallyListObservable!: Subscription;
   tallyFetched: boolean = false;
 
-
-  @Output() dataEvent = new EventEmitter<string>();
+  
 
   
 
@@ -38,7 +37,6 @@ export class ListComponent implements OnInit, OnDestroy {
 
   increase(tally: Tally) {
     this.tallyService.increase(tally);
-    this.dataEvent.emit('sometext');
   }
 
   decrese(tally: Tally) {

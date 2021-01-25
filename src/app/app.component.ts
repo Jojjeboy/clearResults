@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
   showAlert: boolean = false;
   alertText!: string;
   alertType: string = 'error';
-  appVersion:Appversion  = applicationversion;
-  showAppVersion:boolean = false;
+  appVersion: Appversion = applicationversion;
+  showAppVersion: boolean = false;
 
   clearCacheModal: Object = {};
-  
+
 
   constructor(private localStorageService: LocalStorageService,
     private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) {
