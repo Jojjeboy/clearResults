@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Tally } from '../../types/Tally';
 import { History } from '../../../history/types/History';
@@ -17,6 +17,11 @@ export class ListComponent implements OnInit, OnDestroy {
   tallyListObservable!: Subscription;
   tallyFetched: boolean = false;
 
+
+  @Output() dataEvent = new EventEmitter<string>();
+
+  
+
   constructor(
     private localStorageService: LocalStorageService,
     private tallyService: TallyService) {
@@ -33,6 +38,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   increase(tally: Tally) {
     this.tallyService.increase(tally);
+    this.dataEvent.emit('sometext');
   }
 
   decrese(tally: Tally) {

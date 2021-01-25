@@ -5,16 +5,20 @@ import { TimeagoModule } from 'ngx-timeago';
 import { ClarityModule } from '@clr/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { ModalComponent } from '../components/modal/modal.component';
+import { AlertComponent } from '../components/alert/alert.component';
 import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
   declarations: [
-    ModalComponent
+    ModalComponent,
+    AlertComponent
   ],
   imports: [
     TimeagoModule.forRoot(),
-    ClarityModule
+    ClarityModule,
+    CommonModule
   ],
   exports:[
     CommonModule,
@@ -22,7 +26,8 @@ import { DatePipe } from '@angular/common';
     ClarityModule,
     BrowserModule,
     HttpClientModule,
-    ModalComponent
+    ModalComponent,
+    AlertComponent
   ],
   providers: [
     DatePipe

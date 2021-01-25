@@ -14,7 +14,7 @@
                     <div class="header-main-text">
                         <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getTitle() }}</a>
                         <span class="pull-right" *ngIf="tally.getResetEveryday()">
-                            <clr-icon shape="crosshairs" *ngIf="tally.getHistory().length > 2"></clr-icon>  &nbsp; 
+                            <clr-icon shape="crosshairs" *ngIf="tally.getHistory().length > 2"></clr-icon> &nbsp;
                             <clr-icon shape="recycle"></clr-icon>
                         </span>
                     </div>
@@ -44,7 +44,8 @@
                             </div>
                         </div>
                         <div class="clr-row dynamic-goal" *ngIf="showDynamicGoal(tally)">
-                            <div class="clr-col-6">Dynamiskt mål idag: {{ getDynamicTallyGoal(tally.getHistory()) }} </div>
+                            <div class="clr-col-6">Dynamiskt mål idag: {{ getDynamicTallyGoal(tally.getHistory()) }}
+                            </div>
                             <div class="clr-col-6"></div>
                         </div>
                         <div class="progress-static" [class.success]="tally.getValue() >= tally.getGoal()">

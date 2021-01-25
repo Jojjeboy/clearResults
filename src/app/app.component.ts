@@ -67,5 +67,4 @@ export class AppComponent implements OnInit {
     this.clearCacheModal = { open: false }
     this.router.navigate(['/']);
   }
-
 }
