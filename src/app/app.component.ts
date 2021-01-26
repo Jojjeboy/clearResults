@@ -45,6 +45,15 @@ export class AppComponent implements OnInit {
           setTimeout(() => {
             this.showAlert = false;
             this.alertText = '';
+
+            this.router.navigate([], {
+              queryParams: {
+                'type': null,
+                'message': null,
+              },
+              queryParamsHandling: 'merge'
+            })
+
           }, 2500);
         }
       });

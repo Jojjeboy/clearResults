@@ -1,24 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+  template: `<div class="alert alert-app-level alert-{{ type }}" *ngIf="showalert">
+  <div class="alert-items">
+    <div class="alert-item static">
+      <div class="alert-icon-wrapper">
+        <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+      </div>
+      <div class="alert-text">
+        {{ text }}
+      </div>
+    </div>
+  </div>
+</div>`
 })
-export class AlertComponent implements OnInit {
 
-  @Input() type: string = '';
-  @Input() text: string = '';
-  @Input() showalert!: boolean;
-  
-  constructor() { }
+export class AlertComponent {
 
-  ngOnInit(): void {
-    if (this.type !== undefined && this.text != undefined) {
-      this.showalert = true;
-      setTimeout(() => {
-        this.showalert = false;
-      }, 2500);
-    }
-  }
+  @Input() type!: string;
+  @Input() text!: string;
+  @Input() showalert: boolean = false;
+
 }

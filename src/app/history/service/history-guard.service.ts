@@ -25,7 +25,7 @@ export class HistoryGuardService implements CanActivate {
     const userReferedHere: boolean = this.router.url.split('/').length === 3;
 
     //if(!userReferedHere){
-      this.router.navigate(['/tally/' + activatedRouteSnapshot.params.id], { queryParams: { type: 'error', message: 'Du har inte tillåtelse att redigera historiken för denna!' } });
+      this.router.navigate(['/tally/' + activatedRouteSnapshot.params.id], { queryParams: { type: 'danger', message: 'Du har inte tillåtelse att redigera historiken!' } });
     //}
 
     //console.log(userReferedHere);
