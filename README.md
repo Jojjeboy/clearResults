@@ -29,8 +29,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
   # *** Att göra *** ##
 
-- Kolla att räknare som inte används ska resettas funkar
-- Lägg in dynamiskt mål på tally
 - Lägg till i historiken när man ladda ListComponent och inte i servicen
-- Tillåt inte nå edit-history om resetEveryDay är false 
-
+- Lägg in dynamiskt mål på tally
