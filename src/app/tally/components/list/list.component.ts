@@ -16,9 +16,6 @@ export class ListComponent implements OnInit, OnDestroy {
   showAll: boolean = true;
   tallyListObservable!: Subscription;
   tallyFetched: boolean = false;
-
-  
-
   
 
   constructor(

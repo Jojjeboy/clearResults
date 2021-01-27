@@ -23,8 +23,8 @@ export class TallyService extends BaseTally {
     private historyService: HistoryService,
     localStorageService: LocalStorageService,
     dateHelperService: DateHelperService) {
-
     super(localStorageService, dateHelperService);
+    
     this.lsTallies = localStorageService.getAll();
     this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
 

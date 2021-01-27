@@ -23,12 +23,18 @@
                 </div>
                 <div class="card-block">
                     <div class="clr-row">
-                        <div class="clr-col-6">
-                            <div class="card-title" *ngIf="tally.getResetEveryday()">
-                                {{ tally.getHistory().length }} dagars historik
+                        <div class="clr-col-7">
+                            <div class="card-title">
+                                <span *ngIf="tally.getResetEveryday()">
+                                    <span *ngIf="tally.getHistory().length > 0">{{ tally.getHistory().length }} dagars historik</span>
+                                    <span *ngIf="tally.getHistory().length === 0">Historik saknas</span>
+                                </span>
+                                <span *ngIf="!tally.getResetEveryday()">
+                                    <span>Räknaren nollställs ej dagligen</span>
+                                </span>
                             </div>
                         </div>
-                        <div class="clr-col-6">
+                        <div class="clr-col-5">
                             <div class="card-title pull-right">
                                 &nbsp; {{ tally.getLastTouched() | timeago }}
                             </div>
