@@ -34,16 +34,24 @@ export class AppComponent implements OnInit {
     private router: Router, 
     private updates: SwUpdate) {
     this.localStorageService.init(this.title);
-
     this.updates.available.subscribe(event => {
       console.log('current version is', event.current);
       console.log('available version is', event.available);
-    });
-    this.updates.activated.subscribe(event => {
-      console.log('old version was', event.previous);
-      console.log('new version is', event.current);
-    });
 
+      this.promptUserToUpdateApp();
+      
+    });
+  }
+
+
+
+  promptUserToUpdateApp(){
+    this.showAlert = true;
+    this.alertText = 'Ny version av applikationen finns, ladda om sidan för att uppdatera';
+    this.alertType = 'danger';
+    //if(confirm('Ny version av applikation finns, tryck på ok för att ladda in nya versionen')){
+    //  this.updates.activateUpdate().then(() => location.reload());
+    //}
   }
   
 
