@@ -17,11 +17,16 @@
 <div class="clr-container" [class.inactive]="!tally.getActive()">
 
     <div class="clr-row tally-meta">
-        <div class="clr-col-6">
+        <div [ngClass]="showDynamicGoal(tally) ? 'clr-col-4' : 'clr-col-6'">
             <h4>Värde: {{ tally.getValue() }}</h4>
         </div>
-        <div class="clr-col-6">
+        <div [ngClass]="showDynamicGoal(tally) ? 'clr-col-4' : 'clr-col-6'">
             <h4>Mål: {{ tally.getGoal() }}</h4>
+        </div>
+        <div *ngIf="showDynamicGoal(tally)" [ngClass]="showDynamicGoal(tally) ? 'clr-col-4' : 'clr-col-6'">
+            <h4>
+                <span *ngIf="showDynamicGoal(tally)" class="fadecolor">D M: {{ tally.getGoal() }}</span>
+            </h4>
         </div>
     </div>
 
@@ -57,10 +62,12 @@
 
     <div class="clr-row tally-meta">
         <div class="clr-col-6">
-            <button class="btn btn-danger-outline block decrese"  [disabled]="!tally.getActive()" (click)="decrease(tally)">Minska</button>
+            <button class="btn btn-danger-outline block decrese" [disabled]="!tally.getActive()"
+                (click)="decrease(tally)">Minska</button>
         </div>
         <div class="clr-col-6">
-            <button class="btn btn-success-outline block increse"  [disabled]="!tally.getActive()" (click)="increase(tally)">Öka</button>
+            <button class="btn btn-success-outline block increse" [disabled]="!tally.getActive()"
+                (click)="increase(tally)">Öka</button>
         </div>
     </div>
 </div>
@@ -70,7 +77,7 @@
 
 
 
-    
+
 
 <div class="clr-row status">
     <div class="clr-col-12">

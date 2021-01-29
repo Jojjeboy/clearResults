@@ -2,10 +2,12 @@
 @import "./assets/styles/variables";
 
 @media screen and (max-width: 767px) {
-    input, select, textarea {
-      font-size: 16px;
+    input,
+    select,
+    textarea {
+        font-size: 16px;
     }
-  }
+}
 
 .pull-left {
     float: left;
@@ -70,7 +72,7 @@ a:active {
     color: $successColor;
 }
 
-.clr-col-12.clear-history{
+.clr-col-12.clear-history {
     padding-top: 15px;
     text-align: center;
     button {
@@ -79,10 +81,10 @@ a:active {
 }
 
 header.header-6 {
-    background-image: linear-gradient(to right,#00364d , #006d9c);
+    background-image: linear-gradient(to right, #00364d, #006d9c);
 }
 
-.clr-row input{
+.clr-row input {
     padding-left: 0;
 }
 
@@ -92,5 +94,80 @@ header.header-6 {
 }
 .form-control.ng-invalid {
     border-bottom: 0.05rem solid $dangerColor;
-    color: $dangerColor;;
+    color: $dangerColor;
+}
+
+.fadecolor {
+    color: #000;
+    -webkit-animation-name: animate1; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    -webkit-animation-iteration-count: 55;
+    animation-name: animate1;
+    animation-duration: 2s;
+    animation-iteration-count: 55;
+}
+
+/* Chrome, Safari, Opera */
+
+@-webkit-keyframes animate1 {
+    0% {
+        color: #000000;
+        opacity: 0.12;
+    }
+    18% {
+        color: #000;
+        opacity: 0.25;
+    }
+    38% {
+        color: #000;
+        opacity: 0.75;
+    }
+    52% {
+        color: #000;
+        opacity: 1;
+    }
+    72% {
+        color: #000;
+        opacity: 0.75;
+    }
+    84% {
+        color: #000;
+        opacity: 0.35;
+    }
+    100% {
+        color: #000;
+        opacity: 0.12;
+    }
+}
+
+/* Standard syntax */
+@keyframes animate1 {
+    0% {
+        color: #000000;
+        opacity: 0.12;
+    }
+    18% {
+        color: #000;
+        opacity: 0.25;
+    }
+    38% {
+        color: #000;
+        opacity: 0.75;
+    }
+    52% {
+        color: #000;
+        opacity: 1;
+    }
+    72% {
+        color: #000;
+        opacity: 0.75;
+    }
+    84% {
+        color: #000;
+        opacity: 0.35;
+    }
+    100% {
+        color: #000;
+        opacity: 0.12;
+    }
 }
