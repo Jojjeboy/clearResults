@@ -4,6 +4,7 @@ import { TallyService } from '../../service/tally.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HistoryService } from '../../../history/service/history.service';
+import { BaseTallyComponent } from 'src/app/shared/components/base-tally/base-tally.component';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { HistoryService } from '../../../history/service/history.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit, OnDestroy {
+export class DetailComponent extends BaseTallyComponent implements OnInit, OnDestroy {
 
 
   cleanHistoryModalData: Object = {};
@@ -25,11 +26,13 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private tallyService: TallyService,
+    protected tallyService: TallyService,
     private route: ActivatedRoute,
     private router: Router,
     private historyService: HistoryService
-  ) { }
+  ) {
+    super(tallyService);
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -38,16 +41,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.recalculatePercentage();
-  }
-
-  increase() {
-    this.tallyService.increase(this.tally);
-    this.recalculatePercentage();
-  }
-
-  decrease() {
-    this.tallyService.decrease(this.tally);
     this.recalculatePercentage();
   }
 

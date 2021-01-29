@@ -15,14 +15,10 @@ export class BaseTally {
   }
 
   save(tally: Tally): void {
-    const fixedDate = this.dateHelperService.fixDateBeforeSaving(tally.getLastTouched());
-    tally.setLastTouched(fixedDate);
     this.localStorageService.add(this.convertToLsTally(tally));
   }
 
   update(tally: Tally): void {
-    const fixedDate:Date = this.dateHelperService.fixDateBeforeSaving(tally.getLastTouched());
-    tally.setLastTouched(fixedDate);
     this.localStorageService.update(this.convertToLsTally(tally));
   }
 

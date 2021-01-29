@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { History } from 'src/app/history/types/History';
 import { Tally } from 'src/app/tally/types/Tally';
-import { BaseTally } from '../../shared/service/uuid/baseTally.service';
+import { BaseTally } from '../../shared/service/baseTally/baseTally.service';
 import { DateHelperService } from '../../shared/service/Date/date-helper.service';
 import { LocalStorageService } from '../../shared/service/local-storage/local-storage.service';
 

@@ -36,7 +36,7 @@
                         </div>
                         <div class="clr-col-5">
                             <div class="card-title pull-right">
-                                &nbsp; {{ tally.getLastTouched() | timeago }}
+                                <clr-icon shape="hard-disk" badge="success"></clr-icon> &nbsp; {{ tally.getLastTouched() | date: 'HH:mm - dd MMM'}}
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     <div class="clr-row">
                         <div class="clr-col-6">
                             <button class="btn btn-danger-outline block pull-right decrese"
-                                [disabled]="!tally.getActive()" (click)="decrese(tally)">Minska</button>
+                                [disabled]="!tally.getActive()" (click)="decrease(tally)">Minska</button>
                         </div>
                         <div class="clr-col-6">
                             <button class="btn btn-success-outline block pull-left increase"

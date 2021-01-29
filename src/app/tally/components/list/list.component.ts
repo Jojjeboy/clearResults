@@ -4,13 +4,15 @@ import { Tally } from '../../types/Tally';
 import { History } from '../../../history/types/History';
 import { LocalStorageService } from '../../../shared/service/local-storage/local-storage.service';
 import { TallyService } from '../../service/tally.service';
+import { BaseTally } from 'src/app/shared/service/baseTally/baseTally.service';
+import { BaseTallyComponent } from 'src/app/shared/components/base-tally/base-tally.component';
 
 @Component({
   selector: 'list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent extends BaseTallyComponent implements OnInit, OnDestroy{
 
   tallies = Array<Tally>();
   showAll: boolean = true;
@@ -19,8 +21,9 @@ export class ListComponent implements OnInit, OnDestroy {
   
 
   constructor(
-    private localStorageService: LocalStorageService,
-    private tallyService: TallyService) {
+    protected localStorageService: LocalStorageService,
+    protected tallyService: TallyService) {
+      super(tallyService);
   }
 
   ngOnInit(): void {
@@ -32,13 +35,6 @@ export class ListComponent implements OnInit, OnDestroy {
     });
   }
 
-  increase(tally: Tally) {
-    this.tallyService.increase(tally);
-  }
-
-  decrese(tally: Tally) {
-    this.tallyService.decrease(tally);
-  }
 
   getShowAll() {
     return this.showAll;
@@ -65,28 +61,6 @@ export class ListComponent implements OnInit, OnDestroy {
     this.localStorageService.saveConfig(config);
   }
 
-  getDynamicTallyGoal(histories: History[]): number {
-    let total:number = 0;
-    let dynamicGoal:number = 0;
-
-    histories.forEach((history: History) => {
-      total =+ history.getValue();
-    });
-
-    dynamicGoal = total * 1.1 / histories.length;
-
-    if(!isNaN(dynamicGoal)){
-
-    }
-    return Math.round(dynamicGoal);
-  }
-
-  showDynamicGoal(tally: Tally): boolean {
-    if(tally.getResetEveryday() && tally.getHistory().length > 2){
-      return true;
-    }
-    return false;
-  }
 
   ngOnDestroy() {
     this.tallyListObservable.unsubscribe();

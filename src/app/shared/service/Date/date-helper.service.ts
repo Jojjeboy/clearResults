@@ -1,3 +1,4 @@
+import { DecimalPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,8 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DateHelperService {
 
-  constructor() { }
-
+  constructor() {}
 
   formatDate(date: Date): string {
     var d = new Date(date),

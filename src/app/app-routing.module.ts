@@ -14,7 +14,8 @@ import { EditTallyHistoryComponent } from './history/components/edit-tally-histo
 import { HistorySummaryComponent } from './shared/components/history-summary/history-summary.component';
 import { UpsertTallyComponent } from './tally/components/upsert/upsert-tally.component';import { HistoryService } from './history/service/history.service';
 import { HistoryGuardService } from './history/service/history-guard.service';
-;
+import { BaseTallyComponent } from './shared/components/base-tally/base-tally.component';
+
 
 const routes: Routes = [
   {
@@ -66,7 +67,8 @@ const routes: Routes = [
     ExampleComponent,
     EditTallyHistoryComponent,
     HistorySummaryComponent,
-    UpsertTallyComponent
+    UpsertTallyComponent,
+    BaseTallyComponent
     
   ],
   exports: [RouterModule]

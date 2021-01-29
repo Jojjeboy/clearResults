@@ -29,5 +29,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
   # *** Att göra *** ##
 
+- Last touched blir fel då tiden har ändrats vid nersparning
 - Lägg till i historiken när man ladda ListComponent och inte i servicen
 - Lägg in dynamiskt mål på tally
+- Kolla om man kan rendera diagram på historiken
+- Funder på om man kan ställa in sin egen nollställningsfrekvens

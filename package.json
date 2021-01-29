@@ -26,6 +26,8 @@
     "@clr/icons": "4.0.8",
     "@clr/ui": "4.0.8",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "date-fns": "^2.16.1",
+    "ngx-date-fns": "^7.0.0",
     "ngx-timeago": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

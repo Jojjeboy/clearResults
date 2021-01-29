@@ -5,7 +5,7 @@ import { LocalStorageService } from '../../shared/service/local-storage/local-st
 import { HistoryService } from '../../history/service/history.service';
 import { applicationversion } from '../../../environments/applicationversion';
 import { Observable } from 'rxjs';
-import { BaseTally } from '../../shared/service/uuid/baseTally.service';
+import { BaseTally } from '../../shared/service/baseTally/baseTally.service';
 import { DateHelperService } from '../../shared/service/Date/date-helper.service';
 
 @Injectable({
@@ -24,16 +24,20 @@ export class TallyService extends BaseTally {
     localStorageService: LocalStorageService,
     dateHelperService: DateHelperService) {
     super(localStorageService, dateHelperService);
-    
-    this.lsTallies = localStorageService.getAll();
-    this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
 
-    this.resetOldTallys();
+    //this.lsTallies = localStorageService.getAll();
+    //this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
+
+
+    
     this.updateAppVersion();
   }
 
   getTallies(): Observable<Tally[]> {
     return new Observable<Tally[]>(observer => {
+      this.lsTallies = this.localStorageService.getAll();
+      this.tallies = <Array<Tally>>this.convertLSToTallies(this.lsTallies);
+      this.resetOldTallys();
       this.reloadDataFromLS();
       this.sortByActive();
       observer.next(this.tallies);
@@ -100,8 +104,8 @@ export class TallyService extends BaseTally {
   }
 
   increase(tally: Tally): void {
-    let tallyValue = tally.getValue();
-    const tallyIncreseBy = tally.getIncreseBy();
+    let tallyValue:number = tally.getValue();
+    const tallyIncreseBy:number = tally.getIncreseBy();
     tallyValue += tallyIncreseBy;
     tally.setValue(tallyValue);
     if (tallyValue > tally.getTopScore()) {
@@ -133,7 +137,7 @@ export class TallyService extends BaseTally {
     const returnArr = new Array<Tally>();
     for (const obj of lsTallies) {
       let tally = new Tally(obj);
-
+      
       let historyArr: History[] = [];
       for (const hist of tally.getHistory()) {
         let history = new History(hist);
