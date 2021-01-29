@@ -35,11 +35,11 @@ export class AppComponent implements OnInit {
     private updates: SwUpdate) {
     this.localStorageService.init(this.title);
 
-    updates.available.subscribe(event => {
+    this.updates.available.subscribe(event => {
       console.log('current version is', event.current);
       console.log('available version is', event.available);
     });
-    updates.activated.subscribe(event => {
+    this.updates.activated.subscribe(event => {
       console.log('old version was', event.previous);
       console.log('new version is', event.current);
     });
