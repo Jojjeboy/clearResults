@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1611918744018,
+  "timestamp": 1611921649010,
   "index": "https://jojjeboy.github.io/clearResults/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "https://jojjeboy.github.io/clearResults/favicon.ico",
         "https://jojjeboy.github.io/clearResults/index.html",
-        "https://jojjeboy.github.io/clearResults/main.ae5f5605b578e5fab9a2.js",
+        "https://jojjeboy.github.io/clearResults/main.089b42d80d447479f803.js",
         "https://jojjeboy.github.io/clearResults/manifest.webmanifest",
         "https://jojjeboy.github.io/clearResults/polyfills.8c151b8375e767ff858f.js",
         "https://jojjeboy.github.io/clearResults/runtime.0e49e2b53282f40c8925.js",
@@ -81,8 +81,8 @@
     "https://jojjeboy.github.io/clearResults/assets/images/favicon/site.webmanifest": "d7a785ae0e5d55366243d7447fffc974c136c799",
     "https://jojjeboy.github.io/clearResults/assets/styles/_variables.scss": "7c1a44d3a0c772b330a8cf453419708f02aac03c",
     "https://jojjeboy.github.io/clearResults/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://jojjeboy.github.io/clearResults/index.html": "e11c9f0d67e1d99a3c2afc1691144a383213460f",
-    "https://jojjeboy.github.io/clearResults/main.ae5f5605b578e5fab9a2.js": "d5a7356469b004fed9d9566a6397751000eda115",
+    "https://jojjeboy.github.io/clearResults/index.html": "ac3d2a3f0644c0b2af9057def8b98b22518bce1f",
+    "https://jojjeboy.github.io/clearResults/main.089b42d80d447479f803.js": "fc8e5c04ea6b4c145131631001e8b5acecb22331",
     "https://jojjeboy.github.io/clearResults/manifest.webmanifest": "dea7b21ccbe0044164a5c675d9e252defcbd4fc2",
     "https://jojjeboy.github.io/clearResults/polyfills.8c151b8375e767ff858f.js": "763cd3b34dfa4600ebb9d9588ec7116988e98920",
     "https://jojjeboy.github.io/clearResults/runtime.0e49e2b53282f40c8925.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
