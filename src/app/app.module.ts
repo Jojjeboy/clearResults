@@ -18,7 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     AppRoutingModule,
     SharedModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', 
+      { 
+        enabled: environment.production 
+      }
+    ),
     BrowserAnimationsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: "sv-SE" }],
