@@ -3,6 +3,7 @@ import { LocalStorageService } from './shared/service/local-storage/local-storag
 import { Router, ActivatedRoute } from '@angular/router';
 import { applicationversion } from '../environments/applicationversion';
 import { DatePipe } from '@angular/common';
+import { SwUpdate } from '@angular/service-worker';
 
 export interface Appversion {
   version: string
@@ -27,10 +28,24 @@ export class AppComponent implements OnInit {
   clearCacheModal: Object = {};
 
 
-  constructor(private localStorageService: LocalStorageService,
-    private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) {
+  constructor(
+    private localStorageService: LocalStorageService,
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private updates: SwUpdate) {
     this.localStorageService.init(this.title);
+
+    updates.available.subscribe(event => {
+      console.log('current version is', event.current);
+      console.log('available version is', event.available);
+    });
+    updates.activated.subscribe(event => {
+      console.log('old version was', event.previous);
+      console.log('new version is', event.current);
+    });
+
   }
+  
 
   ngOnInit() {
     this.sub = this.route
