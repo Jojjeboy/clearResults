@@ -54,7 +54,7 @@ export class ListComponent extends BaseTallyComponent implements OnInit, OnDestr
     return exist;
   }
 
-  eventCheck(event: any): void {
+  toggleShowInactive(event: any): void {
     let config = this.localStorageService.getConfig();
     this.showAll = event.target.checked;
     config.showAll = this.showAll;

@@ -41,6 +41,10 @@ export class AppComponent implements OnInit {
       this.promptUserToUpdateApp();
       
     });
+
+    this.updates.activated.subscribe(event => {
+      console.log('updated');
+    });
   }
 
 
@@ -49,9 +53,6 @@ export class AppComponent implements OnInit {
     this.showAlert = true;
     this.alertText = 'Ny version av applikationen finns, ladda om sidan för att uppdatera';
     this.alertType = 'danger';
-    //if(confirm('Ny version av applikation finns, tryck på ok för att ladda in nya versionen')){
-    //  this.updates.activateUpdate().then(() => location.reload());
-    //}
   }
   
 
