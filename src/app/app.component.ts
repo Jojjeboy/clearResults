@@ -97,6 +97,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  reloadPage(){
+    window.location.reload();
+  }
+
   clearCacheConfirmed() {
     this.localStorageService.clear();
     this.clearCacheModal = { open: false }
