@@ -39,12 +39,15 @@ export class DateHelperService {
   }
 
 
-  lastTouchedIsOld(lastTouched: Date): boolean {
+  lastTouchedIsOld(lastTouched: Date, resetInterval: string): boolean {
 
-    if (new Date().setHours(0, 0, 0, 0) - lastTouched.setHours(0, 0, 0, 0) > 0) {
-      return true;
+    if(resetInterval === 'daily'){
+      if (new Date().setHours(0, 0, 0, 0) - lastTouched.setHours(0, 0, 0, 0) > 0) {
+        return true;
+      }
+      
+      return false;
     }
-
     return false;
   }
 

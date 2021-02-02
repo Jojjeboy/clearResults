@@ -109,6 +109,6 @@ export class AppComponent implements OnInit {
   clearCacheConfirmed() {
     this.localStorageService.clear();
     this.clearCacheModal = { open: false }
-    this.router.navigate(['/']);
+    this.toStartPage();
   }
 }
