@@ -4,7 +4,8 @@ export class Tally {
     title: string;
     increseBy: number;
     decreseBy: number;
-    resetEveryDay: boolean;
+    resetOnInterval: boolean;
+
     uuid: string;
     value: number;
     lastTouched: Date;
@@ -18,7 +19,7 @@ export class Tally {
         this.title = obj.title;
         this.increseBy = obj.increseBy;
         this.decreseBy = obj.decreseBy;
-        this.resetEveryDay = obj.resetEveryDay;
+        this.resetOnInterval = obj.resetOnInterval;
         this.uuid = obj.uuid;
         this.value = obj.value;
         this.lastTouched = obj.lastTouched;
@@ -52,12 +53,12 @@ export class Tally {
         this.decreseBy = decreseBy;
     }
 
-    public getResetEveryday(): boolean {
-        return this.resetEveryDay;
+    public getResetOnInterval(): boolean {
+        return this.resetOnInterval;
     }
 
-    public setResetEveryday(resetEveryDay: boolean): void {
-        this.resetEveryDay = resetEveryDay;
+    public setResetOnInterval(resetOnInterval: boolean): void {
+        this.resetOnInterval = resetOnInterval;
     }
 
     public getUuid(): string {

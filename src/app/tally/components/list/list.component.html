@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <div class="header-main-text">
                         <a routerLink="/tally/{{ tally.getUuid() }}" class="block">{{ tally.getTitle() }}</a>
-                        <span class="pull-right" *ngIf="tally.getResetEveryday()">
+                        <span class="pull-right" *ngIf="tally.getResetOnInterval()">
                             <clr-icon shape="crosshairs" *ngIf="tally.getHistory().length > 2"></clr-icon> &nbsp;
                             <clr-icon shape="recycle"></clr-icon>
                         </span>
@@ -25,11 +25,11 @@
                     <div class="clr-row">
                         <div class="clr-col-7">
                             <div class="card-title">
-                                <span *ngIf="tally.getResetEveryday()">
+                                <span *ngIf="tally.getResetOnInterval()">
                                     <span *ngIf="tally.getHistory().length > 0">{{ tally.getHistory().length }} dagars historik</span>
                                     <span *ngIf="tally.getHistory().length === 0">Historik saknas</span>
                                 </span>
-                                <span *ngIf="!tally.getResetEveryday()">
+                                <span *ngIf="!tally.getResetOnInterval()">
                                     <span>Räknaren nollställs ej dagligen</span>
                                 </span>
                             </div>

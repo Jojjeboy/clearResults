@@ -29,7 +29,7 @@ export class BaseTallyComponent {
   }
 
   showDynamicGoal(tally: Tally): boolean {
-    if(tally.getResetEveryday() && tally.getHistory().length > 2){
+    if(tally.getResetOnInterval() && tally.getHistory().length > 2){
       return true;
     }
     return false;

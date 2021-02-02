@@ -17,15 +17,15 @@ export class HistoryGuardService implements CanActivate {
 
   canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    let resetEveryDay: boolean = false;
+    let resetOnInterval: boolean = false;
     this.tallyObservable = this.tallyService.getTallyById(activatedRouteSnapshot.params.id).subscribe((tally:Tally) => {
-      resetEveryDay = tally.getResetEveryday();
+      resetOnInterval = tally.getResetOnInterval();
     });
 
-    if(!resetEveryDay){
+    if(!resetOnInterval){
       this.router.navigate(['/tally/' + activatedRouteSnapshot.params.id], { queryParams: { type: 'danger', message: 'Du har inte tillåtelse att redigera historiken!' } });
     }
 
-    return resetEveryDay;
+    return resetOnInterval;
   }
 }

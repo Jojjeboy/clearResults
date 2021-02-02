@@ -69,15 +69,15 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
       title: new FormControl(tally.getTitle(), [Validators.required]),
       increseBy: new FormControl(tally.getIncreseBy(), [Validators.required]),
       decreseBy: new FormControl(tally.getDecreseBy(), [Validators.required]),
-      resetEveryDay: new FormControl(tally.getResetEveryday(), [Validators.required]),
+      resetOnInterval: new FormControl(tally.getResetOnInterval(), [Validators.required]),
       active: new FormControl(tally.getActive(), [Validators.required]),
       value: new FormControl(tally.getValue(), [Validators.required]),
       goal: new FormControl(tally.getGoal(), [Validators.required]),
       topScore: new FormControl(tally.getTopScore(), [Validators.required])
     });
 
-    this.tallyForm.get('resetEveryDay')?.valueChanges.subscribe(resetEveryDay=>{
-      if(!resetEveryDay && this.tally.getHistory().length > 0){
+    this.tallyForm.get('resetOnInterval')?.valueChanges.subscribe(resetOnInterval=>{
+      if(!resetOnInterval && this.tally.getHistory().length > 0){
         this.cleanHistoryModalData = {
           open: true,
           header: 'Radera historik',
@@ -93,7 +93,7 @@ export class UpsertTallyComponent implements OnInit, OnDestroy {
     this.tally.setTitle(this.tallyForm.value.title);
     this.tally.setIncreseBy(this.tallyForm.value.increseBy);
     this.tally.setDecreseBy(this.tallyForm.value.decreseBy);
-    this.tally.setResetEveryday(this.tallyForm.value.resetEveryDay);
+    this.tally.setResetOnInterval(this.tallyForm.value.resetOnInterval);
     this.tally.setGoal(this.tallyForm.value.goal);
     this.tally.setTopScore(this.tallyForm.value.topScore);
     this.tally.setValue(this.tallyForm.value.value);
