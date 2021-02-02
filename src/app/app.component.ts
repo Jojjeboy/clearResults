@@ -97,8 +97,13 @@ export class AppComponent implements OnInit {
     }
   }
 
-  reloadPage(){
-    window.location.reload();
+  toStartPage(){
+    if(window.location.hostname === 'localhost'){
+      window.location.href = window.location.origin;
+    }
+    else if(window.location.hostname === 'jojjeboy.github.io'){
+      window.location.href = window.location.origin + '/' + window.location.pathname.split('/')[1];
+    }
   }
 
   clearCacheConfirmed() {

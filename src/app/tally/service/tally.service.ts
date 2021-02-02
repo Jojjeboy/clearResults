@@ -88,7 +88,7 @@ export class TallyService extends BaseTally {
 
   shouldAddToHistory(tally: Tally): boolean {
     let shouldAddToHistory = false;
-    if (tally.getResetOnInterval()) {
+    if (tally.getCanReset()) {
       if (this.dateHelperService.lastTouchedIsOld(tally.getLastTouched()) && tally.getValue() > 0) {
         if (this.historyService.dateExistInHistory(tally.getLastTouched(), tally.getHistory()) === false) {
           shouldAddToHistory = true;
@@ -159,7 +159,8 @@ export class TallyService extends BaseTally {
       title: null,
       increseBy: null,
       decreseBy: null,
-      resetOnInterval: true,
+      reset: true,
+      resetInterval: null,
       uuid: null,
       value: 0,
       lastTouched: null,
