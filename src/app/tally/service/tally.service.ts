@@ -159,7 +159,7 @@ export class TallyService extends BaseTally {
       title: null,
       increseBy: null,
       decreseBy: null,
-      reset: true,
+      reset: false,
       resetInterval: null,
       uuid: null,
       value: 0,
