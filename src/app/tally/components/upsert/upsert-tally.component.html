@@ -72,7 +72,7 @@
 
                 <div class="clr-row">
                     <div class="clr-col-6 reset">
-                        <span>Nollställ varje dag</span>
+                        <span>Nollställ räknare</span>
                         <div class="radio btn">
                             <input type="radio" formControlName="reset" value="true" id="btn-demo-radio-1"
                                 [value]="true">
@@ -88,6 +88,32 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="clr-row" [class.disabled]="!tallyForm.value.reset">
+                    <div class="clr-col-4 reset">
+                        <span>Nollställningsintervall</span>
+                        <div class="radio btn">
+                            <input type="radio" formControlName="resetInterval" value="daily" id="reset-btn-daily">
+                            <label for="reset-btn-daily">Dag</label>
+                        </div>
+                    </div>
+                    <div class="clr-col-4 reset">
+                        <span>&nbsp;</span>
+                        <div class="radio btn">
+                            <input type="radio" formControlName="resetInterval" value="weekly" id="reset-btn-weekly">
+                            <label for="reset-btn-weekly">Vecka</label>
+                        </div>
+                    </div>
+                    <div class="clr-col-4 reset">
+                        <span>&nbsp;</span>
+                        <div class="radio btn">
+                            <input type="radio" formControlName="resetInterval" value="monthly" id="reset-btn-monthly">
+                            <label for="reset-btn-monthly">Månad</label> 
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="clr-row">
                     <div class="clr-col-12">
                         <app-history-summary [tally]="tally"></app-history-summary>
@@ -117,3 +143,5 @@
 </div>
 
 <app-modal [modalData]="cleanHistoryModalData" (parentEvent)="cleanHistoryConfirmed()"></app-modal>
+
+<pre>{{tallyForm.value | json }}</pre>

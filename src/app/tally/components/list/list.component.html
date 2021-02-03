@@ -26,11 +26,11 @@
                         <div class="clr-col-7">
                             <div class="card-title">
                                 <span *ngIf="tally.getCanReset()">
-                                    <span *ngIf="tally.getHistory().length > 0">{{ tally.getHistory().length }} dagars historik</span>
+                                    <span *ngIf="tally.getHistory().length > 0">{{ tally.getHistory().length }} &#60;enhet&#62; historik</span>
                                     <span *ngIf="tally.getHistory().length === 0">Historik saknas</span>
                                 </span>
                                 <span *ngIf="!tally.getCanReset()">
-                                    <span>Räknaren nollställs ej dagligen</span>
+                                    <span>Räknaren nollställs inte</span>
                                 </span>
                             </div>
                         </div>

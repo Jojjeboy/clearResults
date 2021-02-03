@@ -48,7 +48,7 @@ export class DetailComponent extends BaseTallyComponent implements OnInit, OnDes
     this.cleanHistoryModalData = {
       open: true,
       header: 'Radera historik',
-      body: 'Är du säker på att du vill radera historiken.\n Det verkar som det finns ' + this.tally.getHistory().length + ' dagars historik',
+      body: 'Är du säker på att du vill radera historiken.\n Det verkar som det finns ' + this.tally.getHistory().length + ' &#60;enhet&#62; historik',
       footer: ''
     }
   }

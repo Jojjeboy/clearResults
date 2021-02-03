@@ -72,6 +72,10 @@ a:active {
     color: $successColor;
 }
 
+.disabled{
+    opacity: 0.3;
+}
+
 .clr-col-12.clear-history {
     padding-top: 15px;
     text-align: center;
