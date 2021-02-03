@@ -11,6 +11,7 @@ import { LocalStorageService } from '../../service/local-storage/local-storage.s
 export class BaseTallyComponent {
 
   constructor(protected tallyService: TallyService){}
+  percentage = 0.00;
 
   getDynamicTallyGoal(histories: History[]): number {
     let total:number = 0;
@@ -35,12 +36,18 @@ export class BaseTallyComponent {
     return false;
   }
 
-  increase(tally: Tally) {
-    this.tallyService.increase(tally);
+  recalculatePercentage(tally: Tally) {
+    this.percentage = this.tallyService.recalculatePercentage(tally.getGoal(), tally.getValue());
   }
 
+  increase(tally: Tally) {
+    this.tallyService.increase(tally);
+    this.recalculatePercentage(tally);
+  }
+  
   decrease(tally: Tally) {
     this.tallyService.decrease(tally);
+    this.recalculatePercentage(tally);
   }
 
 }

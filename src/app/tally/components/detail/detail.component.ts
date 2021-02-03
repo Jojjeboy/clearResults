@@ -18,7 +18,7 @@ export class DetailComponent extends BaseTallyComponent implements OnInit, OnDes
   cleanHistoryModalData: Object = {};
   deleteModalData: Object = {};
   tally!: Tally;
-  percentage = 0.00;
+  
   editMode = false;
   tallyObservable!: Subscription;
 
@@ -41,11 +41,7 @@ export class DetailComponent extends BaseTallyComponent implements OnInit, OnDes
       });
     });
 
-    this.recalculatePercentage();
-  }
-
-  recalculatePercentage() {
-    this.percentage = this.tallyService.recalculatePercentage(this.tally.getGoal(), this.tally.getValue());
+    this.recalculatePercentage(this.tally);
   }
 
   cleanHistory() {
