@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DateHelperService {
 
-  constructor() {}
+  constructor() { }
 
   formatDate(date: Date): string {
     var d = new Date(date),
@@ -41,11 +41,22 @@ export class DateHelperService {
 
   lastTouchedIsOld(lastTouched: Date, resetInterval: string): boolean {
 
-    if(resetInterval === 'daily'){
+    if (resetInterval === 'daily') {
       if (new Date().setHours(0, 0, 0, 0) - lastTouched.setHours(0, 0, 0, 0) > 0) {
         return true;
       }
-      
+      return false;
+    }
+    else if(resetInterval === 'weekly'){
+      if(this.getWeekNumber(lastTouched) !== this.getWeekNumber(new Date())){
+        return true;
+      }
+      return false;
+    }
+    else if(resetInterval === 'monthly'){
+      if(this.getMonthNumber(lastTouched) !== this.getMonthNumber(new Date())){
+        return true;
+      }
       return false;
     }
     return false;
@@ -59,5 +70,30 @@ export class DateHelperService {
 
     return lastTouched;
   }
+
+  getWeekNumber(date: any): number {
+    // Copy date so don't modify original
+    date = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
+    // Get first day of year
+    let yearStart: any = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+    // Return array of year and week number
+    return weekNo;
+  }
+
+  getMonthNumber(date: Date): number{
+    return date.getMonth();
+  }
+
+  getYearNumber(date: Date): number {
+    return date.getUTCFullYear();
+  }
+
+
+
 
 }

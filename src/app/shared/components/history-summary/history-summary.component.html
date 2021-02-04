@@ -1,5 +1,6 @@
 <div>
     <h4>Historik</h4>
+    <small>Målet är uppsatt {{ resetIntervalText }}</small>
     <small *ngIf="tally.getHistory().length < 1">Det finns ingen historik för denna räknare, <a routerLink="/history/edit/{{ tally.getUuid() }}">lägg till historik.</a></small>
     <table class="table" *ngIf="tally.getHistory().length > 0">
         <thead>
