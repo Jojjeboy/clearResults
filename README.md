@@ -34,3 +34,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 - Kolla om man kan rendera diagram på historiken
 - Last touched blir fel då tiden har ändrats vid nersparning
 - Kolla om man kan bryta cachen i serviceworkern
+
+https://stackoverflow.com/questions/6117814/get-week-of-year-in-javascript-like-in-php
