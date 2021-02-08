@@ -30,9 +30,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
   # *** Att göra *** ##
 
 - Lägg till i18n 
-- Fixa så att historiken visar vecka för veckomål, månadsnamn för månad osv
-- Funder på om man kan ställa in sin egen nollställningsfrekvens
-- Lägg till i historiken när man ladda ListComponent och inte i servicen
+
 - Kolla om man kan rendera diagram på historiken
 - Last touched blir fel då tiden har ändrats vid nersparning
 - Kolla om man kan bryta cachen i serviceworkern

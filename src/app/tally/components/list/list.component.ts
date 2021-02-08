@@ -24,6 +24,8 @@ export class ListComponent extends BaseTallyComponent implements OnInit, OnDestr
     protected localStorageService: LocalStorageService,
     protected tallyService: TallyService) {
       super(tallyService);
+
+      //console.log(this.translation.daily);
   }
 
   ngOnInit(): void {

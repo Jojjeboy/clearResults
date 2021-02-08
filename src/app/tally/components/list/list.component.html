@@ -26,7 +26,7 @@
                         <div class="clr-col-7">
                             <div class="card-title">
                                 <span *ngIf="tally.getCanReset()">
-                                    <span *ngIf="tally.getHistory().length > 0">{{ tally.getHistory().length }} &#60;enhet&#62; historik</span>
+                                    <span *ngIf="tally.getHistory().length > 0">{{ tally.getHistory().length }} <span i18n> {{ this.translation[tally.getResetInterval()] }} </span> historik</span>
                                     <span *ngIf="tally.getHistory().length === 0">Historik saknas</span>
                                 </span>
                                 <span *ngIf="!tally.getCanReset()">

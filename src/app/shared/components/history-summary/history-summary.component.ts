@@ -3,7 +3,8 @@ import { Tally } from '../../../tally/types/Tally';
 
 @Component({
   selector: 'app-history-summary',
-  templateUrl: './history-summary.component.html'
+  templateUrl: './history-summary.component.html',
+  styleUrls: ['./history-summary.component.scss']
 })
 export class HistorySummaryComponent implements OnInit {
 

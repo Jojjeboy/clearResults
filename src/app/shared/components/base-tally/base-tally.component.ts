@@ -13,6 +13,12 @@ export class BaseTallyComponent {
   constructor(protected tallyService: TallyService){}
   percentage = 0.00;
 
+  public translation: any = {
+    "daily": "dagars",
+    "weekly": "veckas",
+    "monthly": "månads"
+  }
+
   getDynamicTallyGoal(histories: History[]): number {
     let total:number = 0;
     let dynamicGoal:number = 0;
