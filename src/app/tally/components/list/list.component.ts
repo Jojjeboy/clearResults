@@ -63,6 +63,36 @@ export class ListComponent extends BaseTallyComponent implements OnInit, OnDestr
     this.localStorageService.saveConfig(config);
   }
 
+  getUnitText(tally: Tally): string {
+    let resetIntervalText: string = '';
+    if(tally.resetInterval === 'daily'){
+      if(tally.getHistory().length === 1){
+        resetIntervalText = 'dags';
+      }
+      else {
+        resetIntervalText = 'dagars';
+      }
+    }
+    else if(tally.resetInterval === 'weekly'){
+      if(tally.getHistory().length === 1){
+        resetIntervalText = 'veckas';
+      }
+      else {
+        resetIntervalText = 'veckors';
+      }
+    }
+    else if(tally.resetInterval === 'monthly'){
+      if(tally.getHistory().length === 1){
+        resetIntervalText = 'månads';
+      }
+      else {
+        resetIntervalText = 'månaders';
+      }
+    }
+    return resetIntervalText;
+
+  }
+
 
   ngOnDestroy() {
     this.tallyListObservable.unsubscribe();
