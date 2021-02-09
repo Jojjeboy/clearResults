@@ -47,7 +47,8 @@ if [[ $(git diff --stat) != '' ]]; then
     git commit --amend --no-edit &&
     git push
 else
-  VN="$VN-mod"
-  echo "Inga förändringar upptäcktes.\n*** Script stoppat ***"
-  exit 0
+  ng build --prod --output-path docs --base-href "$PUBLISH_URL"
+  git add . &&
+  git commit --amend --no-edit &&
+  git push
 fi
